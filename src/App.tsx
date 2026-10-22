@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import {
   Server,
   Cloud,
@@ -79,7 +79,7 @@ const TOPOLOGY_NODES: TopologyNode[] = [
     status: 'optimal',
     log: [
       '[02:35:12] Ceph / NVMe-oF peer replication active-active',
-      '[02:42:04] IOPS benchmark: 1,840,000 IOPS @ 400µs latency',
+      '[02:42:04] IOPS benchmark: 1,840,000 IOPS @ 400Âµs latency',
       '[02:49:15] Immutable snapshot created: zfs-snap-hourly-0250',
       '[02:57:44] Storage capacity at 48.2% (142 TB unallocated)'
     ]
@@ -103,7 +103,7 @@ const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'cloud-mesh',
     name: 'Multi-Cloud Transit Interconnect',
-    category: 'AWS • Azure • GCP • On-Prem',
+    category: 'AWS â€¢ Azure â€¢ GCP â€¢ On-Prem',
     cpu: 39,
     memory: 49,
     throughput: '45.0 Gbps',
@@ -160,7 +160,7 @@ export function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const sshPublicKey = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFhSWhAcGvCsmltYSBPxC0fRll2K69emoywg5dH4lvzB lnk-it-infra';
+  const sshPublicKey = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH1+S2DKXnWuRsLu9vnOL4kSb/DG27LENhTNruHJ1O4 lnkitinfra';
 
   const copyToClipboard = (text: string, type: 'key' | 'cmd') => {
     navigator.clipboard.writeText(text);
@@ -204,9 +204,9 @@ git push -u origin main`;
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <a href="#github-setup" style={{ color: 'var(--accent-cyan)', textDecoration: 'none', fontWeight: 600 }}>
-              ⚡ GitHub Multi-ID Ready
+              âš¡ GitHub Multi-ID Ready
             </a>
-            <span style={{ opacity: 0.4 }}>•</span>
+            <span style={{ opacity: 0.4 }}>â€¢</span>
             <span>SOC 2 Type II Certified</span>
           </div>
         </div>
@@ -430,7 +430,7 @@ git push -u origin main`;
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-                  Hardware: Dual AMD EPYC 9654 • 1.5TB DDR5 ECC
+                  Hardware: Dual AMD EPYC 9654 â€¢ 1.5TB DDR5 ECC
                 </span>
                 <button className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} onClick={() => setIsModalOpen(true)}>
                   Audit Node
@@ -759,35 +759,35 @@ git push -u origin main`;
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
                 {pings.usEast} ms
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>🟢 Optimal</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
             </div>
             <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>US-WEST (Oregon)</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
                 {pings.usWest} ms
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>🟢 Optimal</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
             </div>
             <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>EU-CENTRAL (Frankfurt)</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
                 {pings.euCentral} ms
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>🟢 Optimal</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
             </div>
             <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>AP-SOUTH (Mumbai)</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
                 {pings.apSouth} ms
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>🟢 Optimal</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
             </div>
             <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>AP-EAST (Tokyo)</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
                 {pings.apEast} ms
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>🟢 Optimal</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
             </div>
           </div>
         </div>
@@ -843,7 +843,7 @@ git push -u origin main`;
                   &nbsp;&nbsp;IdentitiesOnly yes
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '12px' }}>
-                  ✓ Dedicated key isolated from your primary GitHub profile
+                  âœ“ Dedicated key isolated from your primary GitHub profile
                 </div>
               </div>
 
@@ -1028,7 +1028,7 @@ git push -u origin main`;
 
           <div className="footer-bottom">
             <div>
-              &copy; {new Date().getFullYear()} LNK IT Infra. All rights reserved. SOC 2 Type II • ISO 27001 • PCI-DSS Certified.
+              &copy; {new Date().getFullYear()} LNK IT Infra. All rights reserved. SOC 2 Type II â€¢ ISO 27001 â€¢ PCI-DSS Certified.
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span className="pulse-dot"></span>
@@ -1042,3 +1042,4 @@ git push -u origin main`;
 }
 
 export default App;
+

@@ -1,439 +1,1370 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Server,
-  Cloud,
+  Shield,
   ShieldCheck,
   Cpu,
   Network,
-  Terminal,
-  Activity,
+  Wifi,
+  PhoneCall,
+  Video,
+  Fingerprint,
+  Cloud,
   CheckCircle2,
-  HardDrive,
-  Copy,
-  Check,
   ChevronRight,
+  ArrowRight,
+  Star,
+  MapPin,
+  Mail,
+  Phone,
+  Clock,
+  HelpCircle,
+  Send,
+  X,
+  Menu,
   Sliders,
-  Globe,
-  Radio,
-  Lock,
+  FileText,
   Zap,
-  ArrowUpRight,
-  Layers,
-  X
+  Check,
+  Radio
 } from 'lucide-react';
 import './App.css';
 
-interface TopologyNode {
+// Solutions Data (Simple, Clear & Professional)
+interface SolutionItem {
   id: string;
-  name: string;
   category: string;
-  cpu: number;
-  memory: number;
-  throughput: string;
-  ping: string;
-  status: 'optimal' | 'warning' | 'healthy';
-  log: string[];
+  title: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  hardware: string[];
+  icon: typeof Server;
+  highlight: string;
 }
 
-const TOPOLOGY_NODES: TopologyNode[] = [
+const SOLUTIONS: SolutionItem[] = [
   {
-    id: 'edge',
-    name: 'Edge Gateway & Anycast DNS',
-    category: 'Global Edge Ingress',
-    cpu: 28,
-    memory: 42,
-    throughput: '38.4 Gbps',
-    ping: '2.8 ms',
-    status: 'optimal',
-    log: [
-      '[02:40:11] Ingress BGP route converged across 14 PoPs',
-      '[02:45:02] DDoS scrubbed: 4.2M packets dropped at edge',
-      '[02:50:18] SSL/TLS handshakes: 99.8% session cache hit',
-      '[02:58:33] Global Anycast latency stable @ 2.8ms'
-    ]
+    id: 'cabling',
+    category: 'Core Infrastructure',
+    title: 'Network Cabling & Server Racks',
+    tagline: 'Neat, Tangle-Free Office Wiring',
+    description: 'We install fast, organized network cables and optical fiber for computers, printers, and phones. All cables are hidden, neatly labeled, and tested for fast, uninterrupted internet.',
+    features: [
+      'Neat Cat6 and optical fiber cabling labeled at every desk',
+      'Clean server racks with tidy patch panels (no loose wires)',
+      'Certified testing to guarantee full internet speed',
+      'Protective casing so cables stay hidden and safe',
+      'Cleanup and reorganization of old, messy server rooms'
+    ],
+    hardware: ['Schneider Electric', 'Molex', 'CommScope', 'D-Link'],
+    icon: Network,
+    highlight: 'Neat & Tested Wiring'
   },
   {
-    id: 'k8s',
-    name: 'Autonomous Kubernetes Core',
-    category: 'Microservices & Compute',
-    cpu: 64,
-    memory: 78,
-    throughput: '22.1 Gbps',
-    ping: '4.1 ms',
-    status: 'optimal',
-    log: [
-      '[02:38:09] HPA autoscaled 18 worker pods in cluster-us-east',
-      '[02:44:21] Cilium eBPF mesh verified zero packet drops',
-      '[02:51:00] Rolling canary deployment version v3.12.0 verified',
-      '[02:59:10] Cluster health: 128/128 nodes ready and synced'
-    ]
+    id: 'wifi',
+    category: 'Core Infrastructure',
+    title: 'Office Wi-Fi Solutions',
+    tagline: 'Fast, Reliable Wi-Fi in Every Room',
+    description: 'Commercial Wi-Fi designed to handle all your office devices. Walk anywhere in your office without losing connection or having your video calls drop.',
+    features: [
+      'Connects 100+ laptops and phones without slowing down',
+      'No dropped Zoom or Teams calls when moving between rooms',
+      'Separate, secure Wi-Fi login for office visitors',
+      'Full coverage across all cabins, meeting rooms, and halls',
+      'Password protection to keep unauthorized users out'
+    ],
+    hardware: ['HPE Aruba', 'Sophos AP6', 'Fortinet FortiAP', 'Ubiquiti'],
+    icon: Wifi,
+    highlight: 'Zero Dead-Zone Wi-Fi'
   },
   {
-    id: 'storage',
-    name: 'High-Throughput NVMe SAN Array',
-    category: 'Low-Latency Storage Tier',
-    cpu: 32,
-    memory: 56,
-    throughput: '94.2 Gbps',
-    ping: '0.4 ms',
-    status: 'optimal',
-    log: [
-      '[02:35:12] Ceph / NVMe-oF peer replication active-active',
-      '[02:42:04] IOPS benchmark: 1,840,000 IOPS @ 400Âµs latency',
-      '[02:49:15] Immutable snapshot created: zfs-snap-hourly-0250',
-      '[02:57:44] Storage capacity at 48.2% (142 TB unallocated)'
-    ]
+    id: 'firewall',
+    category: 'Cyber Defense',
+    title: 'Firewall & Network Security',
+    tagline: 'Protect Your Business from Viruses & Hackers',
+    description: 'Supply and setup of trusted Sophos, Fortinet, and SonicWall firewalls. Stop cyber threats, protect company data, and keep your office computers running safely.',
+    features: [
+      'Blocks viruses, ransomware, and cyber threats automatically',
+      'Dual internet backup: auto-switches lines if one provider fails',
+      'Secure remote VPN for staff working safely from home',
+      'Filter unwanted websites to keep staff focused and productive',
+      'Instant alerts if any suspicious activity is detected'
+    ],
+    hardware: ['Sophos XGS Series', 'Fortinet FortiGate', 'SonicWall TZ', 'Cisco'],
+    icon: ShieldCheck,
+    highlight: 'Active Cyber Defense'
   },
   {
-    id: 'security',
-    name: 'Zero-Trust AI SOC & SASE Gateway',
-    category: 'Cyber Defense & EDR',
-    cpu: 45,
-    memory: 63,
-    throughput: '16.8 Gbps',
-    ping: '1.9 ms',
-    status: 'optimal',
-    log: [
-      '[02:39:41] SIEM telemetry ingest: 42,000 eps analyzed',
-      '[02:46:19] Micro-segmentation policy enforced for subnet-prod-db',
-      '[02:52:40] Identity verify: 0 anomalous MFA tokens detected',
-      '[02:58:12] Compliance audit status: ISO27001 & SOC2 passed'
-    ]
+    id: 'datacenter',
+    category: 'Core Infrastructure',
+    title: 'Server Rooms & Power Backup',
+    tagline: 'Safe, Continuous Operation for Your Business',
+    description: 'Complete setup of your office server room. We install lockable server racks, battery power backups (UPS), cooling, and central storage so your business software never shuts down.',
+    features: [
+      'Lockable server racks to keep expensive equipment safe',
+      'Battery power backup (UPS) to prevent sudden power cuts',
+      'Central network storage (NAS) to securely share company files',
+      'Setup of accounting software (Tally), ERP, and databases',
+      'Temperature monitoring to prevent equipment from overheating'
+    ],
+    hardware: ['Dell PowerEdge', 'HPE ProLiant', 'APC Schneider', 'QNAP Storage'],
+    icon: Server,
+    highlight: '24/7 Continuous Uptime'
   },
   {
-    id: 'cloud-mesh',
-    name: 'Multi-Cloud Transit Interconnect',
-    category: 'AWS â€¢ Azure â€¢ GCP â€¢ On-Prem',
-    cpu: 39,
-    memory: 49,
-    throughput: '45.0 Gbps',
-    ping: '5.2 ms',
-    status: 'optimal',
-    log: [
-      '[02:36:22] AWS DirectConnect 100G link healthy',
-      '[02:43:55] Azure ExpressRoute failover standby verified',
-      '[02:50:11] Multi-cloud routing optimized via AI path selection',
-      '[02:59:04] Cross-cloud synchronization delta: 0.00ms'
-    ]
+    id: 'networking',
+    category: 'Core Infrastructure',
+    title: 'Network Switches & Routers',
+    tagline: 'Fast, Stable Connections to Every Desk',
+    description: 'High-speed network switches from HPE Aruba and Cisco that link all office computers, printers, intercom phones, and cameras together without lag.',
+    features: [
+      'Full gigabit speed delivered directly to every desk',
+      'Powers security cameras and phones through the cable (PoE)',
+      'Smooth Zoom and Teams calls with zero lag or stutter',
+      'Separate networks for staff, guests, and accounts teams',
+      'Reliable hardware that runs continuously without reboots'
+    ],
+    hardware: ['HPE Aruba Instant On', 'Cisco Catalyst', 'D-Link Managed Switches'],
+    icon: Cpu,
+    highlight: 'High-Speed Networking'
+  },
+  {
+    id: 'cctv',
+    category: 'Smart Surveillance',
+    title: 'CCTV Security Cameras',
+    tagline: 'Watch Live Video on Your Mobile Phone',
+    description: 'High-definition security camera systems from Hikvision and CP Plus. View live video and past recordings of your office, reception, and warehouse directly from your smartphone.',
+    features: [
+      'Clear HD and 4K cameras with sharp day and night vision',
+      'Watch live camera feeds on your mobile phone from anywhere',
+      'Instant motion alerts sent to your phone after office hours',
+      'Stores 30 to 90 days of continuous video recordings',
+      'Weatherproof cameras for indoor offices, gates, and outdoor areas'
+    ],
+    hardware: ['Hikvision Pro', 'CP Plus', 'Dahua Technology', 'Honeywell'],
+    icon: Video,
+    highlight: 'Mobile Live View'
+  },
+  {
+    id: 'biometrics',
+    category: 'Smart Surveillance',
+    title: 'Biometric Attendance & Door Access',
+    tagline: 'Accurate Staff Attendance & Secure Entry',
+    description: 'Touchless face recognition and fingerprint attendance machines connected to automatic glass door locks and video door phones for your office entrance.',
+    features: [
+      'Fast face and fingerprint scan in under one second',
+      'Automatic daily attendance reports ready for HR payroll',
+      'Smart door locks that unlock only for authorized staff',
+      'Emergency exit button and auto-unlock during fire alarms',
+      'Two-way video door phone to see and speak with office visitors'
+    ],
+    hardware: ['eSSL Security', 'ZKTeco', 'Hikvision Access Control', 'Realtime'],
+    icon: Fingerprint,
+    highlight: 'Automated Attendance'
+  },
+  {
+    id: 'epabx',
+    category: 'Voice & Telecom',
+    title: 'Office Phone Systems (EPABX)',
+    tagline: 'Clear Calling Between Desks & Clients',
+    description: 'Easy-to-use office intercom and telephone systems from Syntel and NEC. Make quick calls to colleagues across desks and transfer customer calls smoothly.',
+    features: [
+      'Direct intercom dialing between 6 to 200+ employee desks',
+      'Professional welcome greeting (Press 1 for Sales, 2 for Support)',
+      'Forward incoming office calls directly to mobile phones',
+      'Works with standard landlines and internet phone lines (VoIP)',
+      'Optional call recording for customer service quality'
+    ],
+    hardware: ['Syntel NEO DX Series', 'NEC SL2100', 'Panasonic', 'Grandstream'],
+    icon: PhoneCall,
+    highlight: 'Easy Office Calling'
+  },
+  {
+    id: 'ill-mpls',
+    category: 'Voice & Telecom',
+    title: 'Dedicated Internet (Leased Line)',
+    tagline: 'Guaranteed 100% Symmetrical Internet Speed',
+    description: 'Dedicated enterprise internet lines with equal upload and download speeds, backed by a 99.9% uptime guarantee from top telecom providers like Airtel, Tata, and Jio.',
+    features: [
+      'Dedicated 1:1 line never shared with other buildings or users',
+      'Equal upload and download speeds for fast file transfers',
+      '99.9% uptime guarantee with priority customer support',
+      'Securely links multiple branch offices and warehouses together',
+      'Continuous line monitoring to fix issues before you notice'
+    ],
+    hardware: ['Tata Teleservices', 'Airtel Business', 'Vodafone Idea', 'Jio Enterprise'],
+    icon: Radio,
+    highlight: '99.9% Uptime Guarantee'
+  },
+  {
+    id: 'cloud-backup',
+    category: 'Cloud & Data',
+    title: 'Automatic Data Backup & Cloud Setup',
+    tagline: 'Never Lose Your Important Business Files',
+    description: 'Automatic daily data backups and official Microsoft 365 email setup. Keep your accounting files (Tally), customer databases, and emails safe from crashes and ransomware.',
+    features: [
+      'Automated daily backup of Tally, accounting files, and documents',
+      'Safe backup copies that cannot be deleted or infected by viruses',
+      'Microsoft 365 business email setup (yourname@yourcompany.com)',
+      'Quick file recovery in minutes if any computer breaks down',
+      'Secure access to company files from anywhere on any device'
+    ],
+    hardware: ['Veeam Backup', 'Acronis Cyber Protect', 'Microsoft 365', 'Amazon Web Services'],
+    icon: Cloud,
+    highlight: 'Safe File Protection'
+  }
+];
+
+// Hardware Showcase Data (Simple & Understandable Specs)
+interface ProductModel {
+  name: string;
+  brand: string;
+  category: string;
+  specs: string[];
+  bestFor: string;
+  inStock: boolean;
+}
+
+const HARDWARE_SHOWCASE: Record<string, ProductModel[]> = {
+  firewalls: [
+    {
+      name: 'Sophos XGS 116 / 126',
+      brand: 'Sophos',
+      category: 'Office Firewall',
+      specs: [
+        'Recommended for 20 to 120 employees',
+        'Blocks viruses, malware & harmful websites',
+        'Built-in secure VPN for work-from-home staff',
+        'Connects 2 internet lines with automatic switch'
+      ],
+      bestFor: 'Small to medium business offices',
+      inStock: true
+    },
+    {
+      name: 'Sophos XGS 2100',
+      brand: 'Sophos',
+      category: 'Enterprise Firewall',
+      specs: [
+        'Recommended for 150 to 600 employees',
+        'High-speed internet filtering with zero slowdowns',
+        'Dual power supply for backup safety',
+        'Detailed cyber security reports and instant alerts'
+      ],
+      bestFor: 'Head offices and multi-floor corporate buildings',
+      inStock: true
+    },
+    {
+      name: 'Fortinet FortiGate FG-60F / 80F',
+      brand: 'Fortinet',
+      category: 'Office Firewall',
+      specs: [
+        'Fast and smooth internet filtering',
+        'Dual internet backup built-in',
+        'Stops unauthorized external access and hacking',
+        'Simple, easy-to-use management screen'
+      ],
+      bestFor: 'Growing companies and regional branch offices',
+      inStock: true
+    },
+    {
+      name: 'SonicWall TZ470',
+      brand: 'SonicWall',
+      category: 'Office Firewall',
+      specs: [
+        'Real-time virus and threat protection',
+        'Fast multi-gigabit network ports',
+        'Safe encrypted internet connections',
+        'Simple remote office monitoring'
+      ],
+      bestFor: 'Modern corporate offices & technology teams',
+      inStock: true
+    }
+  ],
+  switches: [
+    {
+      name: 'Aruba Instant On 1930 (24-Port)',
+      brand: 'HPE Aruba',
+      category: 'Network Switch',
+      specs: [
+        '24 Gigabit ports for office computers and printers',
+        'Powers cameras and desk phones through the cable (PoE)',
+        'High-speed fiber ports for server connections',
+        'Manage easily from mobile app or web'
+      ],
+      bestFor: 'Standard office floors and conference rooms',
+      inStock: true
+    },
+    {
+      name: 'Aruba Instant On 1960 (48-Port)',
+      brand: 'HPE Aruba',
+      category: 'High-Capacity Switch',
+      specs: [
+        '48 Gigabit ports for large office setups',
+        'Strong power delivery for all cameras & phones',
+        'Stack multiple switches together easily',
+        'Built for continuous heavy business usage'
+      ],
+      bestFor: 'Large office floors and high-density computer teams',
+      inStock: true
+    },
+    {
+      name: 'Cisco Catalyst 1000 Series',
+      brand: 'Cisco',
+      category: 'Enterprise Switch',
+      specs: [
+        'World-famous Cisco enterprise reliability',
+        'Runs non-stop without needing reboots or restarts',
+        'Strict network security and access controls',
+        'Long hardware lifespan with manufacturer support'
+      ],
+      bestFor: 'Banks, corporate offices & mission-critical setups',
+      inStock: true
+    }
+  ],
+  wireless: [
+    {
+      name: 'Aruba Instant On AP22 (Wi-Fi 6)',
+      brand: 'HPE Aruba',
+      category: 'Office Wi-Fi Access Point',
+      specs: [
+        'Modern Wi-Fi 6 for super-fast internet',
+        'Supports 75+ connected devices smoothly',
+        'Walk anywhere in the office without losing signal',
+        'Clean, neat ceiling or wall mount design'
+      ],
+      bestFor: 'Offices, meeting rooms, clinics & studios',
+      inStock: true
+    },
+    {
+      name: 'Aruba AP505 Enterprise AP',
+      brand: 'HPE Aruba',
+      category: 'High-Density Wi-Fi',
+      specs: [
+        'Engineered for crowded office spaces',
+        'Smart signal adjustment to prevent interference',
+        'Handles heavy video call traffic with zero lag',
+        'Wide coverage area across open floor plans'
+      ],
+      bestFor: 'Tech companies, co-working spaces & large teams',
+      inStock: true
+    },
+    {
+      name: 'Sophos AP6 420',
+      brand: 'Sophos',
+      category: 'Secure Wi-Fi Access Point',
+      specs: [
+        'Fast Wi-Fi 6 wireless connectivity',
+        'Connects seamlessly with Sophos firewalls',
+        'Easy remote management from the cloud',
+        'Automatic security and firmware updates'
+      ],
+      bestFor: 'Companies using Sophos firewalls for all-in-one setup',
+      inStock: true
+    }
+  ],
+  telephony: [
+    {
+      name: 'Syntel NEO DX 206 / 308',
+      brand: 'Syntel',
+      category: 'Small Office Intercom (EPABX)',
+      specs: [
+        '2 to 3 external telephone lines',
+        '6 to 8 desk extension phones',
+        'Caller ID display on all phones',
+        'Automatic welcome greeting message'
+      ],
+      bestFor: 'Small offices, clinics & consulting desks',
+      inStock: true
+    },
+    {
+      name: 'Syntel NEO DX 312 / 416',
+      brand: 'Syntel',
+      category: 'Expandable Office Intercom',
+      specs: [
+        'Up to 4 telephone lines and 16 desk extensions',
+        'Multi-level voice menu (Press 1 for Sales, 2 for Support)',
+        '3-party phone conference calling',
+        'Forward incoming office calls to mobile phones'
+      ],
+      bestFor: 'Medium-sized offices and growing business teams',
+      inStock: true
+    },
+    {
+      name: 'NEC SL2100 Smart PBX',
+      brand: 'NEC',
+      category: 'Hybrid Telephone System',
+      specs: [
+        'Scalable from 8 to 120+ desk extensions',
+        'Supports modern internet phone lines (VoIP)',
+        'Built-in call recording capability',
+        'Conference call bridge for team meetings'
+      ],
+      bestFor: 'Corporate companies, call centers & multi-floor offices',
+      inStock: true
+    }
+  ]
+};
+
+// Case Studies (Simple, Practical Results)
+const CASE_STUDIES = [
+  {
+    client: 'Financial Services Firm (Mumbai BKC)',
+    industry: 'Finance & Consulting',
+    challenge: 'Frequent internet disconnects and tangled server cables caused delays during client calls and financial tasks.',
+    solution: 'Installed neat Cat6A cabling, dual-internet backup, and a Sophos security firewall.',
+    result: '100% stable internet with zero downtime for over a year, crystal-clear video calls, and safe financial data.'
+  },
+  {
+    client: 'Automotive Parts Manufacturing Plant (Pune)',
+    industry: 'Industrial & Manufacturing',
+    challenge: 'A 15-acre factory had Wi-Fi dead zones, broken cables from forklifts, and blind spots around storage sheds.',
+    solution: 'Laid protected fiber optic cables, installed 120 HD CCTV cameras, and added rugged outdoor Wi-Fi.',
+    result: 'Complete camera visibility on mobile phones, zero broken cables, and smooth barcode scanning everywhere.'
+  },
+  {
+    client: 'Software & Technology Office (Bengaluru)',
+    industry: 'IT & Software',
+    challenge: '400 software engineers faced slow downloads and frequent Wi-Fi drops during video meetings.',
+    solution: 'Installed high-capacity Aruba network switches, Wi-Fi 6 access points, and a dedicated 500Mbps leased line.',
+    result: 'Zero Wi-Fi dropouts, fast file downloads, and smooth Zoom conferences for all staff.'
   }
 ];
 
 export function App() {
-  const [selectedNode, setSelectedNode] = useState<TopologyNode>(TOPOLOGY_NODES[0]);
-  const [activeTab, setActiveTab] = useState<'all' | 'cloud' | 'network' | 'security' | 'devops'>('all');
-  
-  // Sizing Calculator States
-  const [vCpuCores, setVCpuCores] = useState<number>(64);
-  const [nvmeStorage, setNvmeStorage] = useState<number>(12);
-  const [redundancyTier, setRedundancyTier] = useState<'single' | 'dual' | 'multi'>('dual');
-  const [supportTier, setSupportTier] = useState<'standard' | '24x7' | 'sre'>('24x7');
+  const [activeNav, setActiveNav] = useState<string>('home');
+  const [selectedSolutionCategory, setSelectedSolutionCategory] = useState<string>('all');
+  const [activeHardwareTab, setActiveHardwareTab] = useState<'firewalls' | 'switches' | 'wireless' | 'telephony'>('firewalls');
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [heroImageIdx, setHeroImageIdx] = useState<number>(0);
 
-  // Multi-Account GitHub Helper States
-  const [githubUser, setGithubUser] = useState<string>('');
-  const [githubEmail, setGithubEmail] = useState<string>('');
-  const [copiedKey, setCopiedKey] = useState<boolean>(false);
-  const [copiedCommand, setCopiedCommand] = useState<boolean>(false);
+  // Estimator State
+  const [officeUsers, setOfficeUsers] = useState<number>(50);
+  const [branchCount, setBranchCount] = useState<number>(1);
+  const [selectedServices, setSelectedServices] = useState<string[]>([
+    'cabling',
+    'firewall',
+    'wifi',
+    'cctv'
+  ]);
 
-  // Modal State
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalSubmitted, setModalSubmitted] = useState<boolean>(false);
-
-  // Live Pings
-  const [pings, setPings] = useState({
-    usEast: 12,
-    usWest: 24,
-    euCentral: 18,
-    apSouth: 29,
-    apEast: 38
+  // Health Audit State
+  const [auditScores, setAuditScores] = useState({
+    networkAge: 2,
+    backupFrequency: 2,
+    firewallType: 2,
+    outageFrequency: 2
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPings({
-        usEast: Math.floor(11 + Math.random() * 4),
-        usWest: Math.floor(22 + Math.random() * 5),
-        euCentral: Math.floor(17 + Math.random() * 4),
-        apSouth: Math.floor(27 + Math.random() * 6),
-        apEast: Math.floor(36 + Math.random() * 5)
-      });
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  // Quote Form State
+  const [quoteForm, setQuoteForm] = useState({
+    name: '',
+    company: '',
+    phone: '',
+    email: '',
+    city: 'Mumbai',
+    requirements: 'Need quotation for office network setup and firewall security',
+    submitted: false
+  });
 
-  const sshPublicKey = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH1+S2DKXnWuRsLu9vnOL4kSb/DG27LENhTNruHJ1O4 lnkitinfra';
-
-  const copyToClipboard = (text: string, type: 'key' | 'cmd') => {
-    navigator.clipboard.writeText(text);
-    if (type === 'key') {
-      setCopiedKey(true);
-      setTimeout(() => setCopiedKey(false), 2000);
-    } else {
-      setCopiedCommand(true);
-      setTimeout(() => setCopiedCommand(false), 2000);
+  // Hero carousel images
+  const heroImages = [
+    {
+      src: '/images/datacenter.jpg',
+      label: 'Server Rooms',
+      title: 'Neat Server Rooms & Clean Network Cabling',
+      desc: 'Organized server racks, optical fiber, and professional cabling for offices and factories.'
+    },
+    {
+      src: '/images/noc.jpg',
+      label: 'Cyber Defense',
+      title: '24/7 Network Monitoring & Cyber Protection',
+      desc: 'Proactive support that stops network crashes, virus attacks, and slow internet before they affect your work.'
+    },
+    {
+      src: '/images/access_control.jpg',
+      label: 'CCTV & Access',
+      title: 'Touchless Attendance & Clear CCTV Security',
+      desc: 'Smart facial recognition door locks and crystal-clear security cameras viewable on your mobile phone.'
     }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroImageIdx((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
+
+  const toggleService = (id: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
-  // Cost calculation formula
-  const baseComputeCost = vCpuCores * 14;
-  const baseStorageCost = nvmeStorage * 25;
-  const redundancyMultiplier = redundancyTier === 'single' ? 1.0 : redundancyTier === 'dual' ? 1.6 : 2.2;
-  const supportCost = supportTier === 'standard' ? 250 : supportTier === '24x7' ? 750 : 1500;
-  const totalMonthlyEstimate = Math.round((baseComputeCost + baseStorageCost) * redundancyMultiplier + supportCost);
+  // Estimator Calculations
+  const calculateEstimatedBudget = () => {
+    let base = officeUsers * 1100;
+    if (selectedServices.includes('cabling')) base += officeUsers * 900;
+    if (selectedServices.includes('firewall')) base += officeUsers > 120 ? 115000 : 60000;
+    if (selectedServices.includes('wifi')) base += Math.ceil(officeUsers / 25) * 15000;
+    if (selectedServices.includes('cctv')) base += Math.max(8, Math.ceil(officeUsers / 10)) * 4200;
+    if (selectedServices.includes('biometrics')) base += branchCount * 26000;
+    if (selectedServices.includes('epabx')) base += 32000 + officeUsers * 350;
+    if (selectedServices.includes('datacenter')) base += 165000;
+    if (selectedServices.includes('cloud-backup')) base += 40000;
+    return Math.round(base * (branchCount > 1 ? 1 + (branchCount - 1) * 0.75 : 1));
+  };
 
-  const gitSetupSnippet = `# 1. Configure this repository with your dedicated GitHub credentials
-git config user.name "${githubUser || 'YourGitHubUsername'}"
-git config user.email "${githubEmail || 'your-email@example.com'}"
+  const calculateHealthScore = () => {
+    const total = auditScores.networkAge + auditScores.backupFrequency + auditScores.firewallType + auditScores.outageFrequency;
+    return Math.round((total / 12) * 100);
+  };
 
-# 2. Add remote pointing to github-lnk SSH alias
-git remote add origin git@github-lnk:${githubUser || '<username>'}/lnk-it-infra.git
-git branch -M main
-git push -u origin main`;
+  const filteredSolutions = selectedSolutionCategory === 'all'
+    ? SOLUTIONS
+    : SOLUTIONS.filter((s) => s.category === selectedSolutionCategory);
+
+  const handleQuoteSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setQuoteForm((prev) => ({ ...prev, submitted: true }));
+  };
+
+  const openWhatsApp = (customMsg?: string) => {
+    const text = customMsg || encodeURIComponent(
+      `Hello LNK IT Infra! I would like to inquire about office IT infrastructure and network setup for our company (${officeUsers} employees, ${branchCount} office location).`
+    );
+    window.open(`https://wa.me/919820011223?text=${text}`, '_blank');
+  };
 
   return (
-    <div className="app-root">
-      {/* Top Telemetry Notification Banner */}
-      <div className="top-bar">
-        <div className="container top-bar-inner">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="pulse-dot"></span>
-            <span><strong>GLOBAL INFRA HEALTH:</strong> 100% OPERATIONAL</span>
-            <span style={{ margin: '0 8px', opacity: 0.3 }}>|</span>
-            <span>Active Edge Nodes: <strong>512</strong></span>
-            <span style={{ margin: '0 8px', opacity: 0.3 }}>|</span>
-            <span>Anycast Latency: <strong>{pings.usEast}ms</strong></span>
+    <div className="site-wrapper">
+      {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
+      <div className="top-banner">
+        <div className="container top-banner-inner">
+          <div className="top-banner-left">
+            <span className="live-status-pill">
+              <span className="pulse-dot"></span>
+              All Systems Operational • 99.9% Uptime Support
+            </span>
+            <span className="separator">|</span>
+            <span className="cert-text">Certified IT Hardware & Installation Specialists</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <a href="#github-setup" style={{ color: 'var(--accent-cyan)', textDecoration: 'none', fontWeight: 600 }}>
-              âš¡ GitHub Multi-ID Ready
+          <div className="top-banner-right">
+            <a href="tel:+919820011223" className="top-link">
+              <Phone size={13} />
+              <span>Support Desk: +91 98200 11223</span>
             </a>
-            <span style={{ opacity: 0.4 }}>â€¢</span>
-            <span>SOC 2 Type II Certified</span>
+            <span className="separator">|</span>
+            <a href="mailto:contact@lnkitinfra.com" className="top-link">
+              <Mail size={13} />
+              <span>contact@lnkitinfra.com</span>
+            </a>
+            <span className="separator">|</span>
+            <span className="location-tag">
+              <MapPin size={13} /> Mumbai • Pune • Bengaluru • Delhi NCR
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
-      <header className="header-wrapper">
-        <div className="container nav-container">
-          <a href="#" className="brand-logo">
-            <div className="logo-icon-box">
-              <Server size={24} />
+      {/* 2. STICKY MAIN NAVIGATION */}
+      <header className="main-header">
+        <div className="container header-container">
+          <a href="#home" className="logo-group" onClick={() => setActiveNav('home')}>
+            <div className="logo-mark">
+              <Shield className="logo-shield" />
+              <Network className="logo-network" />
             </div>
-            <div className="brand-info">
-              <h1>LNK IT INFRA</h1>
-              <span>Enterprise Hybrid Architecture</span>
+            <div className="logo-text">
+              <div className="brand-name">
+                LNK<span className="brand-accent">IT</span> INFRA
+              </div>
+              <div className="brand-subtitle">ENTERPRISE IT SOLUTIONS & SERVICES</div>
             </div>
           </a>
 
-          <ul className="nav-links">
-            <li><a href="#topology">Architecture & Nodes</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#calculator">Sizing Calculator</a></li>
-            <li><a href="#latency-map">Global Network</a></li>
-            <li><a href="#github-setup">GitHub Multi-ID</a></li>
-          </ul>
-
-          <div className="nav-actions">
-            <button className="btn-secondary" onClick={() => setIsModalOpen(true)}>
-              Request Audit
-            </button>
-            <a href="#calculator" className="btn-primary">
-              <Zap size={16} /> Deploy Architecture
+          {/* Desktop Navigation Links */}
+          <nav className="desktop-nav">
+            <a
+              href="#solutions"
+              className={activeNav === 'solutions' ? 'active' : ''}
+              onClick={() => setActiveNav('solutions')}
+            >
+              Services & Solutions
             </a>
+            <a
+              href="#hardware"
+              className={activeNav === 'hardware' ? 'active' : ''}
+              onClick={() => setActiveNav('hardware')}
+            >
+              Hardware & Products
+            </a>
+            <a
+              href="#estimator"
+              className={activeNav === 'estimator' ? 'active' : ''}
+              onClick={() => setActiveNav('estimator')}
+            >
+              Cost Estimator
+            </a>
+            <a
+              href="#audit"
+              className={activeNav === 'audit' ? 'active' : ''}
+              onClick={() => setActiveNav('audit')}
+            >
+              Free Health Check
+            </a>
+            <a
+              href="#case-studies"
+              className={activeNav === 'case-studies' ? 'active' : ''}
+              onClick={() => setActiveNav('case-studies')}
+            >
+              Client Results
+            </a>
+            <a
+              href="#locations"
+              className={activeNav === 'locations' ? 'active' : ''}
+              onClick={() => setActiveNav('locations')}
+            >
+              Our Offices
+            </a>
+          </nav>
+
+          {/* Action CTAs */}
+          <div className="header-actions">
+            <button
+              className="btn-whatsapp-header"
+              onClick={() => openWhatsApp()}
+              title="Chat on WhatsApp"
+            >
+              <PhoneCall size={16} />
+              <span>WhatsApp Chat</span>
+            </button>
+            <button
+              className="btn-primary"
+              onClick={() => setIsQuoteModalOpen(true)}
+            >
+              <span>Get Free Quote</span>
+              <ChevronRight size={16} />
+            </button>
+            <button
+              className="mobile-toggle-btn"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="mobile-dropdown-menu">
+            <a href="#solutions" onClick={() => setMobileMenuOpen(false)}>Services & Solutions</a>
+            <a href="#hardware" onClick={() => setMobileMenuOpen(false)}>Hardware & Products</a>
+            <a href="#estimator" onClick={() => setMobileMenuOpen(false)}>Cost Estimator</a>
+            <a href="#audit" onClick={() => setMobileMenuOpen(false)}>Free Health Check</a>
+            <a href="#case-studies" onClick={() => setMobileMenuOpen(false)}>Client Results</a>
+            <a href="#locations" onClick={() => setMobileMenuOpen(false)}>Technology Centers</a>
+            <button
+              className="btn-primary w-full"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsQuoteModalOpen(true);
+              }}
+            >
+              Get Free Quote
+            </button>
+          </div>
+        )}
       </header>
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="container hero-grid">
-          <div className="hero-content">
-            <div className="badge-glow" style={{ marginBottom: '16px' }}>
-              <Activity size={14} /> Hyperconverged Multi-Cloud Infrastructure 4.0
+      {/* 3. HERO SECTION (Simple, Direct & Professional) */}
+      <section id="home" className="hero-section">
+        <div className="hero-grid-lines"></div>
+
+        <div className="container hero-content-grid">
+          <div className="hero-copy">
+            <div className="badge-glow">
+              <Zap size={14} className="text-cyan" />
+              <span>OFFICE IT INFRASTRUCTURE & NETWORK SOLUTIONS</span>
             </div>
-            <h2>
-              Architecting Resilient, <span className="gradient-text">Cloud-Native</span> IT Foundations
-            </h2>
-            <p className="hero-subtitle">
-              Power your mission-critical applications with zero-packet-loss SD-WAN fabrics, automated multi-cloud
-              orchestration, NVMe microsecond storage tiers, and 24/7 autonomous NOC telemetry.
+
+            <h1 className="hero-headline">
+              Reliable <span className="gradient-text">Office Networks</span>, Cyber Security & <span className="gradient-text-alt">IT Infrastructure</span>.
+            </h1>
+
+            <p className="hero-subhead">
+              We design, install, and support office networks, commercial Wi-Fi, firewalls, and security cameras across India. Simple, dependable, and hassle-free IT for your business.
             </p>
-            <div className="hero-cta-group">
-              <a href="#calculator" className="btn-primary">
-                Launch Infrastructure Sizer <ArrowUpRight size={18} />
+
+            <div className="hero-ctas">
+              <a href="#solutions" className="btn-primary hero-btn">
+                <span>View Our Services</span>
+                <ArrowRight size={18} />
               </a>
-              <a href="#topology" className="btn-secondary">
-                Inspect Live Node Topology
+              <a href="#estimator" className="btn-secondary hero-btn">
+                <Sliders size={18} />
+                <span>Estimate Setup Cost</span>
               </a>
             </div>
 
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', color: 'var(--text-dim)', fontSize: '0.85rem' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="var(--accent-emerald)" /> Zero Single Point of Failure
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="var(--accent-emerald)" /> Microsecond NVMe Latency
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="var(--accent-emerald)" /> Multi-Region Failover
-              </span>
-            </div>
-          </div>
-
-          <div className="hero-visual-card">
-            <img src="/hero-datacenter.jpg" alt="LNK IT Infra Datacenter Visualization" className="hero-img" />
-            <div className="floating-telemetry-badge">
-              <div className="telemetry-item">
-                <div className="label">Live SLA</div>
-                <div className="value">99.999%</div>
+            {/* Live Trust Metrics row */}
+            <div className="hero-metric-strip">
+              <div className="hero-metric-item">
+                <div className="metric-val">650+</div>
+                <div className="metric-lbl">Offices & Facilities Set Up</div>
               </div>
-              <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.1)' }}></div>
-              <div className="telemetry-item">
-                <div className="label">Core Throughput</div>
-                <div className="value">100 Gbps</div>
+              <div className="metric-divider"></div>
+              <div className="hero-metric-item">
+                <div className="metric-val">1,200+</div>
+                <div className="metric-lbl">Happy Business Clients</div>
               </div>
-              <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.1)' }}></div>
-              <div className="telemetry-item">
-                <div className="label">Active Clusters</div>
-                <div className="value">48 PoPs</div>
+              <div className="metric-divider"></div>
+              <div className="hero-metric-item">
+                <div className="metric-val">10+ Yrs</div>
+                <div className="metric-lbl">Experience in India</div>
+              </div>
+              <div className="metric-divider"></div>
+              <div className="hero-metric-item">
+                <div className="metric-val">&lt;45 Min</div>
+                <div className="metric-lbl">Quick Support Dispatch</div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Metrics Strip */}
-      <section className="metrics-section">
-        <div className="container">
-          <div className="metrics-grid">
-            <div className="glass-card metric-card">
-              <div className="metric-number gradient-text-alt">&lt; 10ms</div>
-              <div className="metric-label">Global Edge Latency</div>
-              <div className="metric-desc">Sub-millisecond route optimization with Anycast routing</div>
-            </div>
-            <div className="glass-card metric-card">
-              <div className="metric-number gradient-text-alt">99.999%</div>
-              <div className="metric-label">High-Availability SLA</div>
-              <div className="metric-desc">N+2 redundancy across power, network, and compute layers</div>
-            </div>
-            <div className="glass-card metric-card">
-              <div className="metric-number gradient-text-alt">0 sec</div>
-              <div className="metric-label">Automated Failover (RPO=0)</div>
-              <div className="metric-desc">Active-active synchronized storage replication</div>
-            </div>
-            <div className="glass-card metric-card">
-              <div className="metric-number gradient-text-alt">24/7/365</div>
-              <div className="metric-label">Dedicated SRE Operations</div>
-              <div className="metric-desc">15-minute escalation response time guaranteed</div>
-            </div>
-          </div>
-        </div>
-      </section>
+          {/* Hero Visual Card / Interactive Carousel Preview */}
+          <div className="hero-visual-col">
+            <div className="hero-image-frame glass-card">
+              <div className="hero-image-header">
+                <div className="window-dots">
+                  <span className="dot red"></span>
+                  <span className="dot yellow"></span>
+                  <span className="dot green"></span>
+                </div>
+                <div className="window-title">
+                  LNK-INFRA // {heroImages[heroImageIdx].title}
+                </div>
+                <span className="window-badge">ACTIVE</span>
+              </div>
 
-      {/* Topology Simulator */}
-      <section id="topology" className="topology-section">
-        <div className="container">
-          <div className="section-head">
-            <div className="badge-glow"><Radio size={14} /> Real-Time Telemetry Engine</div>
-            <h3>Interactive Infrastructure Topology</h3>
-            <p>Click on any node in the LNK IT Infra architecture fabric to inspect live metrics, CPU load, and diagnostic logs.</p>
-          </div>
+              <div className="hero-image-wrapper">
+                <img
+                  src={heroImages[heroImageIdx].src}
+                  alt={heroImages[heroImageIdx].title}
+                  className="hero-active-img"
+                />
+                <div className="hero-image-caption">
+                  <h4>{heroImages[heroImageIdx].title}</h4>
+                  <p>{heroImages[heroImageIdx].desc}</p>
+                </div>
+              </div>
 
-          <div className="topology-container">
-            <div className="topology-nodes-panel">
-              {TOPOLOGY_NODES.map((node) => {
-                const isActive = selectedNode.id === node.id;
-                return (
+              {/* Slide controls */}
+              <div className="hero-slide-nav">
+                {heroImages.map((img, i) => (
                   <button
-                    key={node.id}
-                    className={`topology-node-btn ${isActive ? 'active' : ''}`}
-                    onClick={() => setSelectedNode(node)}
+                    key={i}
+                    className={`slide-nav-pill ${heroImageIdx === i ? 'active' : ''}`}
+                    onClick={() => setHeroImageIdx(i)}
                   >
-                    <div className="node-btn-left">
-                      <div className="node-icon-box">
-                        {node.id === 'edge' && <Globe size={20} />}
-                        {node.id === 'k8s' && <Cpu size={20} />}
-                        {node.id === 'storage' && <HardDrive size={20} />}
-                        {node.id === 'security' && <ShieldCheck size={20} />}
-                        {node.id === 'cloud-mesh' && <Cloud size={20} />}
-                      </div>
-                      <div className="node-meta">
-                        <h4>{node.name}</h4>
-                        <span>{node.category}</span>
-                      </div>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <span style={{ color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', fontWeight: 600 }}>
-                        {node.throughput}
-                      </span>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', display: 'flex', alignItems: 'center', gap: '4px', justifyContent: 'flex-end' }}>
-                        <span className="pulse-dot" style={{ width: '6px', height: '6px' }}></span> {node.status}
-                      </div>
-                    </div>
+                    0{i + 1} {img.label}
                   </button>
-                );
-              })}
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. PARTNER BRANDS STRIP */}
+      <section className="partners-strip">
+        <div className="container">
+          <div className="partners-title">
+            AUTHORIZED SYSTEM INTEGRATION & HARDWARE PARTNERS
+          </div>
+          <div className="partners-row">
+            <div className="partner-chip">
+              <span className="partner-name">SOPHOS</span>
+              <span className="partner-level">Security Partner</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">FORTINET</span>
+              <span className="partner-level">Network Security</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">HPE ARUBA</span>
+              <span className="partner-level">Office Switches & Wi-Fi</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">SONICWALL</span>
+              <span className="partner-level">Firewall Appliances</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">SYNTEL & NEC</span>
+              <span className="partner-level">Intercom & EPABX Phones</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">HIKVISION</span>
+              <span className="partner-level">Security Cameras & CCTV</span>
+            </div>
+            <div className="partner-chip">
+              <span className="partner-name">VEEAM</span>
+              <span className="partner-level">Data Backup & Recovery</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SOLUTIONS SECTION (Simple & Clear Business Services) */}
+      <section id="solutions" className="section-solutions">
+        <div className="container">
+          <div className="section-header">
+            <div className="badge-glow">WHAT WE DO</div>
+            <h2 className="section-title">
+              Complete <span className="gradient-text">IT Solutions</span> for Growing Businesses
+            </h2>
+            <p className="section-desc">
+              Whether setting up a new office, upgrading an old network, or securing your data, our team handles the entire process from planning and hardware supply to wiring and ongoing support.
+            </p>
+          </div>
+
+          {/* Category Filter Tabs */}
+          <div className="solution-filter-tabs">
+            {[
+              { id: 'all', label: 'All Services' },
+              { id: 'Core Infrastructure', label: 'Cabling, Wi-Fi & Servers' },
+              { id: 'Cyber Defense', label: 'Firewalls & Cyber Security' },
+              { id: 'Voice & Telecom', label: 'Intercom, EPABX & Internet' },
+              { id: 'Smart Surveillance', label: 'CCTV & Biometric Attendance' },
+              { id: 'Cloud & Data', label: 'Data Backup & Cloud' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                className={`filter-pill ${selectedSolutionCategory === tab.id ? 'active' : ''}`}
+                onClick={() => setSelectedSolutionCategory(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Solutions Cards Grid */}
+          <div className="solutions-grid">
+            {filteredSolutions.map((sol) => {
+              const IconComp = sol.icon;
+              return (
+                <div key={sol.id} className="solution-card glass-card">
+                  <div className="card-top-row">
+                    <div className="solution-icon-box">
+                      <IconComp size={24} />
+                    </div>
+                    <span className="solution-tag">{sol.highlight}</span>
+                  </div>
+
+                  <h3 className="solution-card-title">{sol.title}</h3>
+                  <div className="solution-tagline">{sol.tagline}</div>
+                  <p className="solution-card-desc">{sol.description}</p>
+
+                  <div className="solution-features-list">
+                    {sol.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="feature-item">
+                        <CheckCircle2 size={16} className="feature-check" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="card-bottom-meta">
+                    <div className="hardware-tags">
+                      <span className="hw-label">Trusted Brands Used:</span>
+                      <div className="hw-chips">
+                        {sol.hardware.map((hw, hIdx) => (
+                          <span key={hIdx} className="hw-chip">{hw}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <button
+                      className="btn-card-action"
+                      onClick={() => {
+                        setQuoteForm((prev) => ({
+                          ...prev,
+                          requirements: `I would like to inquire about ${sol.title}`
+                        }));
+                        setIsQuoteModalOpen(true);
+                      }}
+                    >
+                      <span>Inquire Now</span>
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. HARDWARE & PRODUCT SHOWCASE (Plain English Specs) */}
+      <section id="hardware" className="section-hardware">
+        <div className="container">
+          <div className="section-header">
+            <div className="badge-glow">GENUINE PRODUCTS & EQUIPMENT</div>
+            <h2 className="section-title">
+              Trusted Enterprise <span className="gradient-text">Hardware & Models</span>
+            </h2>
+            <p className="section-desc">
+              We supply genuine hardware directly from leading brands with official manufacturer warranties, professional installation, and local maintenance support.
+            </p>
+          </div>
+
+          {/* Hardware Selector Tabs */}
+          <div className="hardware-tabs-bar">
+            {[
+              { id: 'firewalls', label: 'Security Firewalls', count: 'Sophos • Fortinet • SonicWall' },
+              { id: 'switches', label: 'Network Switches', count: 'Aruba • Cisco • D-Link' },
+              { id: 'wireless', label: 'Office Wi-Fi', count: 'Aruba AP22 • Sophos AP6' },
+              { id: 'telephony', label: 'Intercom & Phones', count: 'Syntel NEO DX • NEC SL2100' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                className={`hw-tab-btn ${activeHardwareTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveHardwareTab(tab.id as any)}
+              >
+                <div className="hw-tab-title">{tab.label}</div>
+                <div className="hw-tab-sub">{tab.count}</div>
+              </button>
+            ))}
+          </div>
+
+          {/* Hardware Products Display */}
+          <div className="hardware-cards-grid">
+            {HARDWARE_SHOWCASE[activeHardwareTab].map((product, idx) => (
+              <div key={idx} className="hw-card glass-card">
+                <div className="hw-card-header">
+                  <div>
+                    <span className="hw-brand-badge">{product.brand}</span>
+                    <h3 className="hw-model-name">{product.name}</h3>
+                  </div>
+                  {product.inStock && (
+                    <span className="stock-badge">
+                      <Check size={12} /> In Stock
+                    </span>
+                  )}
+                </div>
+
+                <div className="hw-category-label">{product.category}</div>
+
+                <div className="hw-specs-block">
+                  <div className="hw-specs-heading">Key Features:</div>
+                  <ul className="hw-specs-list">
+                    {product.specs.map((sp, sIdx) => (
+                      <li key={sIdx}>
+                        <ChevronRight size={14} className="text-cyan" />
+                        <span>{sp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="hw-best-for">
+                  <strong>Recommended For:</strong>
+                  <p>{product.bestFor}</p>
+                </div>
+
+                <div className="hw-card-footer">
+                  <button
+                    className="btn-primary w-full"
+                    onClick={() => {
+                      setQuoteForm((prev) => ({
+                        ...prev,
+                        requirements: `Pricing inquiry for model: ${product.name} (${product.brand})`
+                      }));
+                      setIsQuoteModalOpen(true);
+                    }}
+                  >
+                    Get Pricing & Availability
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. EASY COST ESTIMATOR */}
+      <section id="estimator" className="section-estimator">
+        <div className="container">
+          <div className="estimator-wrapper glass-card">
+            <div className="estimator-header">
+              <div className="badge-glow">INSTANT ESTIMATE</div>
+              <h2 className="section-title">
+                Estimate Your <span className="gradient-text">Office IT Setup Cost</span>
+              </h2>
+              <p className="section-desc">
+                Select your team size and the equipment you need to see an estimated budget and recommended hardware for your office setup.
+              </p>
             </div>
 
-            <div className="glass-card topology-detail-card">
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
-                  <div>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
-                      Selected Node Inspection
-                    </span>
-                    <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: '#fff', marginTop: '4px' }}>
-                      {selectedNode.name}
-                    </h4>
+            <div className="estimator-body-grid">
+              {/* Controls Column */}
+              <div className="estimator-controls">
+                {/* Office Users Slider */}
+                <div className="control-group">
+                  <div className="control-label-row">
+                    <label>Number of Employees / Computers:</label>
+                    <span className="control-val">{officeUsers} Staff</span>
                   </div>
-                  <span className="badge-glow" style={{ fontSize: '0.75rem' }}>
-                    Latency: {selectedNode.ping}
-                  </span>
-                </div>
-
-                <div className="telemetry-gauges">
-                  <div className="gauge-box">
-                    <div className="gauge-header">
-                      <span>vCPU Load</span>
-                      <strong style={{ color: '#fff' }}>{selectedNode.cpu}%</strong>
-                    </div>
-                    <div className="progress-track">
-                      <div className="progress-bar-fill" style={{ width: `${selectedNode.cpu}%` }}></div>
-                    </div>
-                  </div>
-
-                  <div className="gauge-box">
-                    <div className="gauge-header">
-                      <span>Memory Pool</span>
-                      <strong style={{ color: '#fff' }}>{selectedNode.memory}%</strong>
-                    </div>
-                    <div className="progress-track">
-                      <div
-                        className="progress-bar-fill"
-                        style={{ width: `${selectedNode.memory}%`, background: 'linear-gradient(90deg, #7928ca, #a855f7)' }}
-                      ></div>
-                    </div>
+                  <input
+                    type="range"
+                    min="10"
+                    max="500"
+                    step="10"
+                    value={officeUsers}
+                    onChange={(e) => setOfficeUsers(Number(e.target.value))}
+                    className="custom-range-slider"
+                  />
+                  <div className="range-hints">
+                    <span>10 (Small Office)</span>
+                    <span>50 (Medium Team)</span>
+                    <span>150 (Large Office)</span>
+                    <span>500+ (Corporate)</span>
                   </div>
                 </div>
 
-                <div style={{ margin: '20px 0' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '8px' }}>
-                    <Terminal size={15} /> Real-Time Node Ingress Logs
+                {/* Branches Slider */}
+                <div className="control-group">
+                  <div className="control-label-row">
+                    <label>Number of Office Locations:</label>
+                    <span className="control-val">{branchCount} {branchCount === 1 ? 'Office' : 'Offices'}</span>
                   </div>
-                  <div className="terminal-log">
-                    {selectedNode.log.map((line, i) => (
-                      <div key={i}>{line}</div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    step="1"
+                    value={branchCount}
+                    onChange={(e) => setBranchCount(Number(e.target.value))}
+                    className="custom-range-slider"
+                  />
+                  <div className="range-hints">
+                    <span>1 (Single Building)</span>
+                    <span>3 to 5 (Regional Branches)</span>
+                    <span>10 (Pan-India)</span>
+                  </div>
+                </div>
+
+                {/* Required Modules Toggle */}
+                <div className="control-group">
+                  <label className="mb-2 block">Choose What You Need:</label>
+                  <div className="services-toggle-grid">
+                    {[
+                      { id: 'cabling', label: 'Network Cabling (Cables to every desk)' },
+                      { id: 'firewall', label: 'Security Firewall (Sophos or Fortinet)' },
+                      { id: 'wifi', label: 'Office Wi-Fi (Fast Wi-Fi in every room)' },
+                      { id: 'cctv', label: 'CCTV Security Cameras (HD video & mobile view)' },
+                      { id: 'biometrics', label: 'Biometric Attendance & Smart Door Locks' },
+                      { id: 'epabx', label: 'Office Intercom & Desk Phones (EPABX)' },
+                      { id: 'datacenter', label: 'Server Rack & Battery Backup (UPS)' },
+                      { id: 'cloud-backup', label: 'Automated Daily Cloud Backup' }
+                    ].map((srv) => (
+                      <button
+                        key={srv.id}
+                        type="button"
+                        className={`service-toggle-btn ${selectedServices.includes(srv.id) ? 'selected' : ''}`}
+                        onClick={() => toggleService(srv.id)}
+                      >
+                        <div className="toggle-checkbox">
+                          {selectedServices.includes(srv.id) && <Check size={14} />}
+                        </div>
+                        <span>{srv.label}</span>
+                      </button>
                     ))}
                   </div>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-                  Hardware: Dual AMD EPYC 9654 â€¢ 1.5TB DDR5 ECC
-                </span>
-                <button className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} onClick={() => setIsModalOpen(true)}>
-                  Audit Node
+              {/* Output Summary Card */}
+              <div className="estimator-output-card">
+                <div className="output-card-header">
+                  <div className="rec-badge">RECOMMENDED SETUP SUMMARY</div>
+                  <h3 className="rec-tier">
+                    {officeUsers <= 40
+                      ? 'Small Business Package'
+                      : officeUsers <= 150
+                      ? 'Standard Corporate Setup'
+                      : 'Enterprise Multi-Floor Infrastructure'}
+                  </h3>
+                </div>
+
+                <div className="output-specs-grid">
+                  <div className="spec-stat">
+                    <span className="spec-lbl">Recommended Firewall</span>
+                    <span className="spec-ans">
+                      {officeUsers <= 40 ? 'Sophos XGS 116 or Fortinet 60F' : officeUsers <= 150 ? 'Sophos XGS 126 or Fortinet 80F' : 'Sophos XGS 2100 Enterprise'}
+                    </span>
+                  </div>
+                  <div className="spec-stat">
+                    <span className="spec-lbl">Network Switches</span>
+                    <span className="spec-ans">
+                      {Math.ceil(officeUsers / 24)}x Aruba Instant On 24-Port Switches
+                    </span>
+                  </div>
+                  <div className="spec-stat">
+                    <span className="spec-lbl">Wi-Fi Access Points</span>
+                    <span className="spec-ans">
+                      {Math.ceil(officeUsers / 25)}x High-Speed Wi-Fi 6 Access Points
+                    </span>
+                  </div>
+                  <div className="spec-stat">
+                    <span className="spec-lbl">Cable Points to Desks</span>
+                    <span className="spec-ans">
+                      ~{officeUsers * 2} Connection Points (PC + Phone + Wi-Fi)
+                    </span>
+                  </div>
+                  <div className="spec-stat">
+                    <span className="spec-lbl">Estimated Installation Time</span>
+                    <span className="spec-ans">
+                      {officeUsers <= 40 ? '3 to 5 Days' : officeUsers <= 150 ? '7 to 10 Days' : '12 to 18 Days'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="budget-box">
+                  <div className="budget-label">Estimated Turnkey Equipment & Wiring Cost:</div>
+                  <div className="budget-value">
+                    ₹{calculateEstimatedBudget().toLocaleString('en-IN')}
+                    <span className="budget-sub"> (Approximate)</span>
+                  </div>
+                  <p className="budget-note">
+                    *Includes all hardware, genuine cables, testing, setup, configuration, and 1 year of support.
+                  </p>
+                </div>
+
+                <div className="estimator-actions">
+                  <button
+                    className="btn-primary w-full"
+                    onClick={() => {
+                      setQuoteForm((prev) => ({
+                        ...prev,
+                        requirements: `Estimate for ${officeUsers} users in ${branchCount} location(s). Needed: ${selectedServices.join(', ')}. Est Budget: ₹${calculateEstimatedBudget().toLocaleString('en-IN')}`
+                      }));
+                      setIsQuoteModalOpen(true);
+                    }}
+                  >
+                    Request an Official Quotation & Site Visit
+                  </button>
+                  <button
+                    className="btn-whatsapp-full"
+                    onClick={() =>
+                      openWhatsApp(
+                        `Hi LNK IT Infra! I calculated an estimate on your website for ${officeUsers} users, ${branchCount} office(s). Estimated cost is ~₹${calculateEstimatedBudget().toLocaleString('en-IN')}. Please share a formal quote.`
+                      )
+                    }
+                  >
+                    Send to WhatsApp
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. SIMPLE IT HEALTH CHECKUP */}
+      <section id="audit" className="section-audit">
+        <div className="container">
+          <div className="audit-card glass-card">
+            <div className="audit-header">
+              <div className="badge-glow">QUICK 2-MINUTE TEST</div>
+              <h2 className="section-title">
+                Check Your Office's <span className="gradient-text">IT Health Score</span>
+              </h2>
+              <p className="section-desc">
+                Answer 4 simple questions about your current office setup to find out if your business data, computers, and internet are safe or at risk.
+              </p>
+            </div>
+
+            <div className="audit-questions-grid">
+              {/* Question 1 */}
+              <div className="audit-q-box">
+                <span className="q-number">Question 1</span>
+                <h4>How are your office cables and server wires arranged?</h4>
+                <div className="q-options">
+                  <label className={`q-opt ${auditScores.networkAge === 3 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q1"
+                      checked={auditScores.networkAge === 3}
+                      onChange={() => setAuditScores({ ...auditScores, networkAge: 3 })}
+                    />
+                    <span>Neat and labeled inside a proper server rack</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.networkAge === 2 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q1"
+                      checked={auditScores.networkAge === 2}
+                      onChange={() => setAuditScores({ ...auditScores, networkAge: 2 })}
+                    />
+                    <span>Fairly clean, but some loose wires under desks</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.networkAge === 1 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q1"
+                      checked={auditScores.networkAge === 1}
+                      onChange={() => setAuditScores({ ...auditScores, networkAge: 1 })}
+                    />
+                    <span>Very messy tangled wiring, cables disconnect easily</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Question 2 */}
+              <div className="audit-q-box">
+                <span className="q-number">Question 2</span>
+                <h4>How does your company back up important files & accounts?</h4>
+                <div className="q-options">
+                  <label className={`q-opt ${auditScores.backupFrequency === 3 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q2"
+                      checked={auditScores.backupFrequency === 3}
+                      onChange={() => setAuditScores({ ...auditScores, backupFrequency: 3 })}
+                    />
+                    <span>Automatic daily backup to secure cloud storage</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.backupFrequency === 2 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q2"
+                      checked={auditScores.backupFrequency === 2}
+                      onChange={() => setAuditScores({ ...auditScores, backupFrequency: 2 })}
+                    />
+                    <span>Saved manually on an external hard drive weekly</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.backupFrequency === 1 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q2"
+                      checked={auditScores.backupFrequency === 1}
+                      onChange={() => setAuditScores({ ...auditScores, backupFrequency: 1 })}
+                    />
+                    <span>No regular backup; files stay on individual laptops</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Question 3 */}
+              <div className="audit-q-box">
+                <span className="q-number">Question 3</span>
+                <h4>Do you have a dedicated security firewall installed?</h4>
+                <div className="q-options">
+                  <label className={`q-opt ${auditScores.firewallType === 3 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q3"
+                      checked={auditScores.firewallType === 3}
+                      onChange={() => setAuditScores({ ...auditScores, firewallType: 3 })}
+                    />
+                    <span>Yes, modern firewall (Sophos, Fortinet, or SonicWall)</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.firewallType === 2 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q3"
+                      checked={auditScores.firewallType === 2}
+                      onChange={() => setAuditScores({ ...auditScores, firewallType: 2 })}
+                    />
+                    <span>Have a hardware box, but licenses are expired</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.firewallType === 1 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q3"
+                      checked={auditScores.firewallType === 1}
+                      onChange={() => setAuditScores({ ...auditScores, firewallType: 1 })}
+                    />
+                    <span>No firewall; using only standard internet Wi-Fi router</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Question 4 */}
+              <div className="audit-q-box">
+                <span className="q-number">Question 4</span>
+                <h4>How often does your office face internet or network problems?</h4>
+                <div className="q-options">
+                  <label className={`q-opt ${auditScores.outageFrequency === 3 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q4"
+                      checked={auditScores.outageFrequency === 3}
+                      onChange={() => setAuditScores({ ...auditScores, outageFrequency: 3 })}
+                    />
+                    <span>Almost never (dual internet lines with auto-switch)</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.outageFrequency === 2 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q4"
+                      checked={auditScores.outageFrequency === 2}
+                      onChange={() => setAuditScores({ ...auditScores, outageFrequency: 2 })}
+                    />
+                    <span>Once or twice a month during peak working hours</span>
+                  </label>
+                  <label className={`q-opt ${auditScores.outageFrequency === 1 ? 'active' : ''}`}>
+                    <input
+                      type="radio"
+                      name="q4"
+                      checked={auditScores.outageFrequency === 1}
+                      onChange={() => setAuditScores({ ...auditScores, outageFrequency: 1 })}
+                    />
+                    <span>Frequent slowdowns, call drops, or disconnections every week</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div className="audit-result-banner">
+              <div className="audit-score-dial">
+                <div className="dial-num">{calculateHealthScore()}</div>
+                <div className="dial-max">/ 100</div>
+              </div>
+
+              <div className="audit-score-text">
+                <div className="score-status">
+                  {calculateHealthScore() >= 80 ? (
+                    <span className="status-good">✓ Good Condition (Low Risk)</span>
+                  ) : calculateHealthScore() >= 55 ? (
+                    <span className="status-warning">⚠️ Needs Attention (Moderate Risk)</span>
+                  ) : (
+                    <span className="status-critical">🚨 Critical Risk (Immediate Action Needed)</span>
+                  )}
+                </div>
+                <p>
+                  {calculateHealthScore() >= 80
+                    ? 'Your office IT setup is in good shape. Regular preventive checkups will keep your network fast and secure.'
+                    : calculateHealthScore() >= 55
+                    ? 'Your business has notable risks—such as lack of automatic backup or missing firewall protection that could cause file loss or downtime.'
+                    : 'Your office is at high risk of data loss, ransomware attacks, or sudden work disruption. We strongly recommend a free on-site inspection.'}
+                </p>
+              </div>
+
+              <div className="audit-cta-col">
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    setQuoteForm((prev) => ({
+                      ...prev,
+                      requirements: `Requesting Free Onsite IT Health Checkup (Health Score: ${calculateHealthScore()}/100)`
+                    }));
+                    setIsQuoteModalOpen(true);
+                  }}
+                >
+                  Book Free On-Site Inspection
                 </button>
               </div>
             </div>
@@ -441,605 +1372,551 @@ git push -u origin main`;
         </div>
       </section>
 
-      {/* Solutions Matrix */}
-      <section id="solutions" className="solutions-section">
+      {/* 9. ANNUAL MAINTENANCE CONTRACTS (AMC) */}
+      <section className="section-amc">
         <div className="container">
-          <div className="section-head">
-            <div className="badge-glow"><Layers size={14} /> Full-Stack Architecture</div>
-            <h3>Enterprise Infrastructure Solutions</h3>
-            <p>Purpose-built infrastructure modules engineered for high availability, zero latency bottlenecks, and automated operations.</p>
+          <div className="section-header">
+            <div className="badge-glow">PEACE OF MIND FOR YOUR IT</div>
+            <h2 className="section-title">
+              Annual Maintenance Contracts <span className="gradient-text">(IT AMC)</span>
+            </h2>
+            <p className="section-desc">
+              Think of an AMC like having your own dedicated IT department on speed dial. Whenever your computers, printer, Wi-Fi, or server has an issue, our engineers resolve it quickly.
+            </p>
           </div>
 
-          <div className="tab-filter-strip">
-            <button className={`tab-pill ${activeTab === 'all' ? 'active' : ''}`} onClick={() => setActiveTab('all')}>
-              All Solutions
-            </button>
-            <button className={`tab-pill ${activeTab === 'cloud' ? 'active' : ''}`} onClick={() => setActiveTab('cloud')}>
-              Hybrid Cloud & VPC
-            </button>
-            <button className={`tab-pill ${activeTab === 'network' ? 'active' : ''}`} onClick={() => setActiveTab('network')}>
-              SD-WAN & BGP Network
-            </button>
-            <button className={`tab-pill ${activeTab === 'security' ? 'active' : ''}`} onClick={() => setActiveTab('security')}>
-              Zero-Trust Cyber SOC
-            </button>
-            <button className={`tab-pill ${activeTab === 'devops' ? 'active' : ''}`} onClick={() => setActiveTab('devops')}>
-              DevOps & GitOps
-            </button>
-          </div>
-
-          <div className="solutions-grid">
-            {(activeTab === 'all' || activeTab === 'cloud') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><Cloud size={28} /></div>
-                  <h4>Hybrid Multi-Cloud Fabric</h4>
-                  <p>Seamlessly unify AWS, Microsoft Azure, Google Cloud, and bare-metal datacenters into a single software-defined control plane.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Terraform & OpenTofu automated IaC</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> 100G DirectConnect / ExpressRoute peering</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Automated cloud cost optimization & FinOps</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">AWS Transit Gateway</span>
-                  <span className="tech-tag">Azure Fabric</span>
-                  <span className="tech-tag">Terraform</span>
-                </div>
-              </div>
-            )}
-
-            {(activeTab === 'all' || activeTab === 'network') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><Network size={28} /></div>
-                  <h4>Enterprise SD-WAN & Backbone</h4>
-                  <p>Intelligent, carrier-neutral software-defined wide area network with dynamic path selection and self-healing BGP routing.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Zero-touch branch deployment</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> SASE Cloud-Delivered Security</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> 99.999% SLA across multi-homed ISP uplinks</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">Cisco Viptela</span>
-                  <span className="tech-tag">Fortinet Secure SD-WAN</span>
-                  <span className="tech-tag">BGP EVPN</span>
-                </div>
-              </div>
-            )}
-
-            {(activeTab === 'all' || activeTab === 'security') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><Lock size={28} /></div>
-                  <h4>Zero-Trust Security & Autonomous SOC</h4>
-                  <p>Continuous identity verification, micro-segmented network isolation, and AI-driven automated incident response.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Next-Gen Cloud Firewalls & WAF</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> 5 Tbps DDoS scrubbing protection</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Continuous SOC 2 & ISO 27001 compliance</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">Palo Alto SASE</span>
-                  <span className="tech-tag">CrowdStrike EDR</span>
-                  <span className="tech-tag">Splunk SOAR</span>
-                </div>
-              </div>
-            )}
-
-            {(activeTab === 'all' || activeTab === 'devops') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><Cpu size={28} /></div>
-                  <h4>Kubernetes GitOps & CI/CD Pipelines</h4>
-                  <p>Production-ready container orchestration platform with automated canary rollouts, service mesh, and observability.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> ArgoCD automated declarative GitOps</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Istio & Cilium eBPF network security</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Prometheus, Grafana & OpenTelemetry stack</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">Kubernetes</span>
-                  <span className="tech-tag">ArgoCD</span>
-                  <span className="tech-tag">Cilium eBPF</span>
-                </div>
-              </div>
-            )}
-
-            {(activeTab === 'all' || activeTab === 'cloud') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><HardDrive size={28} /></div>
-                  <h4>NVMe All-Flash SAN & Disaster Recovery</h4>
-                  <p>High-density Ceph and ZFS SAN clusters with active-active synchronous replication for zero-recovery-point disaster protection.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Microsecond read/write latency</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Immutable air-gapped ransomware backups</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Instant point-in-time snapshot recovery</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">NVMe-oF</span>
-                  <span className="tech-tag">Ceph Block</span>
-                  <span className="tech-tag">Veeam Enterprise</span>
-                </div>
-              </div>
-            )}
-
-            {(activeTab === 'all' || activeTab === 'security') && (
-              <div className="glass-card solution-card">
-                <div>
-                  <div className="solution-icon-wrap"><ShieldCheck size={28} /></div>
-                  <h4>24/7 Managed NOC & SRE Support</h4>
-                  <p>Round-the-clock proactive monitoring by certified network and cloud engineers with rapid 15-minute SLA escalation.</p>
-                  <ul className="feature-list">
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Predictive failure detection via machine learning</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Automated runbooks & self-healing remediation</li>
-                    <li><CheckCircle2 size={16} color="var(--accent-cyan)" /> Monthly performance & security posture audit</li>
-                  </ul>
-                </div>
-                <div className="tech-tag-row">
-                  <span className="tech-tag">24/7/365 NOC</span>
-                  <span className="tech-tag">PagerDuty SLA</span>
-                  <span className="tech-tag">White-Glove SRE</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Sizing & Cost Estimator */}
-      <section id="calculator" className="calc-section">
-        <div className="container">
-          <div className="section-head">
-            <div className="badge-glow"><Sliders size={14} /> Interactive Sizing Tool</div>
-            <h3>Infrastructure Cost & Capacity Estimator</h3>
-            <p>Customize your compute, storage, and disaster recovery requirements to calculate instantaneous transparent pricing.</p>
-          </div>
-
-          <div className="calc-grid">
-            <div className="glass-card calc-card-left">
-              <div className="calc-slider-group">
-                <div className="slider-label-row">
-                  <span>Compute Allocation (High-Perf vCPUs)</span>
-                  <span className="slider-val-badge">{vCpuCores} Cores</span>
-                </div>
-                <input
-                  type="range"
-                  min="16"
-                  max="256"
-                  step="16"
-                  value={vCpuCores}
-                  onChange={(e) => setVCpuCores(Number(e.target.value))}
-                  className="custom-range"
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '6px' }}>
-                  <span>16 vCPUs (Startup Core)</span>
-                  <span>128 vCPUs</span>
-                  <span>256 vCPUs (Enterprise Grid)</span>
-                </div>
-              </div>
-
-              <div className="calc-slider-group">
-                <div className="slider-label-row">
-                  <span>NVMe Gen5 All-Flash SAN Storage</span>
-                  <span className="slider-val-badge">{nvmeStorage} TB</span>
-                </div>
-                <input
-                  type="range"
-                  min="2"
-                  max="50"
-                  step="2"
-                  value={nvmeStorage}
-                  onChange={(e) => setNvmeStorage(Number(e.target.value))}
-                  className="custom-range"
-                />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '6px' }}>
-                  <span>2 TB (Fast NVMe)</span>
-                  <span>24 TB</span>
-                  <span>50 TB (Petabyte Ready)</span>
-                </div>
-              </div>
-
-              <div className="calc-slider-group">
-                <div className="slider-label-row">
-                  <span>Geographic Redundancy Strategy</span>
-                </div>
-                <div className="radio-pill-group">
-                  <button
-                    className={`radio-pill-btn ${redundancyTier === 'single' ? 'active' : ''}`}
-                    onClick={() => setRedundancyTier('single')}
-                  >
-                    Single Region (99.9% SLA)
-                  </button>
-                  <button
-                    className={`radio-pill-btn ${redundancyTier === 'dual' ? 'active' : ''}`}
-                    onClick={() => setRedundancyTier('dual')}
-                  >
-                    Dual Region (99.99% SLA)
-                  </button>
-                  <button
-                    className={`radio-pill-btn ${redundancyTier === 'multi' ? 'active' : ''}`}
-                    onClick={() => setRedundancyTier('multi')}
-                  >
-                    Multi-Cloud Active (99.999%)
-                  </button>
-                </div>
-              </div>
-
-              <div className="calc-slider-group">
-                <div className="slider-label-row">
-                  <span>NOC Operations & Management Tier</span>
-                </div>
-                <div className="radio-pill-group">
-                  <button
-                    className={`radio-pill-btn ${supportTier === 'standard' ? 'active' : ''}`}
-                    onClick={() => setSupportTier('standard')}
-                  >
-                    Standard Business Hours
-                  </button>
-                  <button
-                    className={`radio-pill-btn ${supportTier === '24x7' ? 'active' : ''}`}
-                    onClick={() => setSupportTier('24x7')}
-                  >
-                    24/7/365 NOC Monitoring
-                  </button>
-                  <button
-                    className={`radio-pill-btn ${supportTier === 'sre' ? 'active' : ''}`}
-                    onClick={() => setSupportTier('sre')}
-                  >
-                    Enterprise Dedicated SRE
-                  </button>
-                </div>
-              </div>
+          <div className="amc-tiers-grid">
+            <div className="amc-card glass-card">
+              <div className="amc-badge">STANDARD PLAN</div>
+              <h3 className="amc-title">Basic IT Support</h3>
+              <div className="amc-price">Best for small offices (10 to 30 computers)</div>
+              <ul className="amc-perks">
+                <li><Check size={16} /> Monthly scheduled checkup of all office computers</li>
+                <li><Check size={16} /> Quick phone and remote desktop help whenever needed</li>
+                <li><Check size={16} /> Antivirus updates and computer speed tune-ups</li>
+                <li><Check size={16} /> Regular verification that file backups are working</li>
+                <li><Check size={16} /> On-site engineer visits for computer and printer repairs</li>
+              </ul>
+              <button
+                className="btn-secondary w-full"
+                onClick={() => {
+                  setQuoteForm((prev) => ({ ...prev, requirements: 'Inquiry for Basic IT Support AMC' }));
+                  setIsQuoteModalOpen(true);
+                }}
+              >
+                Inquire Basic Plan
+              </button>
             </div>
 
-            <div className="glass-card calc-card-right">
-              <div>
-                <span style={{ fontSize: '0.8rem', color: 'var(--accent-cyan)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
-                  Estimated Architecture Tier
-                </span>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: '#fff', marginTop: '6px' }}>
-                  LNK Enterprise Cluster Specs
-                </h4>
+            <div className="amc-card glass-card featured">
+              <div className="amc-badge highlight">MOST POPULAR</div>
+              <h3 className="amc-title">Comprehensive AMC</h3>
+              <div className="amc-price">Ideal for growing companies (30 to 150 computers)</div>
+              <ul className="amc-perks">
+                <li><Check size={16} /> <strong>Everything in Basic Plan included</strong></li>
+                <li><Check size={16} /> <strong>Guaranteed fast on-site arrival within 1 hour</strong></li>
+                <li><Check size={16} /> Full maintenance for Wi-Fi, switches, routers & firewalls</li>
+                <li><Check size={16} /> Temporary replacement equipment provided during repairs</li>
+                <li><Check size={16} /> Server room and UPS battery backup checks</li>
+                <li><Check size={16} /> <strong>Priority 24/7 emergency support desk</strong></li>
+              </ul>
+              <button
+                className="btn-primary w-full"
+                onClick={() => {
+                  setQuoteForm((prev) => ({ ...prev, requirements: 'Inquiry for Comprehensive AMC Plan' }));
+                  setIsQuoteModalOpen(true);
+                }}
+              >
+                Choose Comprehensive AMC
+              </button>
+            </div>
 
-                <div className="price-display">
-                  <div className="price-amount">${totalMonthlyEstimate.toLocaleString()}</div>
-                  <div className="price-period">USD / Month (All-Inclusive Infrastructure)</div>
-                </div>
-
-                <div className="summary-rows">
-                  <div className="summary-row">
-                    <span>Dedicated Compute</span>
-                    <strong>{vCpuCores} vCPUs (AMD EPYC)</strong>
-                  </div>
-                  <div className="summary-row">
-                    <span>Storage Tier</span>
-                    <strong>{nvmeStorage} TB NVMe-oF Gen5</strong>
-                  </div>
-                  <div className="summary-row">
-                    <span>Redundancy Fabric</span>
-                    <strong style={{ textTransform: 'capitalize' }}>{redundancyTier} Region Architecture</strong>
-                  </div>
-                  <div className="summary-row">
-                    <span>Operations SLA</span>
-                    <strong style={{ textTransform: 'capitalize' }}>{supportTier} White-Glove Support</strong>
-                  </div>
-                  <div className="summary-row">
-                    <span>Egress Bandwidth</span>
-                    <strong>Unmetered 100 Gbps Backbone</strong>
-                  </div>
-                </div>
-              </div>
-
-              <button className="btn-primary" style={{ width: '100%' }} onClick={() => setIsModalOpen(true)}>
-                Deploy This Specification <ChevronRight size={18} />
+            <div className="amc-card glass-card">
+              <div className="amc-badge">DEDICATED STAFF</div>
+              <h3 className="amc-title">Resident IT Engineer</h3>
+              <div className="amc-price">For large offices, schools & factories (100+ computers)</div>
+              <ul className="amc-perks">
+                <li><Check size={16} /> Full-time IT engineer stationed right inside your office</li>
+                <li><Check size={16} /> Immediate desk-side help for employee computer issues</li>
+                <li><Check size={16} /> Daily check of servers, office Wi-Fi, and attendance</li>
+                <li><Check size={16} /> Laptop setups, password resets, and email management</li>
+                <li><Check size={16} /> Backed by senior network architects for complex tasks</li>
+              </ul>
+              <button
+                className="btn-secondary w-full"
+                onClick={() => {
+                  setQuoteForm((prev) => ({ ...prev, requirements: 'Inquiry for Resident IT Engineer AMC' }));
+                  setIsQuoteModalOpen(true);
+                }}
+              >
+                Inquire Resident Engineer
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Latency Map */}
-      <section id="latency-map" style={{ padding: '60px 0' }}>
+      {/* 10. REAL CLIENT RESULTS */}
+      <section id="case-studies" className="section-cases">
         <div className="container">
-          <div className="section-head">
-            <div className="badge-glow"><Globe size={14} /> Global Datacenter Fabric</div>
-            <h3>Low-Latency Edge Datacenter Nodes</h3>
-            <p>Live synchronized round-trip latency pings across LNK IT Infra core availability zones.</p>
+          <div className="section-header">
+            <div className="badge-glow">PROVEN RESULTS</div>
+            <h2 className="section-title">
+              Real Work for <span className="gradient-text">Real Indian Businesses</span>
+            </h2>
+            <p className="section-desc">
+              Here is how we solved common IT headaches for corporate offices, warehouses, and software teams across India.
+            </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '16px' }}>
-            <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>US-EAST (N. Virginia)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                {pings.usEast} ms
+          <div className="cases-grid">
+            {CASE_STUDIES.map((cs, cIdx) => (
+              <div key={cIdx} className="case-card glass-card">
+                <div className="case-header">
+                  <div className="industry-pill">{cs.industry}</div>
+                  <h3 className="client-name">{cs.client}</h3>
+                </div>
+
+                <div className="case-body">
+                  <div className="case-row">
+                    <span className="case-label">The Problem:</span>
+                    <p className="case-desc">{cs.challenge}</p>
+                  </div>
+                  <div className="case-row">
+                    <span className="case-label">What We Did:</span>
+                    <p className="case-desc">{cs.solution}</p>
+                  </div>
+                  <div className="case-row highlight-box">
+                    <span className="case-label text-emerald">The Result:</span>
+                    <p className="case-desc">{cs.result}</p>
+                  </div>
+                </div>
               </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
+            ))}
+          </div>
+
+          {/* Testimonial Quote strip */}
+          <div className="testimonial-banner glass-card">
+            <div className="testi-stars">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={18} fill="#f59e0b" color="#f59e0b" />
+              ))}
+              <span className="rating-score">4.9 / 5.0 Rating Across 180+ Business Reviews</span>
             </div>
-            <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>US-WEST (Oregon)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                {pings.usWest} ms
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
-            </div>
-            <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>EU-CENTRAL (Frankfurt)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                {pings.euCentral} ms
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
-            </div>
-            <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>AP-SOUTH (Mumbai)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                {pings.apSouth} ms
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
-            </div>
-            <div className="glass-card" style={{ padding: '20px', textAlign: 'center' }}>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '4px' }}>AP-EAST (Tokyo)</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>
-                {pings.apEast} ms
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '4px' }}>ðŸŸ¢ Optimal</div>
+            <blockquote className="testi-quote">
+              “LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 4 floors in Mumbai BKC. Their team worked over the weekend so our staff came in Monday morning to a clean, fast network with zero work disruption. Their firewall has kept our company safe from all threats.”
+            </blockquote>
+            <div className="testi-author">
+              <strong>Kavita Iyer</strong> — Head of Operations, Omniverse Cloud Technologies (Mumbai & Bengaluru)
             </div>
           </div>
         </div>
       </section>
 
-      {/* GitHub Multi-Account Setup Assistant Section */}
-      <section id="github-setup" className="git-section">
+      {/* 11. REGIONAL LOCATIONS */}
+      <section id="locations" className="section-locations">
         <div className="container">
-          <div className="glass-card git-panel">
-            <div className="git-header-row">
-              <div>
-                <div className="badge-glow" style={{ marginBottom: '8px' }}>
-                  <Terminal size={14} /> Multi-Account GitHub Integration
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: '#fff' }}>
-                  Configured SSH Key & Remote Setup for LNK IT Infra
-                </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                  Your system now has a dedicated SSH key and SSH Host alias (<code>github-lnk</code>) so you can push and pull without conflicting with your other GitHub ID.
-                </p>
+          <div className="section-header">
+            <div className="badge-glow">LOCAL PRESENCE</div>
+            <h2 className="section-title">
+              Our Offices Across <span className="gradient-text">India</span>
+            </h2>
+            <p className="section-desc">
+              With engineers located across major business centers, we arrive at your office quickly for urgent hardware dispatch, cable testing, or repairs.
+            </p>
+          </div>
+
+          <div className="locations-grid">
+            <div className="loc-card glass-card">
+              <div className="loc-badge">MUMBAI HEAD OFFICE</div>
+              <h3 className="loc-title">Mumbai (Bandra Kurla Complex)</h3>
+              <div className="loc-address">
+                <MapPin size={18} className="loc-pin" />
+                <span>
+                  Level 11, Platina Tech Tower, G-Block, Bandra Kurla Complex (BKC), Mumbai, Maharashtra — 400051
+                </span>
+              </div>
+              <div className="loc-phone">
+                <Phone size={16} /> +91 98200 11223 / +91 22 6900 4400
+              </div>
+              <div className="loc-status">
+                <span className="pulse-dot"></span> Central Support Desk & Spares Inventory
               </div>
             </div>
 
-            <div className="git-steps-grid">
-              <div className="git-step-box">
-                <h5>1. Add Dedicated SSH Public Key</h5>
-                <p style={{ fontSize: '0.825rem', color: 'var(--text-dim)' }}>
-                  Add this public key to your <strong>LNK IT Infra</strong> GitHub account under <em>Settings &rarr; SSH and GPG keys</em>:
-                </p>
-                <div className="code-snippet">
-                  {sshPublicKey}
-                </div>
-                <button
-                  className="btn-secondary"
-                  style={{ width: '100%', marginTop: '12px', padding: '8px' }}
-                  onClick={() => copyToClipboard(sshPublicKey, 'key')}
-                >
-                  {copiedKey ? <Check size={16} color="var(--accent-emerald)" /> : <Copy size={16} />}
-                  {copiedKey ? 'Copied Public Key!' : 'Copy SSH Public Key'}
-                </button>
+            <div className="loc-card glass-card">
+              <div className="loc-badge">PUNE REGIONAL OFFICE</div>
+              <h3 className="loc-title">Pune (Magarpatta City)</h3>
+              <div className="loc-address">
+                <MapPin size={18} className="loc-pin" />
+                <span>
+                  Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Pune, Maharashtra — 411028
+                </span>
               </div>
-
-              <div className="git-step-box">
-                <h5>2. SSH Host Alias Configured</h5>
-                <p style={{ fontSize: '0.825rem', color: 'var(--text-dim)' }}>
-                  Saved in <code>~/.ssh/config</code>:
-                </p>
-                <div className="code-snippet" style={{ color: 'var(--text-main)', fontSize: '0.75rem' }}>
-                  Host github-lnk<br />
-                  &nbsp;&nbsp;HostName github.com<br />
-                  &nbsp;&nbsp;User git<br />
-                  &nbsp;&nbsp;IdentityFile ~/.ssh/id_ed25519_lnk<br />
-                  &nbsp;&nbsp;IdentitiesOnly yes
-                </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--accent-emerald)', marginTop: '12px' }}>
-                  âœ“ Dedicated key isolated from your primary GitHub profile
-                </div>
+              <div className="loc-phone">
+                <Phone size={16} /> +91 98200 11223 / +91 20 6790 3300
               </div>
+              <div className="loc-status">
+                <span className="pulse-dot"></span> Serving Hinjawadi, Magarpatta, Kharadi & Bhosari
+              </div>
+            </div>
 
-              <div className="git-step-box">
-                <h5>3. Set Local Repo Identity</h5>
-                <div style={{ marginBottom: '8px' }}>
-                  <input
-                    type="text"
-                    placeholder="Enter LNK GitHub Username"
-                    value={githubUser}
-                    onChange={(e) => setGithubUser(e.target.value)}
-                    className="form-input"
-                    style={{ padding: '8px 10px', fontSize: '0.8rem', marginBottom: '8px' }}
-                  />
-                  <input
-                    type="email"
-                    placeholder="Enter LNK GitHub Email"
-                    value={githubEmail}
-                    onChange={(e) => setGithubEmail(e.target.value)}
-                    className="form-input"
-                    style={{ padding: '8px 10px', fontSize: '0.8rem' }}
-                  />
+            <div className="loc-card glass-card">
+              <div className="loc-badge">BENGALURU TECH CENTER</div>
+              <h3 className="loc-title">Bengaluru (Outer Ring Road)</h3>
+              <div className="loc-address">
+                <MapPin size={18} className="loc-pin" />
+                <span>
+                  EcoSpace Business Park, Campus 2B, Outer Ring Road, Bellandur, Bengaluru, Karnataka — 560103
+                </span>
+              </div>
+              <div className="loc-phone">
+                <Phone size={16} /> +91 98200 11223 / +91 80 4430 8800
+              </div>
+              <div className="loc-status">
+                <span className="pulse-dot"></span> Serving Electronic City, Whitefield & ORR Corridor
+              </div>
+            </div>
+
+            <div className="loc-card glass-card">
+              <div className="loc-badge">DELHI NCR REGIONAL HUB</div>
+              <h3 className="loc-title">Delhi NCR (Gurugram)</h3>
+              <div className="loc-address">
+                <MapPin size={18} className="loc-pin" />
+                <span>
+                  Building 9B, Level 6, DLF Cyber City, Phase 3, Gurugram, Haryana — 122002
+                </span>
+              </div>
+              <div className="loc-phone">
+                <Phone size={16} /> +91 98200 11223 / +91 124 4560 900
+              </div>
+              <div className="loc-status">
+                <span className="pulse-dot"></span> Serving Delhi, Gurugram, Noida & Faridabad
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. FAQ SECTION */}
+      <section className="section-faq">
+        <div className="container">
+          <div className="section-header">
+            <div className="badge-glow">COMMON QUESTIONS</div>
+            <h2 className="section-title">
+              Frequently Asked <span className="gradient-text">Questions</span>
+            </h2>
+          </div>
+
+          <div className="faq-grid">
+            {[
+              {
+                q: 'Will our office work be interrupted during cable installation or server setup?',
+                a: 'No. We plan major cable pulling, server work, and internet cutovers during evenings or over the weekend. When your employees arrive on Monday morning, all computers will be connected to a fast, working network without any lost work hours.'
+              },
+              {
+                q: 'Which firewall is right for our office size?',
+                a: 'It depends on your employee count and internet speed. For offices with 20 to 80 users, the Sophos XGS 116 or Fortinet 60F is typically the most reliable and cost-effective choice. For larger teams (100+ users), we recommend higher models like the Sophos XGS 126 or Fortinet 80F. We assess your exact needs before recommending any device.'
+              },
+              {
+                q: 'How fast do your engineers arrive if we have an emergency?',
+                a: 'Under our Comprehensive AMC, our remote team connects within 15 minutes to diagnose the issue. If an engineer is needed in person at your office in Mumbai, Pune, Bengaluru, or Delhi NCR, our local technician arrives within 1 hour with spare replacement parts.'
+              },
+              {
+                q: 'Can you fix and organize our old, messy server rack cables?',
+                a: 'Yes, this is one of our most popular services. We trace, test, and neatly comb every cable, install proper patch panels, remove dead wires, and clearly label every line with color-coded cables so your server room looks clean and professional.'
+              },
+              {
+                q: 'Do you help with genuine Microsoft Office & email licenses?',
+                a: 'Yes, we provide official Microsoft 365 business email licenses, setup Outlook for your domain (yourname@yourcompany.com), migrate your old emails safely, and set up two-factor security for your staff.'
+              }
+            ].map((faq, fIdx) => (
+              <div key={fIdx} className="faq-item glass-card">
+                <div className="faq-q">
+                  <HelpCircle size={20} className="text-cyan shrink-0" />
+                  <h4>{faq.q}</h4>
                 </div>
+                <p className="faq-a">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 13. BOTTOM CALL-TO-ACTION BANNER */}
+      <section className="section-cta-banner">
+        <div className="container">
+          <div className="cta-banner-box glass-card">
+            <div className="cta-banner-content">
+              <div className="badge-glow">GET STARTED TODAY</div>
+              <h2 className="cta-headline">
+                Ready to Upgrade Your <span className="gradient-text">Office Network?</span>
+              </h2>
+              <p className="cta-subhead">
+                Get in touch for a free on-site survey and customized quotation. Our senior engineers will visit your office, check your current setup, and provide clear recommendations.
+              </p>
+              <div className="cta-buttons">
                 <button
                   className="btn-primary"
-                  style={{ width: '100%', padding: '8px', fontSize: '0.825rem' }}
-                  onClick={() => copyToClipboard(gitSetupSnippet, 'cmd')}
+                  onClick={() => setIsQuoteModalOpen(true)}
                 >
-                  {copiedCommand ? <Check size={16} /> : <Copy size={16} />}
-                  {copiedCommand ? 'Copied Git Commands!' : 'Copy Setup Script'}
+                  <FileText size={18} />
+                  <span>Book Free On-Site Survey</span>
+                </button>
+                <button
+                  className="btn-whatsapp"
+                  onClick={() => openWhatsApp()}
+                >
+                  <PhoneCall size={18} />
+                  <span>Chat on WhatsApp</span>
                 </button>
               </div>
-            </div>
-
-            <div style={{ background: 'rgba(0,0,0,0.5)', borderRadius: 'var(--radius-md)', padding: '16px', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-cyan)' }}>
-                  PowerShell Commands for D:\LNK-IT-Infra
-                </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
-                  Repository Path: D:\LNK-IT-Infra
-                </span>
-              </div>
-              <pre style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: '0.775rem', color: '#94a3b8', whiteSpace: 'pre-wrap' }}>
-                {gitSetupSnippet}
-              </pre>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Architecture Audit Modal */}
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setIsModalOpen(false)}>
+      {/* 14. COMPREHENSIVE FOOTER */}
+      <footer className="main-footer">
+        <div className="container footer-grid">
+          <div className="footer-col brand-col">
+            <div className="logo-group mb-3">
+              <div className="logo-mark">
+                <Shield className="logo-shield" />
+                <Network className="logo-network" />
+              </div>
+              <div className="logo-text">
+                <div className="brand-name">
+                  LNK<span className="brand-accent">IT</span> INFRA
+                </div>
+                <div className="brand-subtitle">ENTERPRISE IT SOLUTIONS & SERVICES</div>
+              </div>
+            </div>
+            <p className="footer-about">
+              LNK IT Infra provides end-to-end IT infrastructure services across India, including structured network cabling, commercial Wi-Fi, firewalls, EPABX intercoms, CCTV security, and comprehensive annual maintenance (AMC).
+            </p>
+            <div className="footer-contacts">
+              <div className="fc-item">
+                <Phone size={14} className="text-cyan" />
+                <span>+91 98200 11223 / +91 22 6900 4400</span>
+              </div>
+              <div className="fc-item">
+                <Mail size={14} className="text-cyan" />
+                <span>contact@lnkitinfra.com</span>
+              </div>
+              <div className="fc-item">
+                <Clock size={14} className="text-cyan" />
+                <span>Support Hours: Monday - Saturday, 9am - 8pm (24/7 for AMC)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-heading">Services</h4>
+            <ul className="footer-links">
+              <li><a href="#solutions">Network Cabling & Fiber</a></li>
+              <li><a href="#solutions">Commercial Office Wi-Fi</a></li>
+              <li><a href="#solutions">Firewalls & Cyber Security</a></li>
+              <li><a href="#solutions">Office Switches & Routers</a></li>
+              <li><a href="#solutions">CCTV Security Cameras</a></li>
+              <li><a href="#solutions">Biometrics & Attendance</a></li>
+              <li><a href="#solutions">Office Phone Systems (EPABX)</a></li>
+              <li><a href="#solutions">Automatic Data Backup</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-heading">Hardware Brands</h4>
+            <ul className="footer-links">
+              <li><a href="#hardware">Sophos Firewalls & Wi-Fi</a></li>
+              <li><a href="#hardware">Fortinet FortiGate Firewalls</a></li>
+              <li><a href="#hardware">HPE Aruba Switches & APs</a></li>
+              <li><a href="#hardware">SonicWall Security</a></li>
+              <li><a href="#hardware">Syntel Office Intercoms</a></li>
+              <li><a href="#hardware">NEC Smart PBX Systems</a></li>
+              <li><a href="#hardware">Hikvision Security Cameras</a></li>
+              <li><a href="#hardware">Microsoft 365 Cloud Setup</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h4 className="footer-heading">Service Hubs</h4>
+            <ul className="footer-links">
+              <li><a href="#locations">Mumbai BKC (Head Office)</a></li>
+              <li><a href="#locations">Pune Magarpatta Hub</a></li>
+              <li><a href="#locations">Bengaluru EcoSpace Hub</a></li>
+              <li><a href="#locations">Delhi NCR Gurugram Center</a></li>
+              <li><a href="#locations">Thane & Navi Mumbai Support</a></li>
+              <li><a href="#locations">Hyderabad Tech Hub</a></li>
+              <li><a href="#audit">Free IT Health Check Tool</a></li>
+              <li><a href="#estimator">Cost & Sizing Calculator</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-bottom-bar">
+          <div className="container footer-bottom-inner">
+            <div className="copyright-text">
+              © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Professional IT & Network Infrastructure Services.
+            </div>
+            <div className="footer-cert-tags">
+              <span>ISO 9001:2015 Quality Certified</span>
+              <span>•</span>
+              <span>Authorized System Integrator</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* 15. FLOATING WHATSAPP BUTTON */}
+      <a
+        href="https://wa.me/919820011223?text=Hello%20LNK%20IT%20Infra,%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="floating-whatsapp-btn"
+        title="Chat with our engineer on WhatsApp"
+      >
+        <div className="whatsapp-pulse"></div>
+        <PhoneCall size={26} />
+        <span className="whatsapp-tooltip">Chat with Engineer on WhatsApp</span>
+      </a>
+
+      {/* 16. CONSULTATION & QUOTATION MODAL */}
+      {isQuoteModalOpen && (
+        <div className="modal-backdrop" onClick={() => setIsQuoteModalOpen(false)}>
+          <div className="modal-window glass-card" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close-btn"
+              onClick={() => setIsQuoteModalOpen(false)}
+            >
               <X size={20} />
             </button>
 
-            {!modalSubmitted ? (
-              <div>
-                <div className="badge-glow" style={{ marginBottom: '12px' }}>
-                  <ShieldCheck size={14} /> Architecture Review
+            {quoteForm.submitted ? (
+              <div className="modal-success-state">
+                <div className="success-icon-box">
+                  <CheckCircle2 size={48} className="text-emerald" />
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: '#fff', marginBottom: '8px' }}>
-                  Request Enterprise Infrastructure Audit
-                </h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '24px' }}>
-                  Our Principal Infrastructure Architects will evaluate your latency bottlenecks, multi-cloud redundancy, and security posture.
+                <h3>Inquiry Received!</h3>
+                <p>
+                  Thank you, <strong>{quoteForm.name}</strong>. Our senior IT engineer will review your requirement and call you within <strong>30 minutes</strong> at <strong>{quoteForm.phone}</strong>.
                 </p>
-
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setModalSubmitted(true);
-                  }}
-                >
-                  <div className="form-group">
-                    <label>Company / Organization Name</label>
-                    <input type="text" required placeholder="e.g. Acme Global Logistics" className="form-input" />
-                  </div>
-                  <div className="form-group">
-                    <label>Work Email</label>
-                    <input type="email" required placeholder="infra-lead@acme.com" className="form-input" />
-                  </div>
-                  <div className="form-group">
-                    <label>Current Cloud / Infrastructure Environment</label>
-                    <select className="form-input">
-                      <option>Hybrid On-Prem + AWS / Azure</option>
-                      <option>100% Cloud-Native (Multi-Region)</option>
-                      <option>Colocation Datacenter Migration</option>
-                      <option>Kubernetes Bare-Metal Edge</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label>Primary Priority</label>
-                    <select className="form-input">
-                      <option>Zero-Downtime High Availability & Disaster Recovery</option>
-                      <option>Microsecond NVMe Storage & Database IOPS</option>
-                      <option>Zero-Trust Security & SOC Compliance (SOC2 / ISO)</option>
-                      <option>SD-WAN Branch Peering & Cost Optimization</option>
-                    </select>
-                  </div>
-
-                  <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '12px' }}>
-                    Confirm Audit Consultation
+                <div className="modal-success-actions">
+                  <button
+                    className="btn-primary"
+                    onClick={() => {
+                      setQuoteForm({ ...quoteForm, submitted: false });
+                      setIsQuoteModalOpen(false);
+                    }}
+                  >
+                    Done
                   </button>
-                </form>
+                  <button
+                    className="btn-whatsapp"
+                    onClick={() => openWhatsApp(`Hello, I submitted an inquiry for ${quoteForm.company} (${quoteForm.phone}).`)}
+                  >
+                    Send Direct on WhatsApp
+                  </button>
+                </div>
               </div>
             ) : (
-              <div style={{ textAlign: 'center', padding: '24px 0' }}>
-                <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(16,185,129,0.15)', border: '1px solid var(--accent-emerald)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--accent-emerald)' }}>
-                  <Check size={32} />
+              <div className="modal-form-content">
+                <div className="modal-header">
+                  <div className="badge-glow">FREE QUOTE & SITE VISIT</div>
+                  <h3>Request a Free Quotation & Site Inspection</h3>
+                  <p>
+                    Tell us what you need, and our team will prepare a transparent quotation and schedule a visit to your office.
+                  </p>
                 </div>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: '#fff', marginBottom: '8px' }}>
-                  Consultation Request Received
-                </h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '24px' }}>
-                  An LNK IT Infra Principal Solutions Architect will reach out with your custom architecture diagram and preliminary sizing report.
-                </p>
-                <button className="btn-secondary" onClick={() => { setIsModalOpen(false); setModalSubmitted(false); }}>
-                  Close Window
-                </button>
+
+                <form onSubmit={handleQuoteSubmit} className="quote-form-grid">
+                  <div className="form-field">
+                    <label>Your Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Sharma"
+                      value={quoteForm.name}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label>Company Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Apex Global Tech"
+                      value={quoteForm.company}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, company: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label>Phone / WhatsApp Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="e.g. +91 98200 12345"
+                      value={quoteForm.phone}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, phone: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label>Email Address *</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="e.g. rahul@company.com"
+                      value={quoteForm.email}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, email: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label>City / Location</label>
+                    <select
+                      value={quoteForm.city}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, city: e.target.value })}
+                    >
+                      <option value="Mumbai">Mumbai (MMR)</option>
+                      <option value="Pune">Pune</option>
+                      <option value="Bengaluru">Bengaluru</option>
+                      <option value="Delhi NCR">Delhi NCR (Gurugram/Noida)</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Chennai">Chennai</option>
+                      <option value="Other">Other City</option>
+                    </select>
+                  </div>
+
+                  <div className="form-field full-width">
+                    <label>What do you need help with?</label>
+                    <textarea
+                      rows={3}
+                      value={quoteForm.requirements}
+                      onChange={(e) => setQuoteForm({ ...quoteForm, requirements: e.target.value })}
+                      placeholder="Tell us about your office size, number of computers, or specific requirements..."
+                    />
+                  </div>
+
+                  <div className="modal-form-actions full-width">
+                    <button type="submit" className="btn-primary w-full">
+                      <Send size={16} />
+                      <span>Send Quote Request</span>
+                    </button>
+                    <p className="privacy-guarantee">
+                      🔒 We respect your privacy. No spam or unwanted calls.
+                    </p>
+                  </div>
+                </form>
               </div>
             )}
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <footer className="footer-wrap">
-        <div className="container">
-          <div className="footer-grid">
-            <div>
-              <div className="brand-logo" style={{ marginBottom: '16px' }}>
-                <div className="logo-icon-box">
-                  <Server size={22} />
-                </div>
-                <div className="brand-info">
-                  <h1>LNK IT INFRA</h1>
-                  <span>Enterprise Hybrid Architecture</span>
-                </div>
-              </div>
-              <p style={{ color: 'var(--text-dim)', fontSize: '0.875rem', lineHeight: '1.6', maxWidth: '320px' }}>
-                Engineering hyper-resilient hybrid multi-cloud fabrics, low-latency SD-WAN routing, and autonomous 24/7 SRE operations for global enterprises.
-              </p>
-            </div>
-
-            <div className="footer-col">
-              <h6>Infrastructure</h6>
-              <ul className="footer-links">
-                <li><a href="#topology">Edge Anycast DNS</a></li>
-                <li><a href="#topology">Autonomous Kubernetes</a></li>
-                <li><a href="#topology">NVMe-oF SAN Storage</a></li>
-                <li><a href="#topology">Zero-Trust EDR / SOC</a></li>
-                <li><a href="#topology">Multi-Cloud Interconnect</a></li>
-              </ul>
-            </div>
-
-            <div className="footer-col">
-              <h6>Solutions</h6>
-              <ul className="footer-links">
-                <li><a href="#solutions">Hybrid Cloud Transit</a></li>
-                <li><a href="#solutions">Carrier-Neutral SD-WAN</a></li>
-                <li><a href="#solutions">Ransomware-Proof Backups</a></li>
-                <li><a href="#solutions">Declarative GitOps (ArgoCD)</a></li>
-                <li><a href="#solutions">24/7 Managed NOC SLA</a></li>
-              </ul>
-            </div>
-
-            <div className="footer-col">
-              <h6>Developer & Git</h6>
-              <ul className="footer-links">
-                <li><a href="#github-setup">Multi-Account SSH Key</a></li>
-                <li><a href="#github-setup">SSH Host Config Guide</a></li>
-                <li><a href="#calculator">Infrastructure Sizer</a></li>
-                <li><a href="#latency-map">Global Network Status</a></li>
-                <li><a href="https://github.com" target="_blank" rel="noreferrer">GitHub Documentation</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <div>
-              &copy; {new Date().getFullYear()} LNK IT Infra. All rights reserved. SOC 2 Type II â€¢ ISO 27001 â€¢ PCI-DSS Certified.
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="pulse-dot"></span>
-              <span>Global Mesh Status: 100% Operational</span>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
 
 export default App;
-

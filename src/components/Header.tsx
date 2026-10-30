@@ -2,14 +2,12 @@ import { useState } from 'react';
 import {
   Shield,
   Network,
-  Phone,
   Mail,
-  MapPin,
-  PhoneCall,
   ChevronRight,
   Menu,
   X
 } from 'lucide-react';
+import { YouTubeIcon, InstagramIcon, WhatsAppIcon } from './SocialIcons';
 
 interface HeaderProps {
   currentRoute: string;
@@ -54,19 +52,43 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <span className="cert-text">Certified IT Hardware & Structured Cabling Specialists</span>
           </div>
           <div className="top-banner-right">
-            <a href="tel:+917796852335" className="top-link">
-              <Phone size={13} />
-              <span>Direct: +91 7796852335</span>
+            <div className="top-social-links">
+              <a
+                href="https://www.youtube.com/@LNKITInfra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="top-social-link top-youtube"
+                title="Follow LNK IT Infra on YouTube"
+              >
+                <YouTubeIcon size={13} />
+                <span>YouTube</span>
+              </a>
+              <a
+                href="https://www.instagram.com/lnk_it_infra/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="top-social-link top-instagram"
+                title="Follow LNK IT Infra on Instagram"
+              >
+                <InstagramIcon size={13} />
+                <span>Instagram</span>
+              </a>
+            </div>
+            <span className="separator">|</span>
+            <a
+              href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-link top-whatsapp-link"
+            >
+              <WhatsAppIcon size={13} />
+              <span>WhatsApp: +91 7796852335</span>
             </a>
             <span className="separator">|</span>
             <a href="mailto:lnkitinfra@gmail.com" className="top-link">
               <Mail size={13} />
               <span>lnkitinfra@gmail.com</span>
             </a>
-            <span className="separator">|</span>
-            <span className="location-tag">
-              <MapPin size={13} /> Pune • Mumbai • Bengaluru • Delhi NCR
-            </span>
           </div>
         </div>
       </div>
@@ -116,10 +138,10 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <button
               className="btn-whatsapp-header"
               onClick={openWhatsApp}
-              title="Chat on WhatsApp"
+              title="Chat with Engineer on WhatsApp (+91 7796852335)"
             >
-              <PhoneCall size={16} />
-              <span>WhatsApp Chat</span>
+              <WhatsAppIcon size={16} />
+              <span>+91 7796852335</span>
             </button>
             <button
               className="btn-primary"
@@ -154,6 +176,28 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
                 {link.label}
               </a>
             ))}
+
+            <div className="mobile-social-row">
+              <a
+                href="https://www.youtube.com/@LNKITInfra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-social-btn youtube"
+              >
+                <YouTubeIcon size={16} />
+                <span>YouTube @LNKITInfra</span>
+              </a>
+              <a
+                href="https://www.instagram.com/lnk_it_infra/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-social-btn instagram"
+              >
+                <InstagramIcon size={16} />
+                <span>Instagram @lnk_it_infra</span>
+              </a>
+            </div>
+
             <div className="mobile-menu-actions">
               <button
                 className="btn-whatsapp-full"
@@ -162,7 +206,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
                   openWhatsApp();
                 }}
               >
-                <PhoneCall size={16} />
+                <WhatsAppIcon size={16} />
                 <span>Chat on WhatsApp (+91 7796852335)</span>
               </button>
               <button

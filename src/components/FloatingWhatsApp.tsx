@@ -1,4 +1,4 @@
-import { PhoneCall } from 'lucide-react';
+import { WhatsAppIcon } from './SocialIcons';
 
 export function FloatingWhatsApp() {
   return (
@@ -8,11 +8,11 @@ export function FloatingWhatsApp() {
       rel="noopener noreferrer"
       className="floating-whatsapp-btn"
       title="Chat with our IT Engineer on WhatsApp (+91 7796852335)"
-      aria-label="Chat on WhatsApp"
+      aria-label="Chat on WhatsApp (+91 7796852335)"
     >
       <div className="whatsapp-pulse"></div>
-      <PhoneCall size={26} />
-      <span className="whatsapp-tooltip">Chat with Engineer on WhatsApp (+91 7796852335)</span>
+      <WhatsAppIcon size={28} />
+      <span className="whatsapp-tooltip">Chat on WhatsApp: +91 7796852335</span>
     </a>
   );
 }

@@ -6,6 +6,7 @@ import {
   MapPin,
   Clock
 } from 'lucide-react';
+import { YouTubeIcon, InstagramIcon, WhatsAppIcon } from './SocialIcons';
 
 interface FooterProps {
   navigate: (route: string) => void;
@@ -30,7 +31,7 @@ export function Footer({ navigate }: FooterProps) {
               <div className="brand-name">
                 LNK<span className="brand-accent">IT</span> INFRA
               </div>
-              <div className="brand-subtitle">ENTERPRISE IT SOLUTIONS & SERVICES</div>
+              <div className="brand-subtitle">ENTERPRISE IT INFRASTRUCTURE</div>
             </div>
           </div>
           <p className="footer-about">
@@ -39,11 +40,11 @@ export function Footer({ navigate }: FooterProps) {
           <div className="footer-contacts">
             <div className="fc-item">
               <Phone size={14} className="text-cyan" />
-              <span>Direct: +91 7796852335</span>
+              <a href="tel:+917796852335" className="footer-contact-link">Direct: +91 7796852335</a>
             </div>
             <div className="fc-item">
               <Mail size={14} className="text-cyan" />
-              <span>lnkitinfra@gmail.com</span>
+              <a href="mailto:lnkitinfra@gmail.com" className="footer-contact-link">lnkitinfra@gmail.com</a>
             </div>
             <div className="fc-item">
               <Clock size={14} className="text-cyan" />
@@ -52,6 +53,43 @@ export function Footer({ navigate }: FooterProps) {
             <div className="fc-item">
               <MapPin size={14} className="text-cyan" />
               <span>Pune HQ: Magarpatta City IT Park, Pune — 411028</span>
+            </div>
+          </div>
+
+          {/* Official Social Channels */}
+          <div className="footer-social-wrapper">
+            <div className="footer-social-title">Follow Official Channels:</div>
+            <div className="footer-social-links">
+              <a
+                href="https://www.youtube.com/@LNKITInfra"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-badge badge-youtube"
+                title="LNK IT Infra Official YouTube Channel"
+              >
+                <YouTubeIcon size={16} />
+                <span>YouTube @LNKITInfra</span>
+              </a>
+              <a
+                href="https://www.instagram.com/lnk_it_infra/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-badge badge-instagram"
+                title="LNK IT Infra Official Instagram Profile"
+              >
+                <InstagramIcon size={16} />
+                <span>Instagram @lnk_it_infra</span>
+              </a>
+              <a
+                href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-badge badge-whatsapp"
+                title="Chat on WhatsApp (+91 7796852335)"
+              >
+                <WhatsAppIcon size={16} />
+                <span>WhatsApp (+91 7796852335)</span>
+              </a>
             </div>
           </div>
         </div>

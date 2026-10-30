@@ -10,11 +10,11 @@ import {
   MapPin,
   Phone,
   HelpCircle,
-  FileText,
-  PhoneCall
+  FileText
 } from 'lucide-react';
 import { DETAILED_SERVICES } from '../data/solutionsData';
 import { CASE_STUDIES_DETAILED } from '../data/caseStudiesData';
+import { WhatsAppIcon, InstagramIcon, YouTubeIcon } from '../components/SocialIcons';
 
 interface HomePageProps {
   navigate: (route: string) => void;
@@ -137,6 +137,43 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                 <Sliders size={18} />
                 <span>Estimate Setup Cost</span>
               </a>
+            </div>
+
+            {/* Quick Connect & Official Channels with icons */}
+            <div className="hero-social-channels">
+              <span className="hero-social-label">Connect & Follow:</span>
+              <div className="hero-social-pills">
+                <a
+                  href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20discuss%20our%20office%20IT%20requirements."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-pill pill-wa"
+                  title="Direct WhatsApp Support: +91 7796852335"
+                >
+                  <WhatsAppIcon size={17} />
+                  <span>WhatsApp 7796852335</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/lnk_it_infra/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-pill pill-ig"
+                  title="Follow on Instagram @lnk_it_infra"
+                >
+                  <InstagramIcon size={17} />
+                  <span>Instagram @lnk_it_infra</span>
+                </a>
+                <a
+                  href="https://www.youtube.com/@LNKITInfra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-pill pill-yt"
+                  title="Subscribe on YouTube @LNKITInfra"
+                >
+                  <YouTubeIcon size={17} />
+                  <span>YouTube @LNKITInfra</span>
+                </a>
+              </div>
             </div>
 
             {/* Live Trust Metrics row */}
@@ -986,9 +1023,31 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                   className="btn-whatsapp"
                   onClick={() => openWhatsApp()}
                 >
-                  <PhoneCall size={18} />
+                  <WhatsAppIcon size={18} />
                   <span>Chat on WhatsApp (+91 7796852335)</span>
                 </button>
+              </div>
+
+              <div className="cta-social-strip">
+                <span>Follow our latest project installations:</span>
+                <a
+                  href="https://www.youtube.com/@LNKITInfra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-social-link yt"
+                >
+                  <YouTubeIcon size={15} />
+                  <span>YouTube</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/lnk_it_infra/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-social-link ig"
+                >
+                  <InstagramIcon size={15} />
+                  <span>Instagram</span>
+                </a>
               </div>
             </div>
           </div>

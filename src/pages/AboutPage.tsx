@@ -4,9 +4,9 @@ import {
   Clock,
   Award,
   Target,
-  PhoneCall,
   ArrowRight
 } from 'lucide-react';
+import { WhatsAppIcon, InstagramIcon, YouTubeIcon } from '../components/SocialIcons';
 
 interface AboutPageProps {
   navigate: (route: string) => void;
@@ -217,9 +217,31 @@ export function AboutPage({ navigate, openQuoteModal }: AboutPageProps) {
                   className="btn-whatsapp"
                   onClick={openWhatsApp}
                 >
-                  <PhoneCall size={18} />
+                  <WhatsAppIcon size={18} />
                   <span>WhatsApp (+91 7796852335)</span>
                 </button>
+              </div>
+
+              <div className="cta-social-strip">
+                <span>Follow our latest project installations:</span>
+                <a
+                  href="https://www.youtube.com/@LNKITInfra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-social-link yt"
+                >
+                  <YouTubeIcon size={15} />
+                  <span>YouTube</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/lnk_it_infra/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-social-link ig"
+                >
+                  <InstagramIcon size={15} />
+                  <span>Instagram</span>
+                </a>
               </div>
             </div>
           </div>

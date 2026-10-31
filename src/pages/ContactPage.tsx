@@ -8,7 +8,7 @@ import {
   CheckCircle2,
   PhoneCall
 } from 'lucide-react';
-import { YouTubeIcon, InstagramIcon, WhatsAppIcon } from '../components/SocialIcons';
+import { WhatsAppIcon } from '../components/SocialIcons';
 
 export function ContactPage() {
   const [form, setForm] = useState({
@@ -179,7 +179,7 @@ export function ContactPage() {
           {/* Office Locations Info Column */}
           <div className="contact-offices-col">
             <div className="direct-reach-box glass-card mb-6">
-              <h3>Direct Support & Official Channels</h3>
+              <h3>Direct Support & Office Inquiries</h3>
               <div className="reach-item">
                 <WhatsAppIcon size={18} className="text-emerald shrink-0" />
                 <div>
@@ -206,31 +206,6 @@ export function ContactPage() {
                 <div>
                   <strong>Operating Hours:</strong>
                   <p>Monday - Saturday: 9:00 AM - 8:00 PM (24/7/365 for AMC Clients)</p>
-                </div>
-              </div>
-
-              {/* Official Social Media Channels */}
-              <div className="reach-social-block">
-                <div className="reach-social-title">Connect on Social Media:</div>
-                <div className="reach-social-links">
-                  <a
-                    href="https://www.youtube.com/@LNKITInfra"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="reach-social-btn btn-youtube"
-                  >
-                    <YouTubeIcon size={16} />
-                    <span>YouTube (@LNKITInfra)</span>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/lnk_it_infra/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="reach-social-btn btn-instagram"
-                  >
-                    <InstagramIcon size={16} />
-                    <span>Instagram (@lnk_it_infra)</span>
-                  </a>
                 </div>
               </div>
             </div>

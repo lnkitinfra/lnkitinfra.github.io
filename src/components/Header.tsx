@@ -9,7 +9,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { YouTubeIcon, InstagramIcon, WhatsAppIcon } from './SocialIcons';
+import { WhatsAppIcon } from './SocialIcons';
 
 interface HeaderProps {
   currentRoute: string;
@@ -107,7 +107,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             </a>
           </div>
 
-          {/* Top Right: WhatsApp and Social Channels */}
+          {/* Top Right: WhatsApp Direct Connect */}
           <div className="top-banner-right">
             <a
               href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
@@ -119,31 +119,6 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
               <WhatsAppIcon size={13} />
               <span>+91 7796852335</span>
             </a>
-
-            <span className="top-separator">|</span>
-
-            <div className="top-social-links">
-              <a
-                href="https://www.youtube.com/@LNKITInfra"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="top-social-link top-youtube"
-                title="Follow LNK IT Infra on YouTube"
-              >
-                <YouTubeIcon size={13} />
-                <span>YouTube</span>
-              </a>
-              <a
-                href="https://www.instagram.com/lnk_it_infra/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="top-social-link top-instagram"
-                title="Follow LNK IT Infra on Instagram"
-              >
-                <InstagramIcon size={13} />
-                <span>Instagram</span>
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -232,27 +207,6 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
                 {isLinkActive(link.route) && <ChevronRight size={16} className="mobile-active-chevron" />}
               </a>
             ))}
-
-            <div className="mobile-social-row">
-              <a
-                href="https://www.youtube.com/@LNKITInfra"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mobile-social-btn youtube"
-              >
-                <YouTubeIcon size={16} />
-                <span>YouTube @LNKITInfra</span>
-              </a>
-              <a
-                href="https://www.instagram.com/lnk_it_infra/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mobile-social-btn instagram"
-              >
-                <InstagramIcon size={16} />
-                <span>Instagram @lnk_it_infra</span>
-              </a>
-            </div>
 
             <div className="mobile-menu-actions">
               <button

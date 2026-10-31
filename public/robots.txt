@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lnkitinfra.github.io
+
+# Sitemaps
+Sitemap: https://lnkitinfra.github.io/sitemap.xml

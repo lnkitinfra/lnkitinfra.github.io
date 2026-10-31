@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X, CheckCircle2, Send, PhoneCall } from 'lucide-react';
 
 interface QuoteModalProps {
@@ -18,11 +18,15 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
     submitted: false
   });
 
-  useEffect(() => {
-    if (defaultRequirement) {
-      setForm((prev) => ({ ...prev, requirements: defaultRequirement }));
-    }
-  }, [defaultRequirement]);
+  const [prevReq, setPrevReq] = useState(defaultRequirement);
+  if (defaultRequirement !== prevReq) {
+    setPrevReq(defaultRequirement);
+    setForm((prev) => ({
+      ...prev,
+      requirements: defaultRequirement || 'Need quotation for office IT setup and networking',
+      submitted: false
+    }));
+  }
 
   if (!isOpen) return null;
 

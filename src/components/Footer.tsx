@@ -61,30 +61,29 @@ export function Footer({ navigate }: FooterProps) {
           <ul className="footer-links">
             <li><a href="#/solutions" onClick={(e) => { e.preventDefault(); handleNavClick('solutions'); }}>Turnkey Enterprise Solutions</a></li>
             <li><a href="#/services/cabling" onClick={(e) => { e.preventDefault(); handleNavClick('services/cabling'); }}>Structured Network Cabling</a></li>
-            <li><a href="#/services/wifi" onClick={(e) => { e.preventDefault(); handleNavClick('services/wifi'); }}>Commercial Office Wi-Fi</a></li>
+            <li><a href="#/services/server-installation" onClick={(e) => { e.preventDefault(); handleNavClick('services/server-installation'); }}>Server Installation & RAID Setup</a></li>
+            <li><a href="#/services/desktop-support" onClick={(e) => { e.preventDefault(); handleNavClick('services/desktop-support'); }}>Desktop Support & Helpdesk</a></li>
+            <li><a href="#/services/mail-domain-migration" onClick={(e) => { e.preventDefault(); handleNavClick('services/mail-domain-migration'); }}>Email & Domain Migration (M365)</a></li>
+            <li><a href="#/services/application-support" onClick={(e) => { e.preventDefault(); handleNavClick('services/application-support'); }}>Application & Tally ERP Support</a></li>
+            <li><a href="#/services/wifi" onClick={(e) => { e.preventDefault(); handleNavClick('services/wifi'); }}>Commercial Office Wi-Fi 6</a></li>
             <li><a href="#/services/firewall" onClick={(e) => { e.preventDefault(); handleNavClick('services/firewall'); }}>Next-Gen Firewalls & VPN</a></li>
-            <li><a href="#/services/datacenter" onClick={(e) => { e.preventDefault(); handleNavClick('services/datacenter'); }}>Server Rooms & Online UPS</a></li>
-            <li><a href="#/services/networking" onClick={(e) => { e.preventDefault(); handleNavClick('services/networking'); }}>Gigabit PoE Network Switches</a></li>
             <li><a href="#/services/cctv" onClick={(e) => { e.preventDefault(); handleNavClick('services/cctv'); }}>CCTV Security Surveillance</a></li>
-            <li><a href="#/services/biometrics" onClick={(e) => { e.preventDefault(); handleNavClick('services/biometrics'); }}>Biometrics & Smart Door Locks</a></li>
-            <li><a href="#/services/epabx" onClick={(e) => { e.preventDefault(); handleNavClick('services/epabx'); }}>Office Intercom & EPABX</a></li>
-            <li><a href="#/services/ill-mpls" onClick={(e) => { e.preventDefault(); handleNavClick('services/ill-mpls'); }}>Dedicated Internet Leased Line</a></li>
-            <li><a href="#/services/cloud-backup" onClick={(e) => { e.preventDefault(); handleNavClick('services/cloud-backup'); }}>Automated Data Backup & Cloud</a></li>
+            <li><a href="#/services/biometrics" onClick={(e) => { e.preventDefault(); handleNavClick('services/biometrics'); }}>Biometrics & Door Access</a></li>
           </ul>
         </div>
 
         <div className="footer-col">
-          <h4 className="footer-heading">Hardware Products</h4>
+          <h4 className="footer-heading">Hardware Products & Rentals</h4>
           <ul className="footer-links">
             <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>All Hardware Products</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Corporate Laptops on Rent</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Dell PowerEdge & HPE Servers</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Commercial Monitors & Desktops</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Logitech & Dell Keyboards/Mouse</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Cat6 LSZH Cables & Patch Panels</a></li>
             <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Sophos XGS Firewalls & AP6</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Fortinet FortiGate Security</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>HPE Aruba Switches & Wi-Fi 6</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Cisco Catalyst Managed Switches</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Syntel NEO DX Office Intercoms</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>NEC SL2100 Hybrid Smart PBX</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>HPE Aruba & Cisco Switches</a></li>
             <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Hikvision 4K IP Security Cameras</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>APC by Schneider Electric UPS</a></li>
           </ul>
         </div>
 

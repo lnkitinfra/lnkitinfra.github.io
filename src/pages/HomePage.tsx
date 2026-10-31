@@ -8,7 +8,11 @@ import {
   MapPin,
   Shield,
   Award,
-  Clock
+  Clock,
+  Laptop,
+  Server,
+  Monitor,
+  HardDrive
 } from 'lucide-react';
 import { DETAILED_SERVICES } from '../data/solutionsData';
 import { CASE_STUDIES_DETAILED } from '../data/caseStudiesData';
@@ -212,7 +216,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
           </div>
 
           <div className="solutions-grid">
-            {DETAILED_SERVICES.slice(0, 6).map((sol) => {
+            {DETAILED_SERVICES.slice(0, 8).map((sol) => {
               const IconComp = sol.icon;
               return (
                 <div key={sol.id} className="solution-card glass-card">
@@ -267,7 +271,109 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <span>View All 10 IT Services & Solutions</span>
+              <span>View All {DETAILED_SERVICES.length} IT Services & Solutions</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. IT HARDWARE PRODUCTS & LAPTOP RENTALS */}
+      <section className="section-hardware-preview py-8 bg-subtle">
+        <div className="container">
+          <div className="section-header text-center">
+            <div className="badge-glow">GENUINE HARDWARE & RENTAL SERVICES</div>
+            <h2 className="section-title">
+              IT Hardware Supply, Servers & Laptops on Rent
+            </h2>
+            <p className="section-desc">
+              From corporate laptop rentals with instant replacement to enterprise rack servers, commercial IPS monitors, silent keyboard-mouse combos, and certified Cat6 LAN cabling.
+            </p>
+          </div>
+
+          <div className="grid-3-col mt-6">
+            <div className="advantage-box glass-card">
+              <Laptop size={32} className="text-cyan mb-2" />
+              <h4>Laptops on Rent (Corporate)</h4>
+              <p>Dell Latitude, Lenovo ThinkPad, and Apple MacBook Pro on flexible monthly/annual rentals in Pune. Includes free hardware maintenance and same-day standby replacement.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('Corporate Laptop Rental Inquiry')}
+              >
+                Inquire Laptop Rentals →
+              </button>
+            </div>
+
+            <div className="advantage-box glass-card">
+              <Server size={32} className="text-emerald mb-2" />
+              <h4>Enterprise Servers & Storage</h4>
+              <p>Dell PowerEdge R750/R650 and HPE ProLiant Gen11 rack & tower servers. Configured with hardware RAID, hot-swap SAS/NVMe drives, redundant PSUs, and iDRAC/iLO.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('Enterprise Server Sizing & Quote')}
+              >
+                Request Server Sizing →
+              </button>
+            </div>
+
+            <div className="advantage-box glass-card">
+              <Monitor size={32} className="text-purple mb-2" />
+              <h4>Monitors, Mouse & Desktops</h4>
+              <p>Dell 24" & 27" IPS commercial monitors with pivot stands, OptiPlex desktop PCs, Logitech MK295 silent wireless combos, and precision optical mouse sets.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('Commercial Desktops & Monitors Inquiry')}
+              >
+                Request Peripheral Quote →
+              </button>
+            </div>
+
+            <div className="advantage-box glass-card">
+              <HardDrive size={32} className="text-cyan mb-2" />
+              <h4>LAN & Structured Cabling</h4>
+              <p>CommScope Systimax and Schneider Cat6/Cat6A LSZH pure copper drums (305m), 24/48-port loaded patch panels, snagless molded patch cords, and dual I/O boxes.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('LAN Cabling Materials BoQ Inquiry')}
+              >
+                Get LAN Cabling BoQ →
+              </button>
+            </div>
+
+            <div className="advantage-box glass-card">
+              <Shield size={32} className="text-emerald mb-2" />
+              <h4>Firewalls & Network Switches</h4>
+              <p>Authorized partner of Sophos XGS, Fortinet FortiGate, HPE Aruba Instant On PoE+ switches, and Cisco Catalyst managed switches with on-site installation.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('Firewall & Switch Quotation')}
+              >
+                Request Network Quote →
+              </button>
+            </div>
+
+            <div className="advantage-box glass-card">
+              <Award size={32} className="text-purple mb-2" />
+              <h4>CCTV Cameras & Biometrics</h4>
+              <p>Hikvision 4K ColorVu IP security cameras, Western Digital Purple NVR storage, touchless facial recognition biometric locks, and surveillance AMC.</p>
+              <button
+                className="btn-link-simple mt-3"
+                onClick={() => openQuoteModal('CCTV Surveillance & Biometrics Inquiry')}
+              >
+                Inquire CCTV Setup →
+              </button>
+            </div>
+          </div>
+
+          <div className="text-center mt-6">
+            <button
+              className="btn-primary"
+              onClick={() => {
+                navigate('products');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
+              <span>Explore All Hardware Models & Rentals</span>
               <ArrowRight size={16} />
             </button>
           </div>

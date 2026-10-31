@@ -15,12 +15,13 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'All Services (10)' },
-    { id: 'Core Infrastructure', label: 'Cabling, Wi-Fi & Servers' },
-    { id: 'Cyber Defense', label: 'Firewalls & Cyber Security' },
+    { id: 'all', label: `All Services (${DETAILED_SERVICES.length})` },
+    { id: 'Server & IT Support', label: 'Server, Desktop & App Support' },
+    { id: 'Cloud & Migration', label: 'Mail, Domain & Cloud' },
+    { id: 'Core Infrastructure', label: 'Cabling & Wi-Fi' },
     { id: 'Smart Surveillance', label: 'CCTV & Biometrics' },
-    { id: 'Voice & Telecom', label: 'Intercom & Leased Line' },
-    { id: 'Cloud & Data', label: 'Backup & Cloud' }
+    { id: 'Cyber Defense', label: 'Firewalls & Cyber Security' },
+    { id: 'Voice & Telecom', label: 'Intercom & Leased Line' }
   ];
 
   const filtered = selectedCategory === 'all'

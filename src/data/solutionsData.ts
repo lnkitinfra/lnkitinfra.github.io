@@ -8,7 +8,11 @@ import {
   Video,
   Fingerprint,
   Cloud,
-  Radio
+  Radio,
+  Monitor,
+  Mail,
+  Wrench,
+  HardDrive
 } from 'lucide-react';
 
 export interface DetailedService {
@@ -362,6 +366,142 @@ export const DETAILED_SERVICES: DetailedService[] = [
     faq: [
       { q: 'Will the daily backup slow down our computers while working?', a: 'No. Backups are scheduled to run quietly in the background during lunch hours or after office closing at 8 PM, using minimal internet bandwidth.' },
       { q: 'If an office computer gets infected by ransomware, is our cloud backup safe?', a: 'Yes. Our backups use immutable storage, which means once a backup copy is saved in the cloud, it cannot be edited, encrypted, or deleted by any virus.' }
+    ]
+  },
+  {
+    id: 'server-installation',
+    category: 'Server & IT Support',
+    title: 'Server Installation & Active Directory Configuration',
+    tagline: 'High-Availability Windows & Linux Servers with RAID Redundancy',
+    summary: 'End-to-end server commissioning, operating system installation (Windows Server 2022/2025, Ubuntu, RHEL), Active Directory Domain Services (AD DS), Group Policy (GPO), DHCP/DNS, hardware RAID 1/5/10 configuration, and automated daily backup routines for corporate offices.',
+    icon: HardDrive,
+    highlight: 'Turnkey Server Setup',
+    idealFor: 'Offices deploying new on-premise servers, database clusters, domain controllers, and virtualization environments.',
+    problemsSolved: [
+      'Data loss risks from operating without proper hardware RAID mirroring or striping',
+      'Chaotic user access where employees share passwords or have unrestricted admin privileges',
+      'Slow server file access due to unoptimized network cards and storage bottlenecks',
+      'No disaster recovery plan if the main office server crashes or suffers hardware damage'
+    ],
+    whatWeDo: [
+      'Install and commission rack-mount and tower servers (Dell PowerEdge, HPE ProLiant)',
+      'Configure hardware RAID arrays (RAID 1, RAID 5, RAID 10) with hot-spare disk redundancy',
+      'Deploy Windows Server 2022/2025 with Active Directory (AD DS), DNS, DHCP, and Group Policies (GPO)',
+      'Setup virtual machines using Microsoft Hyper-V or VMware ESXi for optimal hardware utilization',
+      'Configure automated local and off-site cloud backups with scheduled health monitoring'
+    ],
+    processSteps: [
+      { step: '01', title: 'Workload Sizing', desc: 'We calculate CPU cores, RAM, and storage IOPS based on your active employee count and business applications.' },
+      { step: '02', title: 'Hardware Staging & RAID', desc: 'Physical mounting in server rack, cabling redundant power supplies, and building the RAID storage pool.' },
+      { step: '03', title: 'OS & Domain Architecture', desc: 'Clean installation of licensed Windows Server/Linux, establishing user organizational units, and setting folder permissions.' },
+      { step: '04', title: 'Failover & Backup Testing', desc: 'Simulated disk pull test to verify zero downtime under hardware failure, followed by automated backup validation.' }
+    ],
+    hardwareUsed: ['Dell PowerEdge', 'HPE ProLiant', 'Microsoft Windows Server', 'VMware ESXi', 'Red Hat Enterprise Linux'],
+    faq: [
+      { q: 'Can you migrate our data from an old, aging server to a new server without downtime?', a: 'Yes. We run background file synchronization and database replication during working hours, scheduling the final IP and DNS switchover over a weekend or evening so users experience zero interruption.' },
+      { q: 'What is RAID and why is it essential for an office server?', a: 'RAID combines multiple hard drives so that if one drive mechanically fails, the server continues running without any data loss or downtime while you replace the faulty drive.' }
+    ]
+  },
+  {
+    id: 'mail-domain-migration',
+    category: 'Cloud & Migration',
+    title: 'Business Email & Domain Migration Services',
+    tagline: 'Zero-Downtime Migration to Microsoft 365 & Google Workspace',
+    summary: 'Seamless, zero-data-loss migration of your corporate emails, calendars, contacts, and folders from legacy cPanel, webmail, or on-premise Exchange to Microsoft 365 Exchange Online or Google Workspace. We handle domain registrar transfers, DNSSEC, SPF, DKIM, DMARC security, and 2FA authentication.',
+    icon: Mail,
+    highlight: 'Zero-Downtime Cutover',
+    idealFor: 'Businesses upgrading from basic webmail/cPanel to enterprise Microsoft 365 or Google Workspace with custom domain names.',
+    problemsSolved: [
+      'Important emails landing in clients spam or junk folders due to poor IP reputation',
+      'Email storage constantly getting full on shared hosting or cPanel webmail',
+      'Loss of historical emails, sent items, or folder structures during staff turnover or migrations',
+      'CEO fraud, phishing, and email spoofing risks due to missing SPF, DKIM, and DMARC security records'
+    ],
+    whatWeDo: [
+      'Migrate all mailboxes, folders, calendars, and contacts with 100% data integrity',
+      'Execute delta synchronization to ensure not a single email is dropped during cutover',
+      'Configure enterprise DNS records: MX, SPF (anti-spoofing), DKIM (digital signature), and DMARC policies',
+      'Configure Microsoft Outlook, Web App, and mobile email sync across all employee devices',
+      'Implement multi-factor authentication (MFA/2FA) and password security policies'
+    ],
+    processSteps: [
+      { step: '01', title: 'Mailbox Discovery & Audit', desc: 'We audit total mailbox counts, mailbox sizes, archive requirements, and domain DNS ownership.' },
+      { step: '02', title: 'Pre-Sync Migration', desc: 'We sync 99% of historical emails in the background while your team continues working on current email normally.' },
+      { step: '03', title: 'DNS Cutover & Delta Sync', desc: 'We update MX records during off-hours, perform final delta sync, and verify incoming mail routing.' },
+      { step: '04', title: 'Client Device Configuration', desc: 'Our team assists employees with Outlook profiles, smartphone setup, and 2FA authentication.' }
+    ],
+    hardwareUsed: ['Microsoft 365 Exchange Online', 'Google Workspace', 'Cloudflare DNS', 'GoDaddy / Namecheap Registrar'],
+    faq: [
+      { q: 'Will our employees lose any emails during the migration?', a: 'No. We use professional dual-sync migration tools that copy every single inbox, sent item, draft, subfolder, and calendar entry without deleting anything from your old server.' },
+      { q: 'Will our email stop working while the migration takes place?', a: 'No. Both old and new email servers run simultaneously during the transition. The DNS cutover is scheduled off-hours so employees wake up in the morning with everything working.' }
+    ]
+  },
+  {
+    id: 'desktop-support',
+    category: 'Server & IT Support',
+    title: 'On-Site & Remote Desktop Support (L1/L2 Helpdesk)',
+    tagline: 'Rapid Helpdesk, OS Re-imaging & PC Hardware Troubleshooting',
+    summary: 'Comprehensive desktop and laptop technical support for your daily office operations. We provide on-site resident engineers or rapid remote helpdesk for operating system installation, hardware repairs, RAM/SSD upgrades, printer troubleshooting, and virus removal across Pune.',
+    icon: Monitor,
+    highlight: '15-Min Response Helpdesk',
+    idealFor: 'Growing companies needing dedicated IT support without hiring full-time internal IT staff.',
+    problemsSolved: [
+      'Employees wasting productive hours waiting for slow, freezing computers or driver errors',
+      'Network printer disconnections and scanner setup issues in shared office bays',
+      'Malware, adware, or ransomware infections locking employee browsers and work files',
+      'Delays in onboarding new employees due to unconfigured laptops or missing software licenses'
+    ],
+    whatWeDo: [
+      'L1 & L2 remote desktop support via secure screen-sharing with 15-minute response SLA',
+      'Regular on-site technician visits across Pune, Hinjewadi, Kharadi, Baner, and PCMC',
+      'Clean OS re-imaging (Windows 10/11 Pro, macOS, Linux) with standardized company software suites',
+      'Hardware troubleshooting, motherboard diagnostic, laptop screen replacement, and RAM/NVMe SSD upgrades',
+      'Office network printer, scanner, and Wi-Fi client configuration on all employee machines'
+    ],
+    processSteps: [
+      { step: '01', title: 'Asset Inventory & Tagging', desc: 'We catalog all company laptops, desktops, and printers with serial numbers and specs.' },
+      { step: '02', title: 'Standard Image Creation', desc: 'We build an optimized corporate OS image pre-configured with required drivers, security, and VPN.' },
+      { step: '03', title: 'Helpdesk Ticketing Setup', desc: 'Your staff can raise support tickets via email, phone, or WhatsApp with clear response SLAs.' },
+      { step: '04', title: 'Preventive Maintenance', desc: 'Scheduled weekly health checks, temporary file cleanup, thermal paste re-application, and antivirus updates.' }
+    ],
+    hardwareUsed: ['Dell Latitude / OptiPlex', 'Lenovo ThinkPad', 'HP ProBook', 'Logitech Peripherals', 'Brother / HP Laser Printers'],
+    faq: [
+      { q: 'How fast do your desktop engineers respond to urgent computer issues?', a: 'Remote support requests are acknowledged and connected within 15 minutes. For issues requiring on-site parts or hands-on repair in Pune, our field engineer arrives within 1 to 2 hours.' },
+      { q: 'Do you offer monthly IT support contracts for small offices?', a: 'Yes. We offer flexible monthly and annual AMC plans tailored for teams with as few as 10 PCs up to 500+ workstations.' }
+    ]
+  },
+  {
+    id: 'application-support',
+    category: 'Server & IT Support',
+    title: 'Business Application & Multi-User ERP Support',
+    tagline: 'Multi-User Tally Prime, ERP, CRM & Business Software Setup',
+    summary: 'Specialized enterprise application deployment, database performance optimization, and troubleshooting. We configure multi-user Tally Prime Server over LAN, secure remote access via VPN, accounting software client deployments, CRM setup, and automated database maintenance.',
+    icon: Wrench,
+    highlight: 'Optimized ERP Speed',
+    idealFor: 'Finance teams, chartered accountants, distributors, and businesses using Tally Prime, Busy, or custom ERPs over office LAN.',
+    problemsSolved: [
+      'Tally Prime freezing or running extremely slow when 5+ users enter vouchers simultaneously',
+      'Tally company data corruption caused by network disconnections or abrupt power cuts',
+      'Employees unable to access accounting or ERP software securely from home or branch offices',
+      'Failure to apply mandatory statutory compliance updates, security patches, or software renewals'
+    ],
+    whatWeDo: [
+      'Install and optimize Tally Prime Multi-User Server (Gold) over dedicated gigabit LAN',
+      'Set up daily automated multi-destination backups for Tally data folders with revision history',
+      'Configure secure SSL VPN tunnels for authorized accountants to access ERP remotely with zero lag',
+      'Diagnose and repair damaged or corrupted company data files with zero transaction loss',
+      'Deploy and update business CRM, billing software, and PDF workflow tools across all client machines'
+    ],
+    processSteps: [
+      { step: '01', title: 'Application Environment Audit', desc: 'We analyze host server storage speed, network latency, and client PC operating systems.' },
+      { step: '02', title: 'Dedicated LAN Optimization', desc: 'We configure static IP addressing, jumbo frames, and antivirus exclusion paths for ERP databases.' },
+      { step: '03', title: 'Multi-User Permissions', desc: 'We set granular read/write file permissions so users cannot accidentally delete master company folders.' },
+      { step: '04', title: 'Automated Snapshot Routine', desc: 'We program hourly incremental snapshots so you can roll back to any point in time in seconds.' }
+    ],
+    hardwareUsed: ['Tally Prime Server', 'Microsoft SQL Server', 'Busy Accounting', 'Sophos SSL VPN', 'Synology NAS Storage'],
+    faq: [
+      { q: 'Why does our Tally get slow when multiple users connect over Wi-Fi?', a: 'Wi-Fi has inherent packet jitter and latency. For multi-user Tally, connecting client PCs via certified Cat6 copper LAN cable with gigabit switches delivers 10x faster response with zero data corruption.' },
+      { q: 'Can our staff access Tally from home safely without exposing our server to the internet?', a: 'Yes. We configure an encrypted hardware firewall VPN. Remote employees log in via multi-factor authentication, keeping your accounting database 100% private and protected.' }
     ]
   }
 ];

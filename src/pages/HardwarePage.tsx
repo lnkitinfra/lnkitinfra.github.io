@@ -20,12 +20,16 @@ export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = [
-    { id: 'all', label: 'All Hardware Models' },
+    { id: 'all', label: 'All Products & Rentals' },
+    { id: 'rentals', label: 'Laptops on Rent' },
+    { id: 'servers', label: 'Enterprise Servers (Dell / HPE)' },
+    { id: 'peripherals', label: 'Monitors, Mouse & Desktops' },
+    { id: 'lan', label: 'LAN & Structured Cabling' },
     { id: 'firewalls', label: 'Security Firewalls (Sophos / Fortinet)' },
     { id: 'switches', label: 'Network Switches (Aruba / Cisco)' },
     { id: 'wireless', label: 'Commercial Wi-Fi (Wi-Fi 6)' },
-    { id: 'telephony', label: 'Office Intercom (Syntel / NEC)' },
-    { id: 'surveillance', label: 'CCTV & Recorders (Hikvision)' }
+    { id: 'surveillance', label: 'CCTV & Recorders (Hikvision)' },
+    { id: 'telephony', label: 'Office Intercom (Syntel / NEC)' }
   ];
 
   const filtered = HARDWARE_CATALOG.filter((item) => {

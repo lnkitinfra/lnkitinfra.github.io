@@ -3182,7 +3182,11 @@
   gap: 16px;
 }
 
-/* Mobile Responsive Adjustments */
+/* ==========================================================================
+   COMPREHENSIVE MULTI-DEVICE RESPONSIVENESS (DESKTOP, TABLET, MOBILE)
+   ========================================================================== */
+
+/* 1. Large Laptops / Desktops under 1220px */
 @media (max-width: 1220px) {
   .btn-whatsapp-header span {
     display: none;
@@ -3190,97 +3194,318 @@
   .btn-whatsapp-header {
     padding: 8px 10px;
   }
+  .desktop-nav {
+    gap: 10px;
+  }
+  .desktop-nav a {
+    font-size: 0.825rem;
+    padding: 6px 4px;
+  }
 }
 
+/* 2. Tablets & Small Laptops (max-width: 1080px) */
 @media (max-width: 1080px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-toggle-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
   .hero-content-grid {
     grid-template-columns: 1fr;
     gap: 36px;
   }
-  .desktop-nav {
-    display: none;
+  .about-grid,
+  .contact-grid,
+  .detail-grid,
+  .case-detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
   }
-  .mobile-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px;
+  }
+  .process-steps-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
   .estimator-body-grid {
     grid-template-columns: 1fr;
   }
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .detail-grid {
-    grid-template-columns: 1fr;
-  }
-  .process-steps-row {
-    grid-template-columns: 1fr 1fr;
-  }
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-  .case-detail-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
-@media (max-width: 860px) {
+/* 3. Tablets & Phablets (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Compact Top Announcement Bar */
+  .top-banner {
+    padding: 6px 0;
+    font-size: 0.72rem;
+  }
   .top-banner-inner {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
   }
   .top-banner-left,
   .top-banner-right {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
-}
-
-@media (max-width: 640px) {
-  .top-banner-left,
-  .top-banner-right {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  .top-info-item {
+    font-size: 0.72rem;
   }
   .top-separator {
+    display: inline-block;
+    color: #cbd5e1;
+    font-size: 0.7rem;
+  }
+
+  /* Sleek Compact Header */
+  .header-container {
+    height: 64px;
+  }
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+  .logo-shield {
+    width: 20px;
+    height: 20px;
+  }
+  .logo-network {
+    width: 12px;
+    height: 12px;
+  }
+  .brand-name {
+    font-size: 1.15rem;
+  }
+  .brand-subtitle {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+  .header-actions .btn-primary {
     display: none;
   }
-  .quote-form-grid {
-    grid-template-columns: 1fr;
+  .btn-whatsapp-header {
+    padding: 7px 10px;
   }
-  .form-field.full-width {
-    grid-column: span 1;
+  .btn-whatsapp-header span {
+    display: none;
   }
-  .footer-grid {
-    grid-template-columns: 1fr;
+
+  /* Hero Section */
+  .hero-section {
+    padding: 44px 0 36px;
   }
-  .estimator-wrapper,
-  .audit-card,
-  .case-detail-card,
-  .contact-form-card,
-  .brand-certs-box,
-  .checklist-box {
-    padding: 20px;
+  .hero-headline {
+    font-size: clamp(1.85rem, 5.5vw, 2.6rem);
+    line-height: 1.2;
+    margin: 14px 0;
+  }
+  .hero-subhead {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .hero-ctas {
+    gap: 12px;
+    margin-bottom: 28px;
   }
   .hero-metric-strip {
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 100%;
+    gap: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .hero-metric-item .metric-val {
+    font-size: 1.25rem;
+  }
+  .hero-metric-item .metric-lbl {
+    font-size: 0.68rem;
   }
   .metric-divider {
     display: none;
   }
-  .process-steps-row {
+
+  /* Page Heroes */
+  .page-hero-section {
+    padding: 44px 0 32px;
+  }
+  .page-hero-title {
+    font-size: clamp(1.75rem, 5.5vw, 2.4rem);
+  }
+  .page-hero-desc {
+    font-size: 0.92rem;
+  }
+
+  /* Forms & Modals */
+  .modal-backdrop {
+    padding: 12px;
+  }
+  .modal-window {
+    padding: 24px 18px;
+    max-height: 92vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+  }
+  .quote-form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .form-field.full-width {
+    grid-column: span 1;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* 4. Small Mobile Phones (max-width: 640px) */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  .top-banner {
+    padding: 5px 0;
+  }
+  .top-banner-inner {
+    gap: 3px;
+  }
+  .top-info-item {
+    font-size: 0.7rem;
+  }
+  .top-mail-item .top-label-muted {
+    display: none;
+  }
+
+  /* Force all content cards to 1 column */
+  .solutions-grid,
+  .services-catalog-grid,
+  .amc-tiers-grid,
+  .hardware-catalog-grid,
+  .cases-full-list,
+  .problems-grid,
+  .results-grid,
+  .process-steps-row,
+  .grid-3-col,
+  .values-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .solution-card,
+  .service-catalog-card,
+  .amc-card,
+  .hardware-card,
+  .case-detail-card,
+  .contact-form-card,
+  .estimator-wrapper,
+  .audit-card,
+  .brand-certs-box,
+  .checklist-box,
+  .advantage-box {
+    padding: 20px 16px !important;
+  }
+
+  /* Footer 1 column on mobile */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  /* Category pills horizontal swipe */
+  .category-filter-bar,
+  .category-scroll-pills {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+  }
+  .filter-pill,
+  .cat-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Hero slide navigator */
+  .hero-slide-nav {
     grid-template-columns: 1fr;
   }
-  .problems-grid,
-  .results-grid {
-    grid-template-columns: 1fr;
+  .slide-nav-pill {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 10px;
+  }
+  .slide-nav-pill:last-child {
+    border-bottom: none;
+  }
+
+  /* Call To Action Banner */
+  .cta-banner-box {
+    padding: 36px 18px;
+    border-radius: var(--radius-lg);
+  }
+  .cta-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .cta-actions button,
+  .cta-actions .btn-whatsapp-large {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-ctas {
+    flex-direction: column;
+  }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Floating dock on mobile */
+  .floating-social-dock {
+    bottom: 14px;
+    right: 12px;
+    gap: 8px;
+  }
+  .dock-item.dock-call,
+  .dock-item.dock-youtube,
+  .dock-item.dock-instagram {
+    width: 38px;
+    height: 38px;
+  }
+  .dock-item.dock-whatsapp {
+    width: 48px;
+    height: 48px;
+  }
+  .dock-tooltip {
+    display: none;
   }
 }
 
@@ -4057,68 +4282,6 @@ body,
   transform: translateY(-1px);
 }
 
-/* Tablet & Mobile Media Breakpoints */
-@media (max-width: 900px) {
-  .grid-3-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .solutions-grid,
-  .services-catalog-grid,
-  .amc-tiers-grid,
-  .hardware-catalog-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .solution-card,
-  .service-catalog-card,
-  .amc-card,
-  .hardware-card {
-    padding: 20px !important;
-  }
-
-  .cta-banner-box {
-    padding: 36px 20px;
-  }
-
-  .cta-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .cta-actions button,
-  .cta-actions .btn-whatsapp-large {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .category-filter-bar {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .filter-pill {
-    flex-shrink: 0;
-  }
-
-  .hero-slide-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .slide-nav-pill {
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 10px;
-  }
-
-  .slide-nav-pill:last-child {
-    border-bottom: none;
-  }
-}
 
 
 

@@ -6,6 +6,7 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { SolutionsPage } from './pages/SolutionsPage';
 import { HardwarePage } from './pages/HardwarePage';
 import { AMCPage } from './pages/AMCPage';
 import { AboutPage } from './pages/AboutPage';
@@ -56,6 +57,14 @@ export function App() {
       return <HomePage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
+    if (currentRoute === 'about') {
+      return <AboutPage navigate={navigate} openQuoteModal={openQuoteModal} />;
+    }
+
+    if (currentRoute === 'products' || currentRoute === 'hardware') {
+      return <HardwarePage navigate={navigate} openQuoteModal={openQuoteModal} />;
+    }
+
     if (currentRoute === 'services') {
       return <ServicesPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
@@ -71,20 +80,16 @@ export function App() {
       );
     }
 
-    if (currentRoute === 'hardware') {
-      return <HardwarePage navigate={navigate} openQuoteModal={openQuoteModal} />;
+    if (currentRoute === 'solutions') {
+      return <SolutionsPage navigate={navigate} openQuoteModal={openQuoteModal} />;
+    }
+
+    if (currentRoute === 'our-clients' || currentRoute === 'case-studies') {
+      return <CaseStudiesPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
     if (currentRoute === 'amc') {
       return <AMCPage navigate={navigate} openQuoteModal={openQuoteModal} />;
-    }
-
-    if (currentRoute === 'about') {
-      return <AboutPage navigate={navigate} openQuoteModal={openQuoteModal} />;
-    }
-
-    if (currentRoute === 'case-studies') {
-      return <CaseStudiesPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
     if (currentRoute === 'contact') {

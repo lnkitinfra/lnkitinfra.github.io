@@ -97,6 +97,7 @@ export function Footer({ navigate }: FooterProps) {
         <div className="footer-col">
           <h4 className="footer-heading">Services & Solutions</h4>
           <ul className="footer-links">
+            <li><a href="#/solutions" onClick={(e) => { e.preventDefault(); handleNavClick('solutions'); }}>Turnkey Enterprise Solutions</a></li>
             <li><a href="#/services/cabling" onClick={(e) => { e.preventDefault(); handleNavClick('services/cabling'); }}>Structured Network Cabling</a></li>
             <li><a href="#/services/wifi" onClick={(e) => { e.preventDefault(); handleNavClick('services/wifi'); }}>Commercial Office Wi-Fi</a></li>
             <li><a href="#/services/firewall" onClick={(e) => { e.preventDefault(); handleNavClick('services/firewall'); }}>Next-Gen Firewalls & VPN</a></li>
@@ -111,16 +112,17 @@ export function Footer({ navigate }: FooterProps) {
         </div>
 
         <div className="footer-col">
-          <h4 className="footer-heading">Genuine Hardware Brands</h4>
+          <h4 className="footer-heading">Hardware Products</h4>
           <ul className="footer-links">
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>Sophos XGS Firewalls & AP6</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>Fortinet FortiGate Security</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>HPE Aruba Switches & Wi-Fi 6</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>Cisco Catalyst Managed Switches</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>Syntel NEO DX Office Intercoms</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>NEC SL2100 Hybrid Smart PBX</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>Hikvision 4K IP Security Cameras</a></li>
-            <li><a href="#/hardware" onClick={(e) => { e.preventDefault(); handleNavClick('hardware'); }}>APC by Schneider Electric UPS</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>All Hardware Products</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Sophos XGS Firewalls & AP6</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Fortinet FortiGate Security</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>HPE Aruba Switches & Wi-Fi 6</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Cisco Catalyst Managed Switches</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Syntel NEO DX Office Intercoms</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>NEC SL2100 Hybrid Smart PBX</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Hikvision 4K IP Security Cameras</a></li>
+            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>APC by Schneider Electric UPS</a></li>
           </ul>
         </div>
 
@@ -128,7 +130,7 @@ export function Footer({ navigate }: FooterProps) {
           <h4 className="footer-heading">Company & Locations</h4>
           <ul className="footer-links">
             <li><a href="#/about" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>About LNK IT Infra</a></li>
-            <li><a href="#/case-studies" onClick={(e) => { e.preventDefault(); handleNavClick('case-studies'); }}>Real Client Case Studies</a></li>
+            <li><a href="#/our-clients" onClick={(e) => { e.preventDefault(); handleNavClick('our-clients'); }}>Our Clients & Case Studies</a></li>
             <li><a href="#/amc" onClick={(e) => { e.preventDefault(); handleNavClick('amc'); }}>Annual Maintenance Contracts (AMC)</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Headquarters (Magarpatta)</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Mumbai Office (BKC Platina)</a></li>

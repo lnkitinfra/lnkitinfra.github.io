@@ -3,6 +3,8 @@ import {
   Shield,
   Network,
   Mail,
+  MapPin,
+  Clock,
   ChevronRight,
   Menu,
   X
@@ -18,15 +20,41 @@ interface HeaderProps {
 export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Exact navigation items requested by the user
   const navLinks = [
     { route: 'home', label: 'Home' },
-    { route: 'services', label: 'Services & Solutions' },
-    { route: 'hardware', label: 'Hardware Products' },
-    { route: 'amc', label: 'IT AMC Plans' },
-    { route: 'case-studies', label: 'Case Studies' },
     { route: 'about', label: 'About Us' },
-    { route: 'contact', label: 'Contact & Offices' }
+    { route: 'products', label: 'Products' },
+    { route: 'services', label: 'Services' },
+    { route: 'solutions', label: 'Solutions' },
+    { route: 'our-clients', label: 'Our Clients' },
+    { route: 'contact', label: 'Contact Us' }
   ];
+
+  const isLinkActive = (route: string) => {
+    if (route === 'home') {
+      return currentRoute === 'home' || currentRoute === '';
+    }
+    if (route === 'products') {
+      return currentRoute === 'products' || currentRoute === 'hardware';
+    }
+    if (route === 'our-clients') {
+      return currentRoute === 'our-clients' || currentRoute === 'case-studies';
+    }
+    if (route === 'services') {
+      return currentRoute === 'services' || currentRoute.startsWith('services/');
+    }
+    if (route === 'solutions') {
+      return currentRoute === 'solutions';
+    }
+    if (route === 'about') {
+      return currentRoute === 'about';
+    }
+    if (route === 'contact') {
+      return currentRoute === 'contact';
+    }
+    return currentRoute.startsWith(route);
+  };
 
   const handleNavClick = (route: string) => {
     navigate(route);
@@ -35,7 +63,10 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services.', '_blank');
+    window.open(
+      'https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services.',
+      '_blank'
+    );
   };
 
   return (
@@ -43,15 +74,54 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
       {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
       <div className="top-banner">
         <div className="container top-banner-inner">
+          {/* Top Left: Working Hours & Pune Location */}
           <div className="top-banner-left">
-            <span className="live-status-pill">
-              <span className="pulse-dot"></span>
-              All Systems Operational • 99.9% Uptime Support
-            </span>
-            <span className="separator">|</span>
-            <span className="cert-text">Certified IT Hardware & Structured Cabling Specialists</span>
+            <div className="top-info-item top-schedule-item">
+              <Clock size={13} className="top-info-icon" />
+              <span className="top-info-text">
+                <span className="top-label-strong">MON TO SAT</span> 9:30 AM TO 6:30 PM IST
+              </span>
+            </div>
+
+            <span className="top-separator">•</span>
+
+            <div className="top-info-item top-location-item">
+              <MapPin size={13} className="top-info-icon text-cyan" />
+              <span className="top-info-text">
+                <span className="top-label-strong">PUNE</span>
+              </span>
+            </div>
+
+            <span className="top-separator">•</span>
+
+            <a
+              href="mailto:lnkitinfra@gmail.com"
+              className="top-info-item top-link top-mail-item"
+              title="Send email to LNK IT Infra"
+            >
+              <Mail size={13} className="top-info-icon" />
+              <span className="top-info-text">
+                <span className="top-label-muted">MAIL ID</span>{' '}
+                <span className="top-label-email">lnkitinfra@gmail.com</span>
+              </span>
+            </a>
           </div>
+
+          {/* Top Right: WhatsApp and Social Channels */}
           <div className="top-banner-right">
+            <a
+              href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-link top-whatsapp-link"
+              title="Chat with Engineer on WhatsApp"
+            >
+              <WhatsAppIcon size={13} />
+              <span>+91 7796852335</span>
+            </a>
+
+            <span className="top-separator">|</span>
+
             <div className="top-social-links">
               <a
                 href="https://www.youtube.com/@LNKITInfra"
@@ -74,21 +144,6 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
                 <span>Instagram</span>
               </a>
             </div>
-            <span className="separator">|</span>
-            <a
-              href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="top-link top-whatsapp-link"
-            >
-              <WhatsAppIcon size={13} />
-              <span>WhatsApp: +91 7796852335</span>
-            </a>
-            <span className="separator">|</span>
-            <a href="mailto:lnkitinfra@gmail.com" className="top-link">
-              <Mail size={13} />
-              <span>lnkitinfra@gmail.com</span>
-            </a>
           </div>
         </div>
       </div>
@@ -117,12 +172,12 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="desktop-nav">
+          <nav className="desktop-nav" aria-label="Main Navigation">
             {navLinks.map((link) => (
               <a
                 key={link.route}
                 href={`#/${link.route === 'home' ? '' : link.route}`}
-                className={currentRoute.startsWith(link.route) ? 'active' : ''}
+                className={isLinkActive(link.route) ? 'active' : ''}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(link.route);
@@ -167,13 +222,14 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
               <a
                 key={link.route}
                 href={`#/${link.route === 'home' ? '' : link.route}`}
-                className={currentRoute.startsWith(link.route) ? 'active' : ''}
+                className={isLinkActive(link.route) ? 'active' : ''}
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(link.route);
                 }}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {isLinkActive(link.route) && <ChevronRight size={16} className="mobile-active-chevron" />}
               </a>
             ))}
 

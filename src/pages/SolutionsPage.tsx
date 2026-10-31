@@ -146,13 +146,13 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
         <div className="container">
           <div className="badge-glow">
             <Layers size={14} className="text-cyan" />
-            <span>ENTERPRISE TURNKEY IT SOLUTIONS</span>
+            <span>ENTERPRISE TURNKEY IT SOLUTIONS • PUNE</span>
           </div>
           <h1 className="page-hero-title">
-            Integrated <span className="gradient-text">IT Infrastructure Solutions</span> for Modern Workplaces
+            Integrated <span className="gradient-text">IT Infrastructure Solutions</span> for Pune Offices
           </h1>
           <p className="page-hero-desc">
-            From single-floor software startups to 500+ seat multi-acre corporate campuses, LNK IT Infra delivers complete, turnkey IT infrastructure with genuine enterprise hardware, certified cabling, and guaranteed SLA support.
+            From single-floor software startups to 500+ seat corporate offices across Pune, LNK IT Infra delivers complete, turnkey IT infrastructure with genuine enterprise hardware, certified cabling, and guaranteed local SLA support.
           </p>
 
           <div className="hero-cta-group mt-6">
@@ -182,7 +182,7 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
               Engineered for <span className="gradient-text">Zero Downtime & Growth</span>
             </h2>
             <p className="section-desc">
-              Explore our turnkey solution packages tailored specifically for IT parks, manufacturing corporate hubs, co-working spaces, and corporate offices across India.
+              Explore our turnkey solution packages tailored specifically for IT parks, manufacturing corporate hubs, co-working spaces, and corporate offices across Pune & PCMC.
             </p>
           </div>
 

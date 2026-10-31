@@ -306,7 +306,7 @@ export const DETAILED_SERVICES: DetailedService[] = [
     category: 'Voice & Telecom',
     title: 'Dedicated Leased Line Internet',
     tagline: 'Guaranteed 100% Symmetrical Speed with 99.9% Uptime',
-    summary: 'Enterprise leased line internet connections with equal upload and download speeds, backed by a 99.9% uptime SLA and multi-branch network links across India through partnerships with Airtel, Tata, and Jio.',
+    summary: 'Enterprise leased line internet connections with equal upload and download speeds, backed by a 99.9% uptime SLA and multi-branch network links connecting your Pune office with regional branches through partnerships with Airtel, Tata, and Jio.',
     icon: Radio,
     highlight: '99.9% Uptime SLA',
     idealFor: 'Offices requiring guaranteed fast internet for video conferencing, ERP, and cloud software.',

@@ -48,13 +48,13 @@ export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
         <div className="container">
           <div className="badge-glow">
             <Layers size={14} className="text-cyan" />
-            <span>GENUINE HARDWARE SUPPLY, INSTALLATION & CONFIGURATION</span>
+            <span>GENUINE HARDWARE SUPPLY, INSTALLATION & CONFIGURATION • PUNE ONLY</span>
           </div>
           <h1 className="page-hero-title">
-            Enterprise <span className="gradient-text">Hardware & Equipment</span>
+            Enterprise <span className="gradient-text">Hardware & Rentals in Pune</span>
           </h1>
           <p className="page-hero-desc">
-            We supply, install, and configure genuine enterprise IT equipment with official manufacturer warranties, on-site commissioning, and dependable AMC technical support.
+            We supply, install, and configure genuine enterprise IT equipment with official manufacturer warranties, on-site commissioning, and dependable AMC technical support exclusively for offices in Pune & PCMC.
           </p>
 
           {/* Search & Category Filter Bar */}

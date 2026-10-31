@@ -35,13 +35,13 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
         <div className="container">
           <div className="badge-glow">
             <Layers size={14} className="text-cyan" />
-            <span>ENTERPRISE SOLUTIONS CATALOG</span>
+            <span>ENTERPRISE SOLUTIONS CATALOG • PUNE & PCMC ONLY</span>
           </div>
           <h1 className="page-hero-title">
-            Office IT Infrastructure & <span className="gradient-text">Networking Services</span>
+            Office IT Infrastructure & <span className="gradient-text">Networking Services in Pune</span>
           </h1>
           <p className="page-hero-desc">
-            From single-floor startup offices to multi-acre industrial campuses, we supply genuine hardware, pull certified structured cabling, deploy enterprise firewalls, and provide complete lifecycle support across India.
+            From single-floor startup offices to corporate facilities, we supply genuine hardware, pull certified structured cabling, deploy enterprise firewalls, and provide complete lifecycle support exclusively across Pune & PCMC.
           </p>
 
           <div className="category-filter-bar">
@@ -175,7 +175,7 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
                 Need Help Planning Your <span className="gradient-text">Office Network?</span>
               </h2>
               <p className="cta-subhead">
-                Our senior network engineer will visit your office in Pune, Mumbai, Bengaluru, or Delhi NCR to provide a comprehensive floor evaluation and cost estimate.
+                Our senior network engineer will visit your office in Pune to provide a comprehensive floor evaluation and cost estimate.
               </p>
               <div className="cta-buttons">
                 <button

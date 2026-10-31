@@ -87,7 +87,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <div className="top-info-item top-location-item">
               <MapPin size={13} className="top-info-icon text-cyan" />
               <span className="top-info-text">
-                <span className="top-label-strong">PUNE</span>
+                <span className="top-label-strong">SERVICES IN PUNE ONLY</span>
               </span>
             </div>
 

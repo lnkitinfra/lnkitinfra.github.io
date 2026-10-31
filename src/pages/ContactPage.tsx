@@ -69,13 +69,13 @@ export function ContactPage() {
         <div className="container">
           <div className="badge-glow">
             <MapPin size={14} className="text-cyan" />
-            <span>NATIONWIDE TECHNOLOGY CENTERS</span>
+            <span>PUNE IT INFRASTRUCTURE & SUPPORT ONLY</span>
           </div>
           <h1 className="page-hero-title">
-            Contact & <span className="gradient-text">Office Locations</span>
+            Contact & <span className="gradient-text">Pune Office Support</span>
           </h1>
           <p className="page-hero-desc">
-            Get in touch with our engineering team for free site surveys, transparent itemized quotations, hardware pricing, or emergency 24/7 IT AMC support across India.
+            We currently provide our IT infrastructure, hardware setups, and on-site technical services exclusively in Pune & PCMC. Get in touch with our engineering team for free site surveys, transparent itemized quotations, hardware pricing, or dependable local support.
           </p>
         </div>
       </section>
@@ -92,6 +92,21 @@ export function ContactPage() {
                 <p>
                   Fill out the form below and our senior systems engineer will call you to understand your requirements and schedule an on-site visit.
                 </p>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(6, 182, 212, 0.1)',
+                  border: '1px solid rgba(6, 182, 212, 0.3)',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '0.85rem',
+                  color: '#e2e8f0',
+                  marginTop: '14px'
+                }}>
+                  <MapPin size={16} className="text-cyan shrink-0" />
+                  <span><strong>Service Area Notice:</strong> We currently provide all on-site IT setups, cabling, hardware rentals, and support <strong>exclusively in Pune & PCMC</strong>.</span>
+                </div>
               </div>
 
               {form.submitted ? (
@@ -166,18 +181,22 @@ export function ContactPage() {
                   </div>
 
                   <div className="form-field">
-                    <label>Primary Office City / Hub</label>
+                    <label>Location in Pune / PCMC *</label>
                     <select
                       value={form.city}
                       onChange={(e) => setForm({ ...form, city: e.target.value })}
                     >
-                      <option value="Pune">Pune (HQ - Magarpatta, Hinjawadi, Kharadi)</option>
-                      <option value="Mumbai">Mumbai (BKC, Andheri, Navi Mumbai, Thane)</option>
-                      <option value="Bengaluru">Bengaluru (Outer Ring Road, Whitefield)</option>
-                      <option value="Delhi NCR">Delhi NCR (Gurugram, Noida, Delhi)</option>
-                      <option value="Hyderabad">Hyderabad (HITEC City, Gachibowli)</option>
-                      <option value="Other">Other City in India</option>
+                      <option value="Pune - Magarpatta">Pune (Magarpatta City & Hadapsar)</option>
+                      <option value="Pune - Hinjawadi">Pune (Hinjawadi IT Park Phase 1, 2, 3)</option>
+                      <option value="Pune - Kharadi">Pune (Kharadi EON Free Zone & Viman Nagar)</option>
+                      <option value="Pune - Baner">Pune (Baner, Balewadi & Aundh)</option>
+                      <option value="Pune - Central">Pune (Shivaji Nagar, SB Road & Camp)</option>
+                      <option value="PCMC - Bhosari & Chakan">PCMC (Bhosari MIDC, Chakan & Talwade)</option>
+                      <option value="Other Pune Area">Other Pune City Location</option>
                     </select>
+                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                      📍 On-site services exclusively in Pune & PCMC.
+                    </span>
                   </div>
 
                   <div className="form-field full-width">
@@ -243,70 +262,30 @@ export function ContactPage() {
                 <Clock size={18} className="text-cyan shrink-0" />
                 <div>
                   <strong>Operating Hours:</strong>
-                  <p>Monday - Saturday: 9:00 AM - 8:00 PM (24/7/365 for AMC Clients)</p>
+                  <p>Monday - Saturday: 9:30 AM - 6:30 PM (Pune & PCMC)</p>
                 </div>
               </div>
             </div>
 
-            {/* Regional Hub Cards */}
+            {/* Pune Head Office Card */}
             <div className="locations-stack">
               <div className="loc-card glass-card">
-                <div className="loc-badge">PUNE HEADQUARTERS</div>
+                <div className="loc-badge">PUNE HEAD OFFICE</div>
                 <h4 className="loc-title">Pune (Magarpatta City)</h4>
                 <div className="loc-address">
                   <MapPin size={16} className="loc-pin" />
-                  <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Pune, Maharashtra — 411028</span>
+                  <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>
                 </div>
                 <div className="loc-phone">
-                  <Phone size={14} /> +91 7796852335 / +91 20 6790 3300
+                  <Phone size={14} className="text-cyan" />
+                  <a href="tel:+917796852335" style={{ color: '#0f172a', textDecoration: 'none' }}>+91 7796852335</a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: '#475569', marginBottom: '14px' }}>
+                  <Mail size={14} className="text-cyan" />
+                  <a href="mailto:lnkitinfra@gmail.com" style={{ color: '#475569', textDecoration: 'none' }}>lnkitinfra@gmail.com</a>
                 </div>
                 <div className="loc-status">
-                  <span className="pulse-dot"></span> Central Dispatch & Spares Inventory Hub
-                </div>
-              </div>
-
-              <div className="loc-card glass-card">
-                <div className="loc-badge">MUMBAI REGIONAL CENTER</div>
-                <h4 className="loc-title">Mumbai (Bandra Kurla Complex)</h4>
-                <div className="loc-address">
-                  <MapPin size={16} className="loc-pin" />
-                  <span>Level 11, Platina Tech Tower, G-Block, BKC, Bandra East, Mumbai — 400051</span>
-                </div>
-                <div className="loc-phone">
-                  <Phone size={14} /> +91 7796852335 / +91 22 6900 4400
-                </div>
-                <div className="loc-status">
-                  <span className="pulse-dot"></span> Serving MMR, Navi Mumbai & Thane
-                </div>
-              </div>
-
-              <div className="loc-card glass-card">
-                <div className="loc-badge">BENGALURU TECH CENTER</div>
-                <h4 className="loc-title">Bengaluru (Outer Ring Road)</h4>
-                <div className="loc-address">
-                  <MapPin size={16} className="loc-pin" />
-                  <span>EcoSpace Business Park, Campus 2B, Bellandur, Outer Ring Road, Bengaluru — 560103</span>
-                </div>
-                <div className="loc-phone">
-                  <Phone size={14} /> +91 7796852335 / +91 80 4430 8800
-                </div>
-                <div className="loc-status">
-                  <span className="pulse-dot"></span> Serving ORR Corridor, Whitefield & Electronic City
-                </div>
-              </div>
-
-              <div className="loc-card glass-card">
-                <div className="loc-badge">DELHI NCR REGIONAL HUB</div>
-                <h4 className="loc-title">Delhi NCR (DLF Cyber City)</h4>
-                <div className="loc-address">
-                  <MapPin size={16} className="loc-pin" />
-                  <span>Building 9B, Level 6, DLF Cyber City, Phase 3, Gurugram, Haryana — 122002</span>
-                </div>
-                <div className="loc-phone">
-                  <Phone size={14} /> +91 7796852335 / +91 124 4560 900
-                </div>
-                <div className="loc-status">
-                  <span className="pulse-dot"></span> Serving Delhi, Gurugram, Noida & Faridabad
+                  <span className="pulse-dot"></span> Central Dispatch & Operations Hub (Serving Pune & PCMC)
                 </div>
               </div>
             </div>

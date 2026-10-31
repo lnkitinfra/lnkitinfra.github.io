@@ -24,13 +24,13 @@ export function AMCPage({ navigate, openQuoteModal }: AMCPageProps) {
         <div className="container">
           <div className="badge-glow">
             <ShieldCheck size={14} className="text-cyan" />
-            <span>ANNUAL MAINTENANCE CONTRACTS (IT AMC)</span>
+            <span>ANNUAL MAINTENANCE CONTRACTS (IT AMC) • PUNE & PCMC ONLY</span>
           </div>
           <h1 className="page-hero-title">
-            Worry-Free IT Support & <span className="gradient-text">Maintenance Contracts</span>
+            Worry-Free IT Support & <span className="gradient-text">Maintenance Contracts in Pune</span>
           </h1>
           <p className="page-hero-desc">
-            Consider LNK IT Infra as your outsourced, dedicated IT department on speed dial. We proactively prevent computer breakdowns, protect your files, and dispatch on-site engineers within 1 hour when emergencies happen.
+            Consider LNK IT Infra as your outsourced, dedicated IT department on speed dial. We proactively prevent computer breakdowns, protect your files, and dispatch on-site engineers across Pune & PCMC within 1 to 2 hours when emergencies happen.
           </p>
         </div>
       </section>

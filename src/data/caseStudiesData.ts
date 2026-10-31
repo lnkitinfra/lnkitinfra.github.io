@@ -19,9 +19,9 @@ export interface CaseStudy {
 
 export const CASE_STUDIES_DETAILED: CaseStudy[] = [
   {
-    id: 'mumbai-wealth-management',
+    id: 'pune-wealth-management',
     client: 'Apex Financial Advisors & Wealth Management',
-    city: 'Mumbai (Bandra Kurla Complex - BKC)',
+    city: 'Pune (Magarpatta City)',
     industry: 'Financial Services & Investment',
     scale: '160 Employees • 2 Floor Corporate Office',
     timeline: 'Completed in 6 Days (Over Weekend)',
@@ -42,9 +42,9 @@ export const CASE_STUDIES_DETAILED: CaseStudy[] = [
       'APC 3kVA Online UPS with Extended Battery Bank'
     ],
     quote: {
-      text: 'LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in BKC. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption.',
+      text: 'LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Magarpatta. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption.',
       author: 'Kavita Iyer',
-      designation: 'Head of Operations, Apex Financial Advisors'
+      designation: 'Head of Operations, Apex Financial Advisors (Pune)'
     }
   },
   {
@@ -77,9 +77,9 @@ export const CASE_STUDIES_DETAILED: CaseStudy[] = [
     }
   },
   {
-    id: 'bengaluru-cloud-tech',
+    id: 'pune-cloud-tech',
     client: 'Omniverse Cloud Technologies',
-    city: 'Bengaluru (Outer Ring Road - Bellandur)',
+    city: 'Pune (Hinjawadi IT Park - Phase 1)',
     industry: 'Software & Technology Services',
     scale: '450 Software Engineers • 4 Office Floors',
     timeline: 'Completed in 10 Days',

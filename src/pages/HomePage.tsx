@@ -12,7 +12,9 @@ import {
   Laptop,
   Server,
   Monitor,
-  HardDrive
+  HardDrive,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { DETAILED_SERVICES } from '../data/solutionsData';
 import { CASE_STUDIES_DETAILED } from '../data/caseStudiesData';
@@ -63,7 +65,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
           <div className="hero-copy">
             <div className="hero-trust-badge">
               <span className="trust-dot"></span>
-              <span>OFFICE IT INFRASTRUCTURE & SERVICES • PUNE</span>
+              <span>OFFICE IT INFRASTRUCTURE & SERVICES • PUNE ONLY</span>
             </div>
 
             <h1 className="hero-headline">
@@ -374,7 +376,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
       <section className="section-why py-8 bg-subtle">
         <div className="container">
           <div className="section-header text-center">
-            <div className="badge-glow">TRUSTED IN PUNE & MAHARASHTRA</div>
+            <div className="badge-glow">TRUSTED IT PARTNER IN PUNE & PCMC</div>
             <h2 className="section-title">
               Why Corporate Offices Rely on LNK IT Infra
             </h2>
@@ -533,7 +535,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
               Recent Client Installations
             </h2>
             <p className="section-desc">
-              Here is how we solved critical IT headaches for finance firms, industrial plants, and software teams across India.
+              Here is how we solved critical IT headaches for finance firms, industrial plants, and software teams across Pune & PCMC.
             </p>
           </div>
 
@@ -583,68 +585,51 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={18} fill="#f59e0b" color="#f59e0b" />
               ))}
-              <span className="rating-score">4.9 / 5.0 Rating Across 180+ Business Reviews in India</span>
+              <span className="rating-score">4.9 / 5.0 Rating Across 180+ Business Reviews in Pune & PCMC</span>
             </div>
             <blockquote className="testi-quote">
-              “LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in BKC. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption. Their firewall has kept our financial data completely safe.”
+              “LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Magarpatta. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption. Their firewall setup has kept our financial data completely safe.”
             </blockquote>
             <div className="testi-author">
-              <strong>Kavita Iyer</strong> — Head of Operations, Apex Financial Advisors (Mumbai BKC)
+              <strong>Kavita Iyer</strong> — Head of Operations, Apex Financial Advisors (Pune)
             </div>
           </div>
         </div>
       </section>
 
-      {/* 8. REGIONAL HUBS & HEAD OFFICE */}
+      {/* 8. PUNE HEAD OFFICE */}
       <section className="section-locations py-8 bg-subtle">
         <div className="container">
-          <div className="section-header">
-            <div className="badge-glow">LOCAL PRESENCE</div>
+          <div className="section-header text-center">
+            <div className="badge-glow">OUR OFFICE LOCATION • PUNE ONLY</div>
             <h2 className="section-title">
-              Our Technology Centers Across India
+              Our Pune Head Office
             </h2>
             <p className="section-desc">
-              With engineers and inventory hubs located in major cities, we dispatch technicians quickly for site surveys, emergency replacements, and cable testing.
+              Headquartered in Pune, our central engineering team is directly dispatched for on-site cabling, emergency troubleshooting, computer maintenance, and site surveys across Pune & PCMC.
             </p>
           </div>
 
-          <div className="locations-grid">
-            <div className="loc-card glass-card">
+          <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            <div className="loc-card glass-card" style={{ padding: '32px' }}>
               <div className="loc-badge">PUNE HEAD OFFICE</div>
-              <h3 className="loc-title">Pune (Magarpatta City)</h3>
-              <div className="loc-address">
-                <MapPin size={18} className="loc-pin" />
+              <h3 className="loc-title" style={{ fontSize: '1.4rem' }}>Pune (Magarpatta City)</h3>
+              <div className="loc-address" style={{ fontSize: '0.95rem' }}>
+                <MapPin size={20} className="loc-pin" />
                 <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>
               </div>
-              <div className="loc-contact-row">
-                <span className="loc-phone">Phone: +91 7796852335</span>
-                <span className="loc-email">Email: lnkitinfra@gmail.com</span>
+              <div className="loc-status" style={{ marginBottom: '16px' }}>
+                <span className="pulse-dot"></span> Central Dispatch & Operations Hub (Serving Pune & PCMC)
               </div>
-            </div>
-
-            <div className="loc-card glass-card">
-              <div className="loc-badge">MUMBAI REGION</div>
-              <h3 className="loc-title">Mumbai (Bandra Kurla Complex)</h3>
-              <div className="loc-address">
-                <MapPin size={18} className="loc-pin" />
-                <span>Platina Building, G-Block, BKC, Bandra East, Mumbai, Maharashtra — 400051</span>
-              </div>
-              <div className="loc-contact-row">
-                <span className="loc-phone">Phone: +91 7796852335</span>
-                <span className="loc-email">Email: lnkitinfra@gmail.com</span>
-              </div>
-            </div>
-
-            <div className="loc-card glass-card">
-              <div className="loc-badge">BENGALURU HUB</div>
-              <h3 className="loc-title">Bengaluru (Outer Ring Road)</h3>
-              <div className="loc-address">
-                <MapPin size={18} className="loc-pin" />
-                <span>Prestige Tech Park, Marathahalli-Sarjapur ORR, Bengaluru, Karnataka — 560103</span>
-              </div>
-              <div className="loc-contact-row">
-                <span className="loc-phone">Phone: +91 7796852335</span>
-                <span className="loc-email">Email: lnkitinfra@gmail.com</span>
+              <div className="loc-contact-row" style={{ fontSize: '0.95rem', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Phone size={15} className="text-cyan" />
+                  <a href="tel:+917796852335" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 700 }}>+91 7796852335</a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Mail size={15} className="text-cyan" />
+                  <a href="mailto:lnkitinfra@gmail.com" style={{ color: '#0f172a', textDecoration: 'none', fontWeight: 600 }}>lnkitinfra@gmail.com</a>
+                </div>
               </div>
             </div>
           </div>

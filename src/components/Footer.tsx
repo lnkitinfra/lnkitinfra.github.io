@@ -37,7 +37,7 @@ export function Footer({ navigate }: FooterProps) {
             </div>
           </a>
           <p className="footer-about">
-            LNK IT Infra provides end-to-end office IT infrastructure solutions across India, including structured network cabling, high-density Wi-Fi 6, cyber security firewalls, CCTV security, biometric door locks, EPABX intercoms, and comprehensive Annual Maintenance Contracts (IT AMC).
+            LNK IT Infra provides end-to-end office IT infrastructure and technical support solutions exclusively in Pune & PCMC, including structured network cabling, high-density Wi-Fi 6, cyber security firewalls, CCTV security, biometric door locks, EPABX intercoms, and comprehensive Annual Maintenance Contracts (IT AMC).
           </p>
           <div className="footer-contacts">
             <div className="fc-item">
@@ -54,7 +54,7 @@ export function Footer({ navigate }: FooterProps) {
             </div>
             <div className="fc-item">
               <MapPin size={14} className="text-cyan" />
-              <span>Pune HQ: Magarpatta City IT Park, Pune — 411028</span>
+              <span>Service Coverage: Pune & PCMC Only (HQ: Magarpatta City — 411028)</span>
             </div>
           </div>
         </div>
@@ -91,15 +91,13 @@ export function Footer({ navigate }: FooterProps) {
         </div>
 
         <div className="footer-col">
-          <h4 className="footer-heading">Company & Locations</h4>
+          <h4 className="footer-heading">Company & Contact</h4>
           <ul className="footer-links">
             <li><a href="#/about" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>About LNK IT Infra</a></li>
             <li><a href="#/our-clients" onClick={(e) => { e.preventDefault(); handleNavClick('our-clients'); }}>Our Clients & Case Studies</a></li>
             <li><a href="#/amc" onClick={(e) => { e.preventDefault(); handleNavClick('amc'); }}>Annual Maintenance Contracts (AMC)</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Headquarters (Magarpatta)</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Mumbai Office (BKC Platina)</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Bengaluru Tech Center (Outer Ring Road)</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Delhi NCR Hub (DLF Cyber City)</a></li>
+            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Head Office (Magarpatta)</a></li>
+            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Contact Engineering Team</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Book Free On-Site Inspection</a></li>
           </ul>
         </div>
@@ -108,7 +106,7 @@ export function Footer({ navigate }: FooterProps) {
       <div className="footer-bottom-bar">
         <div className="container footer-bottom-inner">
           <div className="copyright-text">
-            © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Solutions, Structured Cabling & Networking Services.
+            © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Solutions, Structured Cabling & Networking Services in Pune & PCMC.
           </div>
           <div className="footer-cert-tags">
             <span>5+ Years IT Experience</span>

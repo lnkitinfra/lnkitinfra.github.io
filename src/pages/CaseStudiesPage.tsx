@@ -26,13 +26,13 @@ export function CaseStudiesPage({ navigate, openQuoteModal }: CaseStudiesPagePro
         <div className="container">
           <div className="badge-glow">
             <Layers size={14} className="text-cyan" />
-            <span>REAL RESULTS FOR INDIAN BUSINESSES</span>
+            <span>REAL RESULTS FOR PUNE BUSINESSES</span>
           </div>
           <h1 className="page-hero-title">
             Client Projects & <span className="gradient-text">Case Studies</span>
           </h1>
           <p className="page-hero-desc">
-            Explore how we solved real-world networking, cabling, and cyber security challenges for financial offices, manufacturing campuses, and software engineering teams across India.
+            Explore how we solved real-world networking, cabling, and cyber security challenges for financial offices, manufacturing campuses, and software engineering teams across Pune & PCMC.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, CheckCircle2, Send, PhoneCall, Loader2 } from 'lucide-react';
+import { X, CheckCircle2, Send, PhoneCall, Loader2, MapPin } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -65,7 +65,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
 
   const openWhatsAppDirect = () => {
     const text = encodeURIComponent(
-      `Hello LNK IT Infra! My name is ${form.name} from ${form.company || 'our company'}. Phone: ${form.phone}. Requirement: ${form.requirements}. Please share an official quote and schedule a site survey.`
+      `Hello LNK IT Infra! My name is ${form.name} from ${form.company || 'our company'} (Location: ${form.city}, Pune). Phone: ${form.phone}. Requirement: ${form.requirements}. Please share an official quote and schedule a site survey.`
     );
     window.open(`https://wa.me/917796852335?text=${text}`, '_blank');
   };
@@ -108,11 +108,27 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
         ) : (
           <div className="modal-form-content">
             <div className="modal-header compact">
-              <div className="badge-glow">FREE QUOTE & SITE AUDIT</div>
+              <div className="badge-glow">FREE QUOTE & SITE AUDIT • PUNE & PCMC ONLY</div>
               <h3>Request Quotation & Site Visit</h3>
               <p>
                 Share your requirements below. Our engineer will provide a transparent, itemized estimate.
               </p>
+              <div className="pune-service-note" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                marginTop: '6px',
+                padding: '3px 10px',
+                background: 'rgba(6, 182, 212, 0.12)',
+                border: '1px solid rgba(6, 182, 212, 0.3)',
+                borderRadius: '100px',
+                fontSize: '0.75rem',
+                color: '#67e8f9',
+                fontWeight: 600
+              }}>
+                <MapPin size={12} />
+                <span>Services available exclusively in Pune & PCMC right now</span>
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="quote-form-grid compact">
@@ -159,17 +175,22 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               </div>
 
               <div className="form-field full-width">
-                <label>City / Location</label>
+                <label>Location in Pune / PCMC *</label>
                 <select
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
                 >
-                  <option value="Pune">Pune (Hinjewadi, Magarpatta, Kharadi, Baner, PCMC)</option>
-                  <option value="Mumbai">Mumbai (BKC, Andheri, Navi Mumbai, Thane)</option>
-                  <option value="Bengaluru">Bengaluru (ORR, Whitefield, Electronic City)</option>
-                  <option value="Delhi NCR">Delhi NCR (Gurugram, Noida, Delhi)</option>
-                  <option value="Other">Other City in India</option>
+                  <option value="Pune - Magarpatta">Pune (Magarpatta City & Hadapsar)</option>
+                  <option value="Pune - Hinjawadi">Pune (Hinjawadi IT Park Phase 1, 2, 3)</option>
+                  <option value="Pune - Kharadi">Pune (Kharadi EON Free Zone & Viman Nagar)</option>
+                  <option value="Pune - Baner">Pune (Baner, Balewadi & Aundh)</option>
+                  <option value="Pune - Central">Pune (Shivaji Nagar, SB Road & Camp)</option>
+                  <option value="PCMC - Bhosari & Chakan">PCMC (Bhosari MIDC, Chakan & Talwade)</option>
+                  <option value="Other Pune Area">Other Pune City Location</option>
                 </select>
+                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                  📍 Note: On-site visits, hardware setups, and IT support are provided exclusively in Pune & PCMC.
+                </span>
               </div>
 
               <div className="form-field full-width">

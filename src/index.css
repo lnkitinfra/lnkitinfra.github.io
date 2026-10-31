@@ -118,15 +118,13 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #0f172a 20%, #1d4ed8 75%, #0284c7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #1d4ed8;
+  font-weight: 800;
 }
 
 .gradient-text-alt {
-  background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 50%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0284c7;
+  font-weight: 800;
 }
 
 .btn-primary {

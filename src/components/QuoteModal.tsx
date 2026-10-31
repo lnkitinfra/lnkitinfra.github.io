@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, CheckCircle2, Send, PhoneCall } from 'lucide-react';
+import { X, CheckCircle2, Send, PhoneCall, Loader2 } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -28,11 +28,39 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
     }));
   }
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setForm((prev) => ({ ...prev, submitted: true }));
+    setIsSubmitting(true);
+
+    try {
+      await fetch('https://formsubmit.co/ajax/lnkitinfra@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Quotation Request: ${form.name} (${form.company || form.city})`,
+          _template: 'table',
+          _captcha: 'false',
+          'Customer Name': form.name,
+          'Phone / WhatsApp': form.phone,
+          'Company Name': form.company || 'Not specified',
+          'Work Email': form.email || 'Not specified',
+          'City / Location': form.city,
+          'Service Requirements': form.requirements
+        })
+      });
+    } catch (err) {
+      console.error('Form submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setForm((prev) => ({ ...prev, submitted: true }));
+    }
   };
 
   const openWhatsAppDirect = () => {
@@ -155,9 +183,18 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               </div>
 
               <div className="modal-form-actions full-width">
-                <button type="submit" className="btn-primary w-full">
-                  <Send size={16} />
-                  <span>Submit Request</span>
+                <button type="submit" className="btn-primary w-full" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Sending to Email...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      <span>Submit Request</span>
+                    </>
+                  )}
                 </button>
               </div>
             </form>

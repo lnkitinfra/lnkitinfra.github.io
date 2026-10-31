@@ -6,7 +6,8 @@ import {
   Clock,
   Send,
   CheckCircle2,
-  PhoneCall
+  PhoneCall,
+  Loader2
 } from 'lucide-react';
 import { WhatsAppIcon } from '../components/SocialIcons';
 
@@ -21,9 +22,37 @@ export function ContactPage() {
     submitted: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setForm({ ...form, submitted: true });
+    setIsSubmitting(true);
+
+    try {
+      await fetch('https://formsubmit.co/ajax/lnkitinfra@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Contact Inquiry: ${form.name} (${form.company || form.city})`,
+          _template: 'table',
+          _captcha: 'false',
+          'Customer Name': form.name,
+          'Phone / WhatsApp': form.phone,
+          'Company Name': form.company || 'Not specified',
+          'Work Email': form.email || 'Not specified',
+          'City / Location': form.city,
+          'Project Details': form.requirements
+        })
+      });
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setForm((prev) => ({ ...prev, submitted: true }));
+    }
   };
 
   const openWhatsApp = () => {
@@ -163,9 +192,18 @@ export function ContactPage() {
                   </div>
 
                   <div className="modal-form-actions full-width">
-                    <button type="submit" className="btn-primary w-full">
-                      <Send size={16} />
-                      <span>Submit Request for Free Survey & Quote</span>
+                    <button type="submit" className="btn-primary w-full" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          <span>Sending to Email...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          <span>Submit Request for Free Survey & Quote</span>
+                        </>
+                      )}
                     </button>
                     <p className="privacy-guarantee">
                       🔒 Your contact information is kept 100% confidential. No spam calls.

@@ -168,7 +168,7 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
       {/* Bottom CTA */}
       <section className="section-cta-banner">
         <div className="container">
-          <div className="cta-banner-box glass-card">
+          <div className="cta-banner-box">
             <div className="cta-banner-content">
               <div className="badge-glow">SCHEDULE A SITE VISIT</div>
               <h2 className="cta-headline">

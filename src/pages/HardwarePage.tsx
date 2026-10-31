@@ -193,7 +193,7 @@ export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
       {/* CTA Section */}
       <section className="section-cta-banner">
         <div className="container">
-          <div className="cta-banner-box glass-card">
+          <div className="cta-banner-box">
             <div className="cta-banner-content">
               <div className="badge-glow">OFFICIAL ENTERPRISE HARDWARE</div>
               <h2 className="cta-headline">

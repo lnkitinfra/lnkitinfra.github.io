@@ -1650,36 +1650,61 @@
 }
 
 .cta-banner-box {
-  padding: 50px 40px;
+  padding: 56px 40px;
   text-align: center;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border: 1px solid #bfdbfe;
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
+  color: #ffffff !important;
+  position: relative;
+  overflow: hidden;
 }
 
 .cta-banner-content {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-.cta-headline {
+.cta-banner-box .badge-glow {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border: 1px solid rgba(56, 189, 248, 0.35) !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.2) !important;
+  margin-bottom: 12px;
+}
+
+.cta-headline,
+.cta-heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   font-weight: 850;
-  color: #0f172a;
+  color: #ffffff !important;
   margin: 16px 0 14px;
+  line-height: 1.25;
 }
 
-.cta-subhead {
+.cta-headline .gradient-text,
+.cta-heading .gradient-text,
+.cta-banner-box .gradient-text {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  font-weight: 850;
+}
+
+.cta-subhead,
+.cta-subtext {
   font-size: 1.05rem;
-  color: #334155;
+  color: #cbd5e1 !important;
   line-height: 1.6;
-  margin-bottom: 28px;
+  max-width: 680px;
+  margin: 0 auto 28px;
 }
 
-.cta-buttons {
+.cta-buttons,
+.cta-actions {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
@@ -4284,28 +4309,17 @@ body,
   line-height: 1.5;
 }
 
-.cta-banner-box {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border-radius: var(--radius-xl);
-  padding: 56px 40px;
-  text-align: center;
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-glow);
-}
-
 .cta-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   font-weight: 850;
-  color: #ffffff;
+  color: #ffffff !important;
   margin-bottom: 14px;
 }
 
 .cta-subtext {
-  font-size: 1rem;
-  color: #94a3b8;
+  font-size: 1.05rem;
+  color: #cbd5e1 !important;
   max-width: 680px;
   margin: 0 auto 28px;
   line-height: 1.6;

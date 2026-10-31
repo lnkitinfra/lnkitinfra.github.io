@@ -79,15 +79,15 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
           </div>
         ) : (
           <div className="modal-form-content">
-            <div className="modal-header">
-              <div className="badge-glow">FREE QUOTATION & ON-SITE SURVEY</div>
-              <h3>Request an Official Quotation & Site Visit</h3>
+            <div className="modal-header compact">
+              <div className="badge-glow">FREE QUOTE & SITE AUDIT</div>
+              <h3>Request Quotation & Site Visit</h3>
               <p>
-                Tell us about your office setup or upgrade. Our senior network engineer will inspect your premises and prepare a transparent, itemized quotation with zero hidden charges.
+                Share your requirements below. Our engineer will provide a transparent, itemized estimate.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="quote-form-grid">
+            <form onSubmit={handleSubmit} className="quote-form-grid compact">
               <div className="form-field">
                 <label>Your Name *</label>
                 <input
@@ -100,18 +100,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               </div>
 
               <div className="form-field">
-                <label>Company / Office Name *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Apex Global Technologies"
-                  value={form.company}
-                  onChange={(e) => setForm({ ...form, company: e.target.value })}
-                />
-              </div>
-
-              <div className="form-field">
-                <label>Phone / WhatsApp Number *</label>
+                <label>Phone / WhatsApp *</label>
                 <input
                   type="tel"
                   required
@@ -122,28 +111,35 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               </div>
 
               <div className="form-field">
-                <label>Work Email Address *</label>
+                <label>Company Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Acme Tech Solutions"
+                  value={form.company}
+                  onChange={(e) => setForm({ ...form, company: e.target.value })}
+                />
+              </div>
+
+              <div className="form-field">
+                <label>Work Email</label>
                 <input
                   type="email"
-                  required
                   placeholder="e.g. rahul@company.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
               </div>
 
-              <div className="form-field">
-                <label>Office City / Location</label>
+              <div className="form-field full-width">
+                <label>City / Location</label>
                 <select
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
                 >
-                  <option value="Pune">Pune (Magarpatta, Hinjawadi, Kharadi)</option>
+                  <option value="Pune">Pune (Hinjewadi, Magarpatta, Kharadi, Baner, PCMC)</option>
                   <option value="Mumbai">Mumbai (BKC, Andheri, Navi Mumbai, Thane)</option>
                   <option value="Bengaluru">Bengaluru (ORR, Whitefield, Electronic City)</option>
                   <option value="Delhi NCR">Delhi NCR (Gurugram, Noida, Delhi)</option>
-                  <option value="Hyderabad">Hyderabad (HITEC City, Gachibowli)</option>
-                  <option value="Chennai">Chennai (OMR, Guindy)</option>
                   <option value="Other">Other City in India</option>
                 </select>
               </div>
@@ -151,21 +147,18 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               <div className="form-field full-width">
                 <label>What do you need help with?</label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={form.requirements}
                   onChange={(e) => setForm({ ...form, requirements: e.target.value })}
-                  placeholder="Describe your office size, number of computers, cabling needs, firewall requirements, or AMC inquiry..."
+                  placeholder="Office IT setup, cabling, laptops on rent, servers, firewalls, or AMC..."
                 />
               </div>
 
               <div className="modal-form-actions full-width">
                 <button type="submit" className="btn-primary w-full">
                   <Send size={16} />
-                  <span>Send Quotation & Survey Request</span>
+                  <span>Submit Request</span>
                 </button>
-                <p className="privacy-guarantee">
-                  🔒 We respect your privacy. No spam or third-party marketing calls.
-                </p>
               </div>
             </form>
           </div>

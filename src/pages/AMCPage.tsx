@@ -70,11 +70,11 @@ export function AMCPage({ navigate, openQuoteModal }: AMCPageProps) {
               <h2 className="amc-title">Comprehensive AMC</h2>
               <div className="amc-price">Ideal for growing companies (30 to 150 computers)</div>
               <p className="amc-desc-summary">
-                Complete, zero-stress IT coverage. Includes priority 1-hour on-site arrival, standby spare hardware, server room care, and 24/7 emergency response.
+                Complete, zero-stress IT coverage. Includes priority on-site arrival, standby spare hardware, server room care, and responsive technical support.
               </p>
               <ul className="amc-perks">
                 <li><Check size={16} className="text-emerald" /> <strong>Everything in Basic Plan included</strong></li>
-                <li><Check size={16} className="text-emerald" /> <strong>Guaranteed fast on-site arrival within 1 hour in Pune & Mumbai</strong></li>
+                <li><Check size={16} className="text-emerald" /> <strong>Prompt on-site technical support dispatch in Pune & PCMC</strong></li>
                 <li><Check size={16} className="text-emerald" /> Complete maintenance for Wi-Fi APs, switches, routers & firewalls</li>
                 <li><Check size={16} className="text-emerald" /> <strong>Temporary standby equipment provided during hardware repairs</strong></li>
                 <li><Check size={16} className="text-emerald" /> Server room thermal, UPS battery, and RAID storage inspection</li>

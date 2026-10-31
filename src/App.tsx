@@ -38,40 +38,40 @@ export function App() {
   useEffect(() => {
     const routeSeo: Record<string, { title: string; desc: string }> = {
       home: {
-        title: 'LNK IT Infra | Enterprise IT Infrastructure, Structured Cabling & Networking Solutions Pune',
-        desc: 'Fluke-certified structured cabling, commercial Wi-Fi 6, Next-Gen firewalls, server rooms, CCTV, and 24/7 IT AMC services in Pune.'
+        title: 'LNK IT Infra | Office IT Infrastructure, Structured Cabling & Networking Solutions Pune',
+        desc: 'Professional structured cabling, commercial Wi-Fi 6, Next-Gen firewalls, server rooms, CCTV, and reliable IT support services in Pune.'
       },
       about: {
-        title: 'About Us | LNK IT Infra - Certified Enterprise IT Integrators in Pune',
-        desc: 'Meet LNK IT Infra - over a decade of excellence in structured cabling, cyber defense, server rooms, and enterprise IT services across India.'
+        title: 'About Us | LNK IT Infra - Office IT Infrastructure Setup & Support in Pune',
+        desc: 'Meet LNK IT Infra - newly launched and backed by 5+ years of practical experience in cabling, servers, cyber defense, and office IT setups.'
       },
       products: {
         title: 'Enterprise IT Hardware Products | Firewalls, Switches, Wi-Fi 6 & Servers - LNK IT Infra',
-        desc: 'Authorized partner supplying genuine Sophos, Fortinet, HPE Aruba, Cisco, NEC, Syntel, and Hikvision hardware with full warranty.'
+        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, HPE Aruba, Cisco, Dell, and Hikvision hardware with manufacturer warranty.'
       },
       hardware: {
         title: 'Enterprise IT Hardware Products | Firewalls, Switches, Wi-Fi 6 & Servers - LNK IT Infra',
-        desc: 'Authorized partner supplying genuine Sophos, Fortinet, HPE Aruba, Cisco, NEC, Syntel, and Hikvision hardware with full warranty.'
+        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, HPE Aruba, Cisco, Dell, and Hikvision hardware with manufacturer warranty.'
       },
       services: {
         title: 'Office IT Infrastructure Services | Cabling, Wi-Fi, Firewalls & AMC - LNK IT Infra',
-        desc: 'Explore our 10 core enterprise IT services: Cat6A cabling, high-density Wi-Fi 6, UTM firewalls, server room setup, and IT AMC.'
+        desc: 'Explore our core office IT services: Cat6 cabling, high-density Wi-Fi 6, UTM firewalls, server room setup, and IT support AMC.'
       },
       solutions: {
         title: 'Turnkey IT Infrastructure Solutions | Office Setup & Cloud Defense - LNK IT Infra',
-        desc: 'End-to-end turnkey office IT setups, high-density wireless architecture, datacenter power backup, and proactive IT AMC contracts in Pune.'
+        desc: 'End-to-end turnkey office IT setups, high-density wireless architecture, server room power backup, and proactive IT AMC contracts in Pune.'
       },
       'our-clients': {
-        title: 'Our Clients & Enterprise Case Studies | LNK IT Infra Pune',
-        desc: 'Discover how LNK IT Infra engineered zero-downtime networks, high-density Wi-Fi, and firewall defense for 250+ clients across India.'
+        title: 'Our Clients & Recent IT Installations | LNK IT Infra Pune',
+        desc: 'Discover how LNK IT Infra engineers reliable office networks, Wi-Fi setups, and firewall defense for growing businesses.'
       },
       'case-studies': {
-        title: 'Our Clients & Enterprise Case Studies | LNK IT Infra Pune',
-        desc: 'Discover how LNK IT Infra engineered zero-downtime networks, high-density Wi-Fi, and firewall defense for 250+ clients across India.'
+        title: 'Our Clients & Recent IT Installations | LNK IT Infra Pune',
+        desc: 'Discover how LNK IT Infra engineers reliable office networks, Wi-Fi setups, and firewall defense for growing businesses.'
       },
       amc: {
-        title: 'Annual Maintenance Contracts (IT AMC) | Guaranteed 1-Hour SLA in Pune - LNK IT Infra',
-        desc: 'Comprehensive office IT AMC plans with dedicated engineers, 1-hour emergency dispatch in Pune, preventive maintenance, and standby parts.'
+        title: 'Annual Maintenance Contracts (IT AMC) | Technical Support & Maintenance in Pune - LNK IT Infra',
+        desc: 'Comprehensive office IT AMC plans with dedicated engineers, prompt on-site dispatch in Pune, preventive maintenance, and standby parts.'
       },
       contact: {
         title: 'Contact LNK IT Infra | Pune Head Office & 24/7 Support Hotline',

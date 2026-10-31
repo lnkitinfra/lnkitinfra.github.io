@@ -37,7 +37,7 @@ export const DETAILED_SERVICES: DetailedService[] = [
     category: 'Core Infrastructure',
     title: 'Structured Network Cabling & Server Racks',
     tagline: 'Neat, Tangle-Free Office Wiring with Zero Disconnections',
-    summary: 'We plan, lay, and neatly terminate high-speed Cat6, Cat6A, and optical fiber network cables for computers, printers, Wi-Fi access points, and server rooms. Every line is tested with professional Fluke cable certifiers for 100% gigabit transmission.',
+    summary: 'We plan, lay, and neatly terminate high-speed Cat6, Cat6A, and optical fiber network cables for computers, printers, Wi-Fi access points, and server rooms. Every line is carefully tested and verified for full gigabit transmission.',
     icon: Network,
     highlight: 'Neat & Certified Wiring',
     idealFor: 'New office setups, expanding floors, and cleaning up old messy server rooms.',
@@ -52,13 +52,13 @@ export const DETAILED_SERVICES: DetailedService[] = [
       'Dress and organize cables neatly inside lockable floor-standing or wall-mount server racks',
       'Punch down all lines into labeled patch panels with color-coded RJ45 patch cords',
       'Pull multi-core optical fiber cables between different floors or separate office buildings',
-      'Provide Fluke DSX cable test reports certifying full gigabit and 10-gigabit speeds'
+      'Conduct wire-map and continuity testing verifying full gigabit and 10-gigabit speeds'
     ],
     processSteps: [
       { step: '01', title: 'Site Inspection & CAD Planning', desc: 'Our engineer visits your office to count desk points, measure cable distances, and locate the ideal server rack position.' },
       { step: '02', title: 'Conduit & Cable Pulling', desc: 'We pull cables through hidden wall and ceiling conduits without disturbing your interior decoration.' },
       { step: '03', title: 'Rack Dressing & Labeling', desc: 'Every cable is combed neatly, laced to cable management arms, and tagged with durable printed labels.' },
-      { step: '04', title: 'Fluke Testing & Certification', desc: 'Every single RJ45 port is tested for continuity, crosstalk, and maximum speed before handover.' }
+      { step: '04', title: 'Port Testing & Verification', desc: 'Every single RJ45 port is tested for continuity, correct pinout, and full speed before handover.' }
     ],
     hardwareUsed: ['Schneider Electric', 'Molex Premise Networks', 'CommScope Systimax', 'D-Link Enterprise'],
     faq: [
@@ -125,7 +125,7 @@ export const DETAILED_SERVICES: DetailedService[] = [
     ],
     processSteps: [
       { step: '01', title: 'Security Risk Audit', desc: 'We evaluate your current internet connections, open ports, and remote access vulnerabilities.' },
-      { step: '02', title: 'Firewall Sizing & Supply', desc: 'We deliver authorized hardware with genuine manufacturer subscriptions (Sophos XGS / FortiGate).' },
+      { step: '02', title: 'Firewall Sizing & Supply', desc: 'We deliver genuine hardware with official manufacturer subscriptions (Sophos XGS / FortiGate).' },
       { step: '03', title: 'Policy Setup & Cutover', desc: 'We configure security rules, dual-WAN failover, and VPN accounts during scheduled non-working hours.' },
       { step: '04', title: 'Monitoring & Alert Setup', desc: 'We link alerts to your IT administrator and our support desk for 24/7 incident alerts.' }
     ],

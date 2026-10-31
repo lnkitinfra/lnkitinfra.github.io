@@ -148,7 +148,7 @@ export function ServiceDetailPage({ serviceId, navigate, openQuoteModal }: Servi
                 ))}
               </div>
               <p className="mt-3 text-sm text-slate-500">
-                All equipment is sourced directly from authorized Indian national distributors with official manufacturer serial numbers and warranties.
+                All equipment is genuine and brand-new with official manufacturer serial numbers and standard warranties.
               </p>
             </div>
 

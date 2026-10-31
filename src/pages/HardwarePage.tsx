@@ -48,13 +48,13 @@ export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
         <div className="container">
           <div className="badge-glow">
             <Layers size={14} className="text-cyan" />
-            <span>GENUINE HARDWARE DISTRIBUTION & INSTALLATION</span>
+            <span>GENUINE HARDWARE SUPPLY, INSTALLATION & CONFIGURATION</span>
           </div>
           <h1 className="page-hero-title">
             Enterprise <span className="gradient-text">Hardware & Equipment</span>
           </h1>
           <p className="page-hero-desc">
-            We supply genuine enterprise IT equipment directly through authorized Indian distributor channels, complete with official manufacturer warranties, on-site commissioning, and AMC spare parts support.
+            We supply, install, and configure genuine enterprise IT equipment with official manufacturer warranties, on-site commissioning, and dependable AMC technical support.
           </p>
 
           {/* Search & Category Filter Bar */}

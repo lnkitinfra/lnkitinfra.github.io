@@ -28,22 +28,16 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
 
   const heroImages = [
     {
-      src: '/images/datacenter.jpg',
-      label: 'Server Rooms & Cabling',
-      title: 'Neat Server Racks & Certified Structured Cabling',
-      desc: 'Fluke-tested Cat6 and fiber optic cabling installed with organized cable trays and patch panels.'
+      src: '/images/office_network_cabling.jpg',
+      label: 'Office Cabling & Desks',
+      title: 'Neat Workstation Cabling & Wi-Fi Setup',
+      desc: 'Tangle-free under-desk Cat6 networking, workstation points, ceiling Wi-Fi 6, and security cameras.'
     },
     {
-      src: '/images/noc.jpg',
-      label: 'Firewalls & Cyber Security',
-      title: 'Sophos & Fortinet Next-Gen Firewalls',
-      desc: 'Shield your office network against viruses, block ransomware, and provide secure VPN access for remote employees.'
-    },
-    {
-      src: '/images/access_control.jpg',
-      label: 'Biometrics & CCTV',
-      title: 'Biometric Access Control & 4K CCTV Cameras',
-      desc: 'Touchless facial recognition attendance door locks and crystal-clear security cameras viewable on your mobile phone.'
+      src: '/images/office_it_setup.jpg',
+      label: 'Office Racks & Equipment',
+      title: 'Office Server Racks & Hardware Installation',
+      desc: 'Neatly dressed small office racks, patch panels, gigabit network switches, and reliable backup power.'
     }
   ];
 
@@ -69,15 +63,15 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
           <div className="hero-copy">
             <div className="hero-trust-badge">
               <span className="trust-dot"></span>
-              <span>CERTIFIED IT SYSTEM INTEGRATOR • PUNE, MAHARASHTRA</span>
+              <span>OFFICE IT INFRASTRUCTURE & SERVICES • PUNE</span>
             </div>
 
             <h1 className="hero-headline">
-              Enterprise IT Infrastructure & Office Networking Services in Pune
+              Office IT Infrastructure Setup, Installation & Technical Support in Pune
             </h1>
 
             <p className="hero-subhead">
-              We help businesses plan, install, and maintain reliable office IT systems. From Fluke-certified structured cabling and enterprise Wi-Fi 6 to Next-Gen firewalls and 24/7 IT AMC support, our local team handles everything from initial design to ongoing maintenance.
+              We help businesses set up and maintain their office IT. Whether you need structured network cabling, corporate laptops on rent, server installation, Wi-Fi 6 setup, firewalls, or ongoing computer support, our local team handles everything with 5+ years of practical IT experience.
             </p>
 
             <div className="hero-ctas">
@@ -100,18 +94,18 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
             {/* Core Trust Pillars */}
             <div className="hero-metric-strip">
               <div className="hero-metric-item">
-                <div className="metric-val">10+ Years</div>
-                <div className="metric-lbl">Serving Indian Businesses</div>
+                <div className="metric-val">5+ Years</div>
+                <div className="metric-lbl">Experience in IT Domains</div>
               </div>
               <div className="metric-divider"></div>
               <div className="hero-metric-item">
-                <div className="metric-val">Fluke DSX</div>
-                <div className="metric-lbl">Certified Cable Testing</div>
+                <div className="metric-val">Installation</div>
+                <div className="metric-lbl">Office IT & Hardware Setup</div>
               </div>
               <div className="metric-divider"></div>
               <div className="hero-metric-item">
-                <div className="metric-val">1-Hour SLA</div>
-                <div className="metric-lbl">Emergency On-Site Dispatch</div>
+                <div className="metric-val">Technical Support</div>
+                <div className="metric-lbl">On-Site & Remote Assistance</div>
               </div>
             </div>
           </div>
@@ -128,7 +122,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                 <div className="window-title">
                   LNK-INFRA // {heroImages[heroImageIdx].label}
                 </div>
-                <span className="window-badge">VERIFIED</span>
+                <span className="window-badge">ACTIVE</span>
               </div>
 
               <div className="hero-image-wrapper">
@@ -160,44 +154,40 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
         </div>
       </section>
 
-      {/* 2. PARTNERS STRIP */}
+      {/* 2. BRANDS WE INSTALL & CONFIGURE */}
       <section className="partners-strip">
         <div className="container">
           <div className="partners-title">
-            AUTHORIZED SYSTEM INTEGRATION & HARDWARE PARTNERS
+            IT INFRASTRUCTURE & HARDWARE BRANDS WE INSTALL & CONFIGURE
           </div>
           <div className="partners-row">
             <div className="partner-chip">
-              <span className="partner-name">SOPHOS</span>
-              <span className="partner-level">Security Firewalls & AP6</span>
+              <span className="partner-name">SOPHOS & FORTINET</span>
+              <span className="partner-level">Firewalls & Secure VPN Setup</span>
             </div>
             <div className="partner-chip">
-              <span className="partner-name">FORTINET</span>
-              <span className="partner-level">FortiGate SD-WAN Firewalls</span>
-            </div>
-            <div className="partner-chip">
-              <span className="partner-name">HPE ARUBA</span>
+              <span className="partner-name">HPE ARUBA & CISCO</span>
               <span className="partner-level">Managed Switches & Wi-Fi 6</span>
             </div>
             <div className="partner-chip">
-              <span className="partner-name">CISCO</span>
-              <span className="partner-level">Enterprise Routing & Switching</span>
+              <span className="partner-name">DELL & HPE</span>
+              <span className="partner-level">Rack & Tower Server Setup</span>
             </div>
             <div className="partner-chip">
-              <span className="partner-name">SYNTEL & NEC</span>
-              <span className="partner-level">Office Intercom & IP-PBX</span>
+              <span className="partner-name">HIKVISION & CP PLUS</span>
+              <span className="partner-level">CCTV Surveillance & NVR Setup</span>
             </div>
             <div className="partner-chip">
-              <span className="partner-name">HIKVISION</span>
-              <span className="partner-level">4K IP Security Cameras</span>
+              <span className="partner-name">SCHNEIDER & MOLEX</span>
+              <span className="partner-level">Cat6 Structured Cabling</span>
             </div>
             <div className="partner-chip">
-              <span className="partner-name">APC SCHNEIDER</span>
-              <span className="partner-level">Online Smart-UPS & Racks</span>
+              <span className="partner-name">MICROSOFT 365</span>
+              <span className="partner-level">Business Email & Cloud Migration</span>
             </div>
           </div>
           <p className="partners-guarantee-note">
-            100% genuine enterprise hardware sourced through authorized Indian distributor channels with official manufacturer warranty.
+            We provide professional installation, structured cabling, configuration, and maintenance services for leading IT hardware brands.
           </p>
         </div>
       </section>
@@ -343,7 +333,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
             <div className="advantage-box glass-card">
               <Shield size={32} className="text-emerald mb-2" />
               <h4>Firewalls & Network Switches</h4>
-              <p>Authorized partner of Sophos XGS, Fortinet FortiGate, HPE Aruba Instant On PoE+ switches, and Cisco Catalyst managed switches with on-site installation.</p>
+              <p>Professional configuration and installation of Sophos XGS, Fortinet FortiGate, HPE Aruba Instant On PoE+ switches, and Cisco Catalyst managed switches.</p>
               <button
                 className="btn-link-simple mt-3"
                 onClick={() => openQuoteModal('Firewall & Switch Quotation')}
@@ -380,7 +370,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
         </div>
       </section>
 
-      {/* 4. WHY CHOOSE LNK IT INFRA (GENUINE VALUE POINTS) */}
+      {/* 5. WHY CHOOSE LNK IT INFRA (GENUINE VALUE POINTS) */}
       <section className="section-why py-8 bg-subtle">
         <div className="container">
           <div className="section-header text-center">
@@ -396,20 +386,20 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
           <div className="grid-3-col mt-6">
             <div className="advantage-box">
               <Award size={28} className="text-cyan mb-2" />
-              <h4>Fluke-Certified Cabling</h4>
-              <p>Every single network point is terminated, tested, and certified using Fluke DSX cable analyzers. You receive full printed test documentation with 25-year performance assurance.</p>
+              <h4>Installation & Setup</h4>
+              <p>Clean under-desk cable management, server rack assembly, patch panel punching, Wi-Fi access point mounting, and labeled port documentation for every desk.</p>
             </div>
 
             <div className="advantage-box">
               <Shield size={28} className="text-emerald mb-2" />
-              <h4>100% Genuine Hardware</h4>
-              <p>Authorized partner of Sophos, Fortinet, Aruba, Cisco, Syntel, NEC, Hikvision, and APC. All equipment comes with official manufacturer warranties and authorized serial numbers.</p>
+              <h4>5+ Years IT Experience</h4>
+              <p>Hands-on practical experience in network installation, server OS configuration, multi-user Tally Prime setups, and smooth Microsoft 365 cloud migrations.</p>
             </div>
 
             <div className="advantage-box">
               <Clock size={28} className="text-purple mb-2" />
-              <h4>1-Hour On-Site SLA</h4>
-              <p>When unexpected hardware failures or network cuts happen, our senior engineers arrive on-site within 60 minutes across Pune, PCMC, Magarpatta, and Hinjewadi.</p>
+              <h4>Technical Support</h4>
+              <p>Quick remote desktop troubleshooting and dependable on-site technician visits across Pune, Hinjewadi, Kharadi, Baner, and PCMC whenever computer issues arise.</p>
             </div>
           </div>
         </div>
@@ -441,13 +431,13 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
             </div>
             <div className="process-step-card glass-card">
               <div className="step-number-tag">03</div>
-              <h3 className="step-title">Installation & Fluke Testing</h3>
-              <p className="step-desc">Technicians run conduits, terminate patch panels, configure firewalls, align Wi-Fi antennas, and cert-test every network point.</p>
+              <h3 className="step-title">Installation & Technical Testing</h3>
+              <p className="step-desc">Technicians run conduits, terminate patch panels, configure firewalls, align Wi-Fi antennas, and test every network point for peak speed and stability.</p>
             </div>
             <div className="process-step-card glass-card">
               <div className="step-number-tag">04</div>
-              <h3 className="step-title">Handover & AMC Support</h3>
-              <p className="step-desc">We provide full port-label documentation, train your admin staff, and transition into proactive 24/7 AMC monitoring and maintenance.</p>
+              <h3 className="step-title">Handover & Support</h3>
+              <p className="step-desc">We provide full port-label documentation, train your admin staff, and transition into proactive AMC monitoring and maintenance.</p>
             </div>
           </div>
         </div>
@@ -495,7 +485,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
               <div className="amc-price">Ideal for growing companies (30 to 150 computers)</div>
               <ul className="amc-perks">
                 <li><Check size={16} /> <strong>Everything in Basic Plan included</strong></li>
-                <li><Check size={16} /> <strong>Guaranteed fast on-site arrival within 1 hour</strong></li>
+                <li><Check size={16} /> <strong>Priority on-site technical support dispatch</strong></li>
                 <li><Check size={16} /> Full maintenance for Wi-Fi, switches, routers & firewalls</li>
                 <li><Check size={16} /> Temporary replacement equipment provided during repairs</li>
                 <li><Check size={16} /> Server room and UPS battery backup checks</li>

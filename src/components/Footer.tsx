@@ -30,7 +30,6 @@ export function Footer({ navigate }: FooterProps) {
               <div className="brand-name">
                 LNK<span className="brand-accent">IT</span> INFRA
               </div>
-              <div className="brand-subtitle">ENTERPRISE IT INFRASTRUCTURE</div>
             </div>
           </div>
           <p className="footer-about">
@@ -108,11 +107,11 @@ export function Footer({ navigate }: FooterProps) {
             © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Solutions, Structured Cabling & Networking Services.
           </div>
           <div className="footer-cert-tags">
-            <span>ISO 9001:2015 Quality Certified</span>
+            <span>5+ Years IT Experience</span>
             <span>•</span>
-            <span>Authorized System Integrator</span>
+            <span>Installation & Setup</span>
             <span>•</span>
-            <span>Fluke Networks Certified Cabling</span>
+            <span>Technical Support</span>
           </div>
         </div>
       </div>

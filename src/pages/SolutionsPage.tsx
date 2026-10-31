@@ -37,7 +37,7 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
       title: 'Complete New Office IT Setup',
       desc: 'Flawless day-one IT launch for new corporate branches, coworking hubs, and expanding offices. We handle layout blueprints, structured cabling, rack installations, firewall deployment, Wi-Fi 6 APs, biometric door access, and ISP coordination.',
       deliverables: [
-        'Certified Cat6 / Cat6A cabling with Fluke test reports',
+        'Certified Cat6 / Cat6A structured cabling and clear port labeling',
         'Floor-to-floor 10G OM3/OM4 fiber optic backbone',
         'Wall & floor server rack dressing with cable organizers',
         'Day-1 internet leased line handover & workstation testing'
@@ -51,7 +51,7 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
       title: 'Enterprise Wireless & Campus Wi-Fi 6',
       desc: 'Ultra-reliable wireless networks engineered for dense seating areas, conference rooms, and multi-floor buildings. Say goodbye to dropped calls during daily Google Meet / Teams standups.',
       deliverables: [
-        'RF site survey & heatmaps using Ekahau / Fluke tools',
+        'RF site survey and Wi-Fi coverage mapping for zero dead zones',
         'Isolated Guest Wi-Fi portal with SMS OTP authentication',
         'Seamless fast-roaming (802.11r/k/v) across all meeting rooms',
         'HPE Aruba Instant On & Sophos AP6 centralized cloud management'
@@ -104,8 +104,8 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
       id: 'it-amc',
       badge: 'OUTSOURCED IT TEAM',
       icon: Headphones,
-      title: 'Annual Maintenance Contracts (IT AMC) & SLAs',
-      desc: 'Total peace of mind with our dedicated IT support team on speed dial. Guaranteed 1-hour emergency on-site dispatch in Pune & PCMC, routine maintenance, and standby replacement hardware.',
+      title: 'Annual Maintenance Contracts (IT AMC) & Support',
+      desc: 'Total peace of mind with our dedicated IT support team on speed dial. Prompt emergency on-site dispatch in Pune & PCMC, routine maintenance, and standby replacement hardware.',
       deliverables: [
         'Unlimited remote support via AnyDesk / TeamViewer',
         'Scheduled weekly/monthly on-site engineer preventive audits',
@@ -129,13 +129,13 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
     },
     {
       step: '03',
-      title: 'Certified Installation & Fluke Testing',
-      desc: 'Our trained technicians pull cables through conduits, patch patch-panels, configure VLANs and firewalls, and certify every cable node with Fluke DSX.'
+      title: 'Installation & Network Testing',
+      desc: 'Our trained technicians pull cables through conduits, patch patch-panels, configure VLANs and firewalls, and verify every cable node for maximum speed.'
     },
     {
       step: '04',
       title: 'Day-1 Handover & Proactive AMC Support',
-      desc: 'We train your office administrator, provide documentation and label maps, and transition into 24/7 monitoring and preventive AMC care.'
+      desc: 'We train your office administrator, provide documentation and label maps, and transition into proactive monitoring and preventive AMC care.'
     }
   ];
 
@@ -265,7 +265,7 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
         <div className="container">
           <div className="glass-card p-8">
             <div className="section-header text-center">
-              <div className="badge-glow">TRUSTED BY 250+ ENTERPRISES</div>
+              <div className="badge-glow">BACKED BY 5+ YEARS IT EXPERIENCE</div>
               <h2 className="section-title">
                 The LNK IT Infra <span className="gradient-text">Advantage</span>
               </h2>
@@ -274,20 +274,20 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
             <div className="grid-3-col mt-6">
               <div className="advantage-box">
                 <Award size={32} className="text-cyan mb-3" />
-                <h4>Fluke-Certified Cabling</h4>
-                <p>Every network point is tested and certified with printed Fluke DSX reports, assuring 25-year performance warranties.</p>
+                <h4>Installation</h4>
+                <p>Neat under-desk cable management, rack dressing, patch panel termination, and clearly labeled network ports for every desk.</p>
               </div>
 
               <div className="advantage-box">
                 <Wrench size={32} className="text-emerald mb-3" />
-                <h4>1-Hour On-Site SLA</h4>
-                <p>Strategically located engineers across Pune, Hinjewadi, Kharadi, and PCMC ensure lightning-fast emergency response.</p>
+                <h4>Technical Support</h4>
+                <p>Prompt remote troubleshooting and on-site technician visits across Pune, Hinjewadi, Kharadi, and PCMC whenever issues occur.</p>
               </div>
 
               <div className="advantage-box">
                 <FileCheck size={32} className="text-purple mb-3" />
-                <h4>100% Genuine Hardware</h4>
-                <p>Official partner of Sophos, Fortinet, HPE Aruba, Cisco, Hikvision, and APC with direct manufacturer warranties.</p>
+                <h4>5+ Years IT Experience</h4>
+                <p>Hands-on installation and configuration experience across Cisco, Sophos, Fortinet, HPE Aruba, Dell, and Hikvision systems.</p>
               </div>
             </div>
           </div>

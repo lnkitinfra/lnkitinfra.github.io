@@ -83,12 +83,19 @@
   color: var(--accent-blue);
 }
 
-.top-whatsapp-link {
-  color: #15803d;
+.top-phone-direct {
+  background: rgba(37, 99, 235, 0.05);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-.top-whatsapp-link:hover {
-  color: #16a34a;
+.top-phone-direct:hover {
+  background: rgba(37, 99, 235, 0.12);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }
 
 /* 2. MAIN HEADER & NAVIGATION */
@@ -110,6 +117,50 @@
   justify-content: space-between;
   height: 76px;
   gap: 16px;
+}
+
+.company-logo-slot {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.logo-placeholder-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.logo-placeholder-container:hover {
+  background: #f1f5f9;
+}
+
+.logo-symbol-mark {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #93c5fd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  flex-shrink: 0;
+}
+
+.logo-brand-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  white-space: nowrap;
 }
 
 .logo-group {
@@ -476,13 +527,13 @@
 }
 
 .hero-slide-nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   background: #f8fafc;
   border-top: 1px solid #e2e8f0;
 }
 
 .slide-nav-pill {
+  flex: 1;
   padding: 12px;
   background: transparent;
   border: none;
@@ -1823,13 +1874,16 @@
 
 .modal-window {
   width: 100%;
-  max-width: 620px;
-  padding: 36px;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 22px 24px;
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22);
 }
 
 .modal-close-btn {

@@ -5,6 +5,7 @@ import {
   Mail,
   MapPin,
   Clock,
+  Phone,
   ChevronRight,
   Menu,
   X
@@ -72,14 +73,14 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
   return (
     <>
       {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
+      {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
       <div className="top-banner">
         <div className="container top-banner-inner">
-          {/* Top Left: Working Hours & Pune Location */}
           <div className="top-banner-left">
             <div className="top-info-item top-schedule-item">
               <Clock size={13} className="top-info-icon" />
               <span className="top-info-text">
-                <span className="top-label-strong">MON TO SAT</span> 9:30 AM TO 6:30 PM IST
+                <span className="top-label-strong">MON TO SAT:</span> 9:30 AM TO 6:30 PM IST
               </span>
             </div>
 
@@ -97,27 +98,27 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <a
               href="mailto:lnkitinfra@gmail.com"
               className="top-info-item top-link top-mail-item"
-              title="Send email to LNK IT Infra"
+              title="Email LNK IT Infra"
             >
               <Mail size={13} className="top-info-icon" />
               <span className="top-info-text">
-                <span className="top-label-muted">MAIL ID</span>{' '}
+                <span className="top-label-muted">MAIL ID:</span>{' '}
                 <span className="top-label-email">lnkitinfra@gmail.com</span>
               </span>
             </a>
           </div>
 
-          {/* Top Right: WhatsApp Direct Connect */}
           <div className="top-banner-right">
             <a
-              href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="top-link top-whatsapp-link"
-              title="Chat with Engineer on WhatsApp"
+              href="tel:+917796852335"
+              className="top-link top-phone-direct"
+              title="Call LNK IT Infra"
             >
-              <WhatsAppIcon size={13} />
-              <span>+91 7796852335</span>
+              <Phone size={13} className="top-info-icon text-cyan" />
+              <span>
+                <span className="top-label-muted">CALL:</span>{' '}
+                <span className="top-label-strong">+91 7796852335</span>
+              </span>
             </a>
           </div>
         </div>
@@ -128,21 +129,20 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
         <div className="container header-container">
           <a
             href="#/"
-            className="logo-group"
+            className="company-logo-slot"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('home');
             }}
+            title="LNK IT Infra - Home"
           >
-            <div className="logo-mark">
-              <Shield className="logo-shield" />
-              <Network className="logo-network" />
-            </div>
-            <div className="logo-text">
-              <div className="brand-name">
-                LNK<span className="brand-accent">IT</span> INFRA
+            {/* Space reserved for Company Logo */}
+            <div className="logo-placeholder-container">
+              <div className="logo-symbol-mark">
+                <Shield className="logo-shield" />
+                <Network className="logo-network" />
               </div>
-              <div className="brand-subtitle">ENTERPRISE IT SOLUTIONS & SERVICES</div>
+              <span className="logo-brand-heading">LNK IT INFRA</span>
             </div>
           </a>
 
@@ -166,15 +166,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
           {/* Action CTAs */}
           <div className="header-actions">
             <button
-              className="btn-whatsapp-header"
-              onClick={openWhatsApp}
-              title="Chat with Engineer on WhatsApp (+91 7796852335)"
-            >
-              <WhatsAppIcon size={16} />
-              <span>+91 7796852335</span>
-            </button>
-            <button
-              className="btn-primary"
+              className="btn-primary btn-quote-nav"
               onClick={() => openQuoteModal()}
             >
               <span>Get Free Quote</span>

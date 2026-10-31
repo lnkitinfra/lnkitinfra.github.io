@@ -149,17 +149,17 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
             <div className="process-step-item glass-card">
               <div className="step-num">02</div>
               <h3>Supply Genuine Hardware</h3>
-              <p>Direct procurement from authorized distributors with full manufacturer warranties and serial tracking.</p>
+              <p>Direct sourcing with official manufacturer serial numbers, brand-new packaging, and manufacturer warranties.</p>
             </div>
             <div className="process-step-item glass-card">
               <div className="step-num">03</div>
               <h3>Neat Wiring & Dressing</h3>
-              <p>Cables are pulled through conduits, neatly laced to racks, and labeled with industrial heat-shrink tags.</p>
+              <p>Cables are pulled through conduits, neatly laced to racks, and labeled with clear port tags.</p>
             </div>
             <div className="process-step-item glass-card">
               <div className="step-num">04</div>
-              <h3>Testing, SLA & AMC</h3>
-              <p>Every port is certified using Fluke DSX testers. Handover includes network diagrams and 24/7 AMC support.</p>
+              <h3>Testing & Support Handover</h3>
+              <p>Every port is continuity tested and speed verified. Handover includes labeled network diagrams and ongoing AMC technical support.</p>
             </div>
           </div>
         </div>

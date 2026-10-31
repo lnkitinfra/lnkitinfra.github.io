@@ -71,7 +71,6 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
   return (
     <>
       {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
-      {/* 1. TOP ANNOUNCEMENT & CONTACT BAR */}
       <div className="top-banner">
         <div className="container top-banner-inner">
           <div className="top-banner-left">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, CheckCircle2, Send, PhoneCall, Loader2, MapPin } from 'lucide-react';
 
 interface QuoteModalProps {
@@ -18,15 +18,15 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
     submitted: false
   });
 
-  const [prevReq, setPrevReq] = useState(defaultRequirement);
-  if (defaultRequirement !== prevReq) {
-    setPrevReq(defaultRequirement);
-    setForm((prev) => ({
-      ...prev,
-      requirements: defaultRequirement || 'Need quotation for office IT setup and networking',
-      submitted: false
-    }));
-  }
+  useEffect(() => {
+    if (defaultRequirement) {
+      setForm((prev) => ({
+        ...prev,
+        requirements: defaultRequirement,
+        submitted: false
+      }));
+    }
+  }, [defaultRequirement]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -113,19 +113,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
               <p>
                 Share your requirements below. Our engineer will provide a transparent, itemized estimate.
               </p>
-              <div className="pune-service-note" style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                marginTop: '6px',
-                padding: '3px 10px',
-                background: 'rgba(6, 182, 212, 0.12)',
-                border: '1px solid rgba(6, 182, 212, 0.3)',
-                borderRadius: '100px',
-                fontSize: '0.75rem',
-                color: '#67e8f9',
-                fontWeight: 600
-              }}>
+              <div className="pune-service-note">
                 <MapPin size={12} />
                 <span>Services available exclusively in Pune & PCMC right now</span>
               </div>
@@ -188,7 +176,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
                   <option value="PCMC - Bhosari & Chakan">PCMC (Bhosari MIDC, Chakan & Talwade)</option>
                   <option value="Other Pune Area">Other Pune City Location</option>
                 </select>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                <span style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '5px', display: 'block' }}>
                   📍 Note: On-site visits, hardware setups, and IT support are provided exclusively in Pune & PCMC.
                 </span>
               </div>

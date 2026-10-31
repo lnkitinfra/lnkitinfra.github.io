@@ -92,18 +92,7 @@ export function ContactPage() {
                 <p>
                   Fill out the form below and our senior systems engineer will call you to understand your requirements and schedule an on-site visit.
                 </p>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'rgba(6, 182, 212, 0.1)',
-                  border: '1px solid rgba(6, 182, 212, 0.3)',
-                  padding: '10px 14px',
-                  borderRadius: '8px',
-                  fontSize: '0.85rem',
-                  color: '#e2e8f0',
-                  marginTop: '14px'
-                }}>
+                <div className="pune-service-alert">
                   <MapPin size={16} className="text-cyan shrink-0" />
                   <span><strong>Service Area Notice:</strong> We currently provide all on-site IT setups, cabling, hardware rentals, and support <strong>exclusively in Pune & PCMC</strong>.</span>
                 </div>
@@ -194,7 +183,7 @@ export function ContactPage() {
                       <option value="PCMC - Bhosari & Chakan">PCMC (Bhosari MIDC, Chakan & Talwade)</option>
                       <option value="Other Pune Area">Other Pune City Location</option>
                     </select>
-                    <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '5px', display: 'block' }}>
                       📍 On-site services exclusively in Pune & PCMC.
                     </span>
                   </div>

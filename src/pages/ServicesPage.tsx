@@ -136,7 +136,7 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
               How We Execute <span className="gradient-text">Your IT Setup</span>
             </h2>
             <p className="section-desc mx-auto">
-              We eliminate guesswork with a standardized 4-stage engineering process developed over 650+ enterprise installations.
+              We eliminate guesswork with a standardized 4-stage engineering process developed over 5+ years of hands-on IT installations.
             </p>
           </div>
 

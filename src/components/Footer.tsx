@@ -4,6 +4,7 @@ import {
   MapPin,
   Clock
 } from 'lucide-react';
+import { WhatsAppIcon, YouTubeIcon, InstagramIcon } from './SocialIcons';
 
 interface FooterProps {
   navigate: (route: string) => void;
@@ -56,6 +57,39 @@ export function Footer({ navigate }: FooterProps) {
               <MapPin size={14} className="text-cyan" />
               <span>Service Coverage: Pune & PCMC Only (HQ: Magarpatta City — 411028)</span>
             </div>
+          </div>
+
+          <div className="footer-social-row">
+            <a
+              href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-btn whatsapp"
+              title="Chat with LNK IT Infra on WhatsApp"
+            >
+              <WhatsAppIcon size={15} />
+              <span>WhatsApp</span>
+            </a>
+            <a
+              href="https://www.youtube.com/@LNKITInfra"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-btn youtube"
+              title="Watch LNK IT Infra on YouTube"
+            >
+              <YouTubeIcon size={15} />
+              <span>YouTube</span>
+            </a>
+            <a
+              href="https://www.instagram.com/lnk_it_infra/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-btn instagram"
+              title="Follow LNK IT Infra on Instagram"
+            >
+              <InstagramIcon size={15} />
+              <span>Instagram</span>
+            </a>
           </div>
         </div>
 

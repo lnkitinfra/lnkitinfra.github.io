@@ -1,6 +1,4 @@
 import {
-  Shield,
-  Network,
   Phone,
   Mail,
   MapPin,
@@ -21,17 +19,23 @@ export function Footer({ navigate }: FooterProps) {
     <footer className="main-footer">
       <div className="container footer-grid">
         <div className="footer-col brand-col">
-          <div className="logo-group mb-3">
-            <div className="logo-mark">
-              <Shield className="logo-shield" />
-              <Network className="logo-network" />
+          <a
+            href="#/"
+            className="footer-logo-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
+            title="LNK IT Infra - Connect | Secure | Grow Together"
+          >
+            <div className="footer-logo-card">
+              <img
+                src="/images/logo.png"
+                alt="LNK IT Infra - Connect | Secure | Grow Together"
+                className="footer-logo-img"
+              />
             </div>
-            <div className="logo-text">
-              <div className="brand-name">
-                LNK<span className="brand-accent">IT</span> INFRA
-              </div>
-            </div>
-          </div>
+          </a>
           <p className="footer-about">
             LNK IT Infra provides end-to-end office IT infrastructure solutions across India, including structured network cabling, high-density Wi-Fi 6, cyber security firewalls, CCTV security, biometric door locks, EPABX intercoms, and comprehensive Annual Maintenance Contracts (IT AMC).
           </p>

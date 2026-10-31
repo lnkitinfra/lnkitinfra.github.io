@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import {
-  Shield,
-  Network,
   Mail,
   MapPin,
   Clock,
@@ -134,16 +132,13 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
               e.preventDefault();
               handleNavClick('home');
             }}
-            title="LNK IT Infra - Home"
+            title="LNK IT Infra - Connect | Secure | Grow Together"
           >
-            {/* Space reserved for Company Logo */}
-            <div className="logo-placeholder-container">
-              <div className="logo-symbol-mark">
-                <Shield className="logo-shield" />
-                <Network className="logo-network" />
-              </div>
-              <span className="logo-brand-heading">LNK IT INFRA</span>
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="LNK IT Infra - Connect | Secure | Grow Together"
+              className="main-header-logo"
+            />
           </a>
 
           {/* Desktop Navigation Links */}

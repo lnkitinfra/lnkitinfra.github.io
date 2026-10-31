@@ -127,40 +127,46 @@
   flex-shrink: 0;
 }
 
-.logo-placeholder-container {
+.main-header-logo {
+  height: 48px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.company-logo-slot:hover .main-header-logo {
+  transform: scale(1.02);
+}
+
+.footer-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.footer-logo-card {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 4px 6px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.logo-placeholder-container:hover {
-  background: #f1f5f9;
-}
-
-.logo-symbol-mark {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border: 1px solid #93c5fd;
+  background: #ffffff;
+  padding: 8px 14px;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
-  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.logo-brand-heading {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 850;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  white-space: nowrap;
+.footer-logo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.38);
+}
+
+.footer-logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 185px;
+  object-fit: contain;
+  display: block;
 }
 
 .logo-group {
@@ -3435,6 +3441,10 @@
 @media (max-width: 640px) {
   .container {
     padding: 0 16px;
+  }
+  .main-header-logo {
+    height: 38px;
+    max-width: 170px;
   }
   .top-banner {
     padding: 5px 0;

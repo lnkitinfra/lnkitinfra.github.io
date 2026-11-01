@@ -21,7 +21,7 @@ export const CASE_STUDIES_DETAILED: CaseStudy[] = [
   {
     id: 'pune-wealth-management',
     client: 'Apex Financial Advisors & Wealth Management',
-    city: 'Pune (Magarpatta City)',
+    city: 'Pune (Hadapsar)',
     industry: 'Financial Services & Investment',
     scale: '160 Employees • 2 Floor Corporate Office',
     timeline: 'Completed in 6 Days (Over Weekend)',
@@ -42,7 +42,7 @@ export const CASE_STUDIES_DETAILED: CaseStudy[] = [
       'APC 3kVA Online UPS with Extended Battery Bank'
     ],
     quote: {
-      text: 'LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Magarpatta. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption.',
+      text: 'LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Pune. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption.',
       author: 'Kavita Iyer',
       designation: 'Head of Operations, Apex Financial Advisors (Pune)'
     }
@@ -50,7 +50,7 @@ export const CASE_STUDIES_DETAILED: CaseStudy[] = [
   {
     id: 'pune-auto-parts-manufacturing',
     client: 'Precision Automotive Components Pvt. Ltd.',
-    city: 'Pune (Magarpatta City & Chakan Industrial Area)',
+    city: 'Pune & Chakan Industrial Area',
     industry: 'Industrial & Automotive Manufacturing',
     scale: '15-Acre Factory Campus • 6 Production Sheds',
     timeline: 'Completed in 14 Days',

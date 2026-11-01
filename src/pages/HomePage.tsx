@@ -591,7 +591,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
               <span className="rating-score">4.9 / 5.0 Rating Across 180+ Business Reviews in Pune & PCMC</span>
             </div>
             <blockquote className="testi-quote">
-              “LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Magarpatta. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption. Their firewall setup has kept our financial data completely safe.”
+              “LNK IT Infra re-cabled our entire office server room and set up strong Wi-Fi across 2 floors in Pune. Their team worked over the weekend so our staff arrived Monday morning to a clean, super-fast network with zero work disruption. Their firewall setup has kept our financial data completely safe.”
             </blockquote>
             <div className="testi-author">
               <strong>Kavita Iyer</strong> — Head of Operations, Apex Financial Advisors (Pune)
@@ -619,7 +619,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
               <h3 className="loc-title" style={{ fontSize: '1.4rem' }}>Pune Operations Hub</h3>
               <div className="loc-address" style={{ fontSize: '0.95rem' }}>
                 <MapPin size={20} className="loc-pin" />
-                <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>
+                <span>Central Operations Hub — Serving Hinjewadi, Kharadi, Baner, PCMC & All Pune Corridors, Maharashtra — 411028</span>
               </div>
               <div className="loc-status" style={{ marginBottom: '16px' }}>
                 <span className="pulse-dot"></span> Central Dispatch & Operations Hub (Serving Pune & PCMC)

@@ -60,12 +60,12 @@ export function Footer({ navigate }: FooterProps) {
             </div>
           </div>
 
-          <div className="footer-social-row">
+          <div className="footer-social-row footer-social-links">
             <a
               href="https://wa.me/917796852335?text=Hello%20LNK%20IT%20Infra!%20I%20would%20like%20to%20inquire%20about%20office%20IT%20services."
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-btn whatsapp"
+              className="footer-social-btn footer-social-badge whatsapp badge-whatsapp"
               title="Chat with LNK IT Infra on WhatsApp"
             >
               <WhatsAppIcon size={15} />
@@ -75,7 +75,7 @@ export function Footer({ navigate }: FooterProps) {
               href="https://www.youtube.com/@LNKITInfra"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-btn youtube"
+              className="footer-social-btn footer-social-badge youtube badge-youtube"
               title="Watch LNK IT Infra on YouTube"
             >
               <YouTubeIcon size={15} />
@@ -85,7 +85,7 @@ export function Footer({ navigate }: FooterProps) {
               href="https://www.instagram.com/lnk_it_infra/"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-btn instagram"
+              className="footer-social-btn footer-social-badge instagram badge-instagram"
               title="Follow LNK IT Infra on Instagram"
             >
               <InstagramIcon size={15} />

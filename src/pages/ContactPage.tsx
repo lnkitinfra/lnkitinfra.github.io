@@ -175,7 +175,7 @@ export function ContactPage() {
                       value={form.city}
                       onChange={(e) => setForm({ ...form, city: e.target.value })}
                     >
-                      <option value="Pune - Magarpatta">Pune (Magarpatta City & Hadapsar)</option>
+                      <option value="Pune - Hadapsar">Pune (Hadapsar & East Pune)</option>
                       <option value="Pune - Hinjawadi">Pune (Hinjawadi IT Park Phase 1, 2, 3)</option>
                       <option value="Pune - Kharadi">Pune (Kharadi EON Free Zone & Viman Nagar)</option>
                       <option value="Pune - Baner">Pune (Baner, Balewadi & Aundh)</option>
@@ -263,7 +263,7 @@ export function ContactPage() {
                 <h4 className="loc-title">Pune Operations Hub</h4>
                 <div className="loc-address">
                   <MapPin size={16} className="loc-pin" />
-                  <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>
+                  <span>Central Operations Hub — Serving Hinjewadi, Kharadi, Baner, PCMC & All Pune Corridors, Maharashtra — 411028</span>
                 </div>
                 <div className="loc-phone">
                   <Phone size={14} className="text-cyan" />

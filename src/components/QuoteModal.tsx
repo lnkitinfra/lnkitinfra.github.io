@@ -168,7 +168,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
                   value={form.city}
                   onChange={(e) => setForm({ ...form, city: e.target.value })}
                 >
-                  <option value="Pune - Magarpatta">Pune (Magarpatta City & Hadapsar)</option>
+                  <option value="Pune - Hadapsar">Pune (Hadapsar & East Pune)</option>
                   <option value="Pune - Hinjawadi">Pune (Hinjawadi IT Park Phase 1, 2, 3)</option>
                   <option value="Pune - Kharadi">Pune (Kharadi EON Free Zone & Viman Nagar)</option>
                   <option value="Pune - Baner">Pune (Baner, Balewadi & Aundh)</option>

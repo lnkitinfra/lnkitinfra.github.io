@@ -129,7 +129,7 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
         'Slow vendor response times when critical firewalls or server RAID disks fail'
       ],
       whatWeDo: [
-        'Guaranteed 1-hour on-site emergency response SLA in Hinjawadi, Magarpatta, Kharadi, and PCMC',
+        'Guaranteed 1-hour on-site emergency response SLA across Hinjewadi, Baner, Kharadi, and PCMC',
         'Weekly or monthly scheduled preventive maintenance audits, cable checks, and server cleaning',
         'Unlimited remote support tickets via AnyDesk and dedicated resident engineers for larger offices'
       ],
@@ -313,7 +313,7 @@ export function ServicesPage({ navigate, openQuoteModal }: ServicesPageProps) {
             <div className="process-step-item glass-card">
               <span className="step-num text-amber">04</span>
               <h4>Ongoing Pune AMC Support</h4>
-              <p>Emergency 1-hour SLA in Magarpatta, Hinjewadi, Kharadi & PCMC with dedicated standby replacement hardware.</p>
+              <p>Emergency 1-hour SLA across Hinjewadi, Baner, Kharadi & PCMC with dedicated standby replacement hardware.</p>
             </div>
           </div>
         </div>

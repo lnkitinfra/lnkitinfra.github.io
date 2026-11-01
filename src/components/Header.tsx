@@ -54,8 +54,10 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
     }, 150);
   };
 
-  const toggleMobileAccordion = (key: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const toggleMobileAccordion = (key: string, e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
     setMobileExpanded((prev) => ({
       ...prev,
       [key]: !prev[key]
@@ -578,7 +580,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <div className="mobile-accordion-section">
               <div
                 className="mobile-accordion-header"
-                onClick={() => handleNavClick('products')}
+                onClick={() => toggleMobileAccordion('products')}
               >
                 <span>Products (Sophos, Fortinet, SonicWall, Syntel)</span>
                 <button
@@ -626,7 +628,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <div className="mobile-accordion-section">
               <div
                 className="mobile-accordion-header"
-                onClick={() => handleNavClick('solutions')}
+                onClick={() => toggleMobileAccordion('solutions')}
               >
                 <span>Solutions (8 Core Solutions)</span>
                 <button
@@ -674,7 +676,7 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
             <div className="mobile-accordion-section">
               <div
                 className="mobile-accordion-header"
-                onClick={() => handleNavClick('services')}
+                onClick={() => toggleMobileAccordion('services')}
               >
                 <span>Services (7 Core Services)</span>
                 <button

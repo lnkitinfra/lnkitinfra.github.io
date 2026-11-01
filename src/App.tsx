@@ -46,20 +46,20 @@ export function App() {
         desc: 'Meet LNK IT Infra - newly launched and backed by 5+ years of practical experience in cabling, servers, cyber defense, and office IT setups.'
       },
       products: {
-        title: 'Enterprise IT Hardware Products | Firewalls, Switches, Wi-Fi 6 & Servers - LNK IT Infra',
-        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, HPE Aruba, Cisco, Dell, and Hikvision hardware with manufacturer warranty.'
+        title: 'Enterprise IT Hardware Products | Sophos, Fortinet, SonicWall & Syntel - LNK IT Infra',
+        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, SonicWall, Syntel, Dell, and Cisco hardware with official warranty.'
       },
       hardware: {
-        title: 'Enterprise IT Hardware Products | Firewalls, Switches, Wi-Fi 6 & Servers - LNK IT Infra',
-        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, HPE Aruba, Cisco, Dell, and Hikvision hardware with manufacturer warranty.'
+        title: 'Enterprise IT Hardware Products | Sophos, Fortinet, SonicWall & Syntel - LNK IT Infra',
+        desc: 'Supplying, installing, and configuring genuine Sophos, Fortinet, SonicWall, Syntel, Dell, and Cisco hardware with official warranty.'
       },
       services: {
-        title: 'Office IT Infrastructure Services | Cabling, Wi-Fi, Firewalls & AMC - LNK IT Infra',
-        desc: 'Explore our core office IT services: Cat6 cabling, high-density Wi-Fi 6, UTM firewalls, server room setup, and IT support AMC.'
+        title: 'Office IT Services & AMC | Infrastructure Setup, Audits & Support in Pune - LNK IT Infra',
+        desc: 'Explore our 7 core IT services: Turnkey Infrastructure, Health Checkups & Cable Audits, Software Licensing, Project Management, Laptop Rentals, AMC & Support.'
       },
       solutions: {
-        title: 'Turnkey IT Infrastructure Solutions | Office Setup & Cloud Defense - LNK IT Infra',
-        desc: 'End-to-end turnkey office IT setups, high-density wireless architecture, server room power backup, and proactive IT AMC contracts in Pune.'
+        title: '8 Core Enterprise IT Solutions | Server, Security, Cabling & CCTV - LNK IT Infra',
+        desc: '8 turnkey IT solutions: Server & Storage, IT Security, Networking, Structured Cabling, Server & Backup, CCTV, Biometric Attendance & Door Access in Pune.'
       },
       'our-clients': {
         title: 'Our Clients & Recent IT Installations | LNK IT Infra Pune',
@@ -79,12 +79,13 @@ export function App() {
       }
     };
 
-    if (currentRoute.startsWith('services/')) {
-      const sId = currentRoute.replace('services/', '');
+    const baseRoute = currentRoute.split('?')[0].split('#')[0];
+    if (baseRoute.startsWith('services/')) {
+      const sId = baseRoute.replace('services/', '');
       const formatted = sId.replace('-', ' ').toUpperCase();
       document.title = `${formatted} Solutions & Services | LNK IT Infra Pune`;
     } else {
-      const seo = routeSeo[currentRoute] || routeSeo.home;
+      const seo = routeSeo[baseRoute] || routeSeo.home;
       document.title = seo.title;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
@@ -112,24 +113,26 @@ export function App() {
 
   // Render active page based on route
   const renderCurrentPage = () => {
-    if (currentRoute === 'home' || currentRoute === '') {
+    const baseRoute = currentRoute.split('?')[0].split('#')[0];
+
+    if (baseRoute === 'home' || baseRoute === '') {
       return <HomePage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'about') {
+    if (baseRoute === 'about') {
       return <AboutPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'products' || currentRoute === 'hardware') {
+    if (baseRoute === 'products' || baseRoute === 'hardware') {
       return <HardwarePage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'services') {
+    if (baseRoute === 'services') {
       return <ServicesPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute.startsWith('services/')) {
-      const serviceId = currentRoute.replace('services/', '');
+    if (baseRoute.startsWith('services/')) {
+      const serviceId = baseRoute.replace('services/', '');
       return (
         <ServiceDetailPage
           serviceId={serviceId}
@@ -139,19 +142,19 @@ export function App() {
       );
     }
 
-    if (currentRoute === 'solutions') {
+    if (baseRoute === 'solutions') {
       return <SolutionsPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'our-clients' || currentRoute === 'case-studies') {
+    if (baseRoute === 'our-clients' || baseRoute === 'case-studies') {
       return <CaseStudiesPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'amc') {
+    if (baseRoute === 'amc') {
       return <AMCPage navigate={navigate} openQuoteModal={openQuoteModal} />;
     }
 
-    if (currentRoute === 'contact') {
+    if (baseRoute === 'contact') {
       return <ContactPage />;
     }
 
@@ -160,26 +163,31 @@ export function App() {
   };
 
   return (
-    <div className="site-wrapper">
+    <div className="site-canvas">
+      {/* 1. Global Navigation Header */}
       <Header
         currentRoute={currentRoute}
         navigate={navigate}
         openQuoteModal={openQuoteModal}
       />
 
-      <main className="main-content-area">
+      {/* 2. Main Page Render Slot */}
+      <main className="main-content-flow" role="main">
         {renderCurrentPage()}
       </main>
 
+      {/* 3. Global Footer */}
       <Footer navigate={navigate} />
 
-      <FloatingWhatsApp />
-
+      {/* 4. Global Interactive Popups & Widgets */}
       <QuoteModal
         isOpen={quoteModalOpen}
         onClose={closeQuoteModal}
         defaultRequirement={quoteRequirement}
       />
+
+      {/* 5. Sticky Direct WhatsApp Access Button */}
+      <FloatingWhatsApp />
     </div>
   );
 }

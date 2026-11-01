@@ -19,6 +19,7 @@ export function Footer({ navigate }: FooterProps) {
   return (
     <footer className="main-footer">
       <div className="container footer-grid">
+        {/* Col 1: Brand & Contacts */}
         <div className="footer-col brand-col">
           <a
             href="#/"
@@ -38,7 +39,7 @@ export function Footer({ navigate }: FooterProps) {
             </div>
           </a>
           <p className="footer-about">
-            LNK IT Infra provides end-to-end office IT infrastructure and technical support solutions exclusively in Pune & PCMC, including structured network cabling, high-density Wi-Fi 6, cyber security firewalls, CCTV security, biometric door locks, EPABX intercoms, and comprehensive Annual Maintenance Contracts (IT AMC).
+            LNK IT Infra delivers enterprise IT solutions exclusively across Pune & PCMC. We supply genuine hardware products (Sophos, Fortinet, SonicWall, Syntel), architect 8 core turnkey solutions, and provide 7 lifecycle IT services with rapid 1-hour emergency support.
           </p>
           <div className="footer-contacts">
             <div className="fc-item">
@@ -93,45 +94,49 @@ export function Footer({ navigate }: FooterProps) {
           </div>
         </div>
 
+        {/* Col 2: SOLUTIONS (8 Items) */}
         <div className="footer-col">
-          <h4 className="footer-heading">Services & Solutions</h4>
+          <h4 className="footer-heading">Solutions Suite (8)</h4>
           <ul className="footer-links">
-            <li><a href="#/solutions" onClick={(e) => { e.preventDefault(); handleNavClick('solutions'); }}>Turnkey Enterprise Solutions</a></li>
-            <li><a href="#/services/cabling" onClick={(e) => { e.preventDefault(); handleNavClick('services/cabling'); }}>Structured Network Cabling</a></li>
-            <li><a href="#/services/server-installation" onClick={(e) => { e.preventDefault(); handleNavClick('services/server-installation'); }}>Server Installation & RAID Setup</a></li>
-            <li><a href="#/services/desktop-support" onClick={(e) => { e.preventDefault(); handleNavClick('services/desktop-support'); }}>Desktop Support & Helpdesk</a></li>
-            <li><a href="#/services/mail-domain-migration" onClick={(e) => { e.preventDefault(); handleNavClick('services/mail-domain-migration'); }}>Email & Domain Migration (M365)</a></li>
-            <li><a href="#/services/application-support" onClick={(e) => { e.preventDefault(); handleNavClick('services/application-support'); }}>Application & Tally ERP Support</a></li>
-            <li><a href="#/services/wifi" onClick={(e) => { e.preventDefault(); handleNavClick('services/wifi'); }}>Commercial Office Wi-Fi 6</a></li>
-            <li><a href="#/services/firewall" onClick={(e) => { e.preventDefault(); handleNavClick('services/firewall'); }}>Next-Gen Firewalls & VPN</a></li>
-            <li><a href="#/services/cctv" onClick={(e) => { e.preventDefault(); handleNavClick('services/cctv'); }}>CCTV Security Surveillance</a></li>
-            <li><a href="#/services/biometrics" onClick={(e) => { e.preventDefault(); handleNavClick('services/biometrics'); }}>Biometrics & Door Access</a></li>
+            <li><a href="#/solutions#server-storage" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#server-storage'); }}>1. Server & Storage Solutions</a></li>
+            <li><a href="#/solutions#it-security" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#it-security'); }}>2. IT Security Solutions</a></li>
+            <li><a href="#/solutions#networking" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#networking'); }}>3. Networking Solutions</a></li>
+            <li><a href="#/solutions#structured-cabling" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#structured-cabling'); }}>4. Structured Cabling</a></li>
+            <li><a href="#/solutions#server-backup" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#server-backup'); }}>5. Server & Backup Solutions</a></li>
+            <li><a href="#/solutions#cctv-solutions" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#cctv-solutions'); }}>6. CCTV Solutions</a></li>
+            <li><a href="#/solutions#biometric-attendance" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#biometric-attendance'); }}>7. Biometric Attendance Solutions</a></li>
+            <li><a href="#/solutions#door-access" onClick={(e) => { e.preventDefault(); handleNavClick('solutions#door-access'); }}>8. Door Access Solutions</a></li>
           </ul>
         </div>
 
+        {/* Col 3: PRODUCTS & SERVICES */}
         <div className="footer-col">
-          <h4 className="footer-heading">Hardware Products & Rentals</h4>
+          <h4 className="footer-heading">Products & Services</h4>
+          <div className="footer-sub-heading">Authorized Products</div>
+          <ul className="footer-links mb-3">
+            <li><a href="#/products?brand=sophos" onClick={(e) => { e.preventDefault(); handleNavClick('products?brand=sophos'); }}>SOPHOS (Firewalls & AP6)</a></li>
+            <li><a href="#/products?brand=fortinet" onClick={(e) => { e.preventDefault(); handleNavClick('products?brand=fortinet'); }}>FORTINET (FortiGate & SD-WAN)</a></li>
+            <li><a href="#/products?brand=sonicwall" onClick={(e) => { e.preventDefault(); handleNavClick('products?brand=sonicwall'); }}>SONICWALL (Multi-Gig Firewalls)</a></li>
+            <li><a href="#/products?brand=syntel" onClick={(e) => { e.preventDefault(); handleNavClick('products?brand=syntel'); }}>SYNTEL (EPABX & Intercom)</a></li>
+          </ul>
+
+          <div className="footer-sub-heading">Core IT Services</div>
           <ul className="footer-links">
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>All Hardware Products</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Corporate Laptops on Rent</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Dell PowerEdge & HPE Servers</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Commercial Monitors & Desktops</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Logitech & Dell Keyboards/Mouse</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Cat6 LSZH Cables & Patch Panels</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Sophos XGS Firewalls & AP6</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>HPE Aruba & Cisco Switches</a></li>
-            <li><a href="#/products" onClick={(e) => { e.preventDefault(); handleNavClick('products'); }}>Hikvision 4K IP Security Cameras</a></li>
+            <li><a href="#/amc" onClick={(e) => { e.preventDefault(); handleNavClick('amc'); }}>Annual Maintenance Contract (AMC)</a></li>
+            <li><a href="#/services#it-audit" onClick={(e) => { e.preventDefault(); handleNavClick('services#it-audit'); }}>IT Health Checkup & Auditing</a></li>
+            <li><a href="#/services#software-licensing" onClick={(e) => { e.preventDefault(); handleNavClick('services#software-licensing'); }}>Software Licensing (M365 & Tally)</a></li>
+            <li><a href="#/services#remote-onsite-support" onClick={(e) => { e.preventDefault(); handleNavClick('services#remote-onsite-support'); }}>Remote & Onsite Desktop Support</a></li>
           </ul>
         </div>
 
+        {/* Col 4: Company & Pune Helpdesk */}
         <div className="footer-col">
-          <h4 className="footer-heading">Company & Contact</h4>
+          <h4 className="footer-heading">Company & Helpdesk</h4>
           <ul className="footer-links">
             <li><a href="#/about" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>About LNK IT Infra</a></li>
             <li><a href="#/our-clients" onClick={(e) => { e.preventDefault(); handleNavClick('our-clients'); }}>Our Clients & Case Studies</a></li>
-            <li><a href="#/amc" onClick={(e) => { e.preventDefault(); handleNavClick('amc'); }}>Annual Maintenance Contracts (AMC)</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Head Office (Magarpatta)</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Contact Engineering Team</a></li>
+            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Request BoQ / Site Audit</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Book Free On-Site Inspection</a></li>
           </ul>
         </div>
@@ -140,14 +145,14 @@ export function Footer({ navigate }: FooterProps) {
       <div className="footer-bottom-bar">
         <div className="container footer-bottom-inner">
           <div className="copyright-text">
-            © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Solutions, Structured Cabling & Networking Services in Pune & PCMC.
+            © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Products, Solutions & Services in Pune & PCMC.
           </div>
           <div className="footer-cert-tags">
-            <span>5+ Years IT Experience</span>
+            <span>Official Hardware Partners</span>
             <span>•</span>
-            <span>Installation & Setup</span>
+            <span>8 Turnkey Solutions</span>
             <span>•</span>
-            <span>Technical Support</span>
+            <span>7 Core IT Services</span>
           </div>
         </div>
       </div>

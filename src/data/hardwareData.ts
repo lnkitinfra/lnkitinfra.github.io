@@ -85,6 +85,42 @@ export const HARDWARE_CATALOG: HardwareItem[] = [
     warranty: 'SonicWall 24/7 Dynamic Support with Hardware Warranty',
     inStock: true
   },
+  {
+    id: 'sonicwall-tz570',
+    name: 'SonicWall TZ570 Multi-Gigabit',
+    brand: 'SonicWall',
+    category: 'Enterprise Office Firewall',
+    categorySlug: 'firewalls',
+    shortDesc: 'Multi-gigabit 5Gbps interfaces with integrated SD-Branch and high-density SSL decryption.',
+    specs: [
+      'Recommended for 50 to 250 active employees',
+      'Dual 5GbE interfaces + 8 Gigabit Ethernet ports',
+      'Zero-Touch Deployment via SonicWall Capture Security Center',
+      'High-speed TLS 1.3 decryption with zero throughput latency',
+      'Integrated wireless controller and redundant power support'
+    ],
+    bestFor: 'High-density tech offices, financial institutions, and multi-floor Pune hubs',
+    warranty: '3-Year SonicWall Advanced Protection Service Suite (APSS) with 24/7 TAC Support',
+    inStock: true
+  },
+  {
+    id: 'fortinet-fg-100f',
+    name: 'Fortinet FortiGate FG-100F',
+    brand: 'Fortinet',
+    category: 'Enterprise Next-Gen Firewall',
+    categorySlug: 'firewalls',
+    shortDesc: 'High-performance campus firewall with dedicated SPU ASIC processors for multi-gigabit traffic.',
+    specs: [
+      'Recommended for 100 to 500 active employees',
+      'Built-in 10G SFP+ fiber ports for high-speed core backbone switching',
+      'Enterprise SD-WAN with dynamic path selection and WAN optimization',
+      'Advanced intrusion prevention (IPS) and SSL inspection without bottleneck',
+      'Centralized FortiManager and FortiAnalyzer cloud analytics'
+    ],
+    bestFor: 'Corporate headquarters, IT campuses, and multi-branch enterprise networks',
+    warranty: '3 to 5 Years FortiCare Enterprise Support with Next Business Day Hardware Exchange',
+    inStock: true
+  },
 
   // Switches
   {
@@ -233,6 +269,24 @@ export const HARDWARE_CATALOG: HardwareItem[] = [
     ],
     bestFor: 'Medium-sized offices, sales departments, and multi-desk workplaces',
     warranty: '1 Year Official Syntel Manufacturer Warranty',
+    inStock: true
+  },
+  {
+    id: 'syntel-neox-ippbx',
+    name: 'Syntel NEOX IP-PBX Hybrid System',
+    brand: 'Syntel',
+    category: 'Enterprise IP Telephony (PBX)',
+    categorySlug: 'telephony',
+    shortDesc: 'Modern hybrid IP-PBX connecting traditional analog lines, digital extensions, and SIP trunks.',
+    specs: [
+      'Scalable from 16 to 256+ digital and IP phone extensions',
+      'SIP Trunking support to reduce monthly company phone bills',
+      'Mobile Softphone App: answer office desk calls anywhere on smartphone',
+      'Automated multi-level IVR auto-attendant with customized voice greetings',
+      'Centralized call recording, CDR billing analytics, and voice logger'
+    ],
+    bestFor: 'Mid to large corporate offices, BPOs, call centers, and multi-branch enterprises',
+    warranty: '1 Year Syntel Official Manufacturer Warranty with On-Site Engineer Maintenance',
     inStock: true
   },
   {

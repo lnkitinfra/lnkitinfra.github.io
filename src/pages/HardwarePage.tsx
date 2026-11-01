@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Check,
   ChevronRight,
@@ -16,29 +16,59 @@ interface HardwarePageProps {
 }
 
 export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
+  const getBrandFromUrl = () => {
+    const hash = window.location.hash;
+    const match = hash.match(/brand=([a-zA-Z0-9_-]+)/);
+    return match ? match[1].toLowerCase() : 'all';
+  };
+
+  const [activeBrand, setActiveBrand] = useState<string>(getBrandFromUrl);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  useEffect(() => {
+    const handleHash = () => {
+      const brand = getBrandFromUrl();
+      setActiveBrand(brand);
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
+  const officialBrands = [
+    { id: 'all', label: 'All Products & Brands', tag: 'Complete Catalog' },
+    { id: 'sophos', label: 'SOPHOS', tag: 'Firewalls & AP6 Wi-Fi' },
+    { id: 'fortinet', label: 'FORTINET', tag: 'FortiGate UTM & SD-WAN' },
+    { id: 'sonicwall', label: 'SONICWALL', tag: 'Multi-Gig Firewalls' },
+    { id: 'syntel', label: 'SYNTEL', tag: 'EPABX & Intercom' }
+  ];
+
   const categories = [
-    { id: 'all', label: 'All Products & Rentals' },
-    { id: 'rentals', label: 'Laptops on Rent' },
+    { id: 'all', label: 'All Categories' },
+    { id: 'firewalls', label: 'Security Firewalls (Sophos / Fortinet / SonicWall)' },
+    { id: 'telephony', label: 'Office Intercom (Syntel NEO DX)' },
+    { id: 'switches', label: 'Network Switches (Aruba / Cisco)' },
+    { id: 'wireless', label: 'Commercial Wi-Fi (Wi-Fi 6)' },
+    { id: 'rentals', label: 'Laptops on Rent (Corporate)' },
     { id: 'servers', label: 'Enterprise Servers (Dell / HPE)' },
     { id: 'peripherals', label: 'Monitors, Mouse & Desktops' },
     { id: 'lan', label: 'LAN & Structured Cabling' },
-    { id: 'firewalls', label: 'Security Firewalls (Sophos / Fortinet)' },
-    { id: 'switches', label: 'Network Switches (Aruba / Cisco)' },
-    { id: 'wireless', label: 'Commercial Wi-Fi (Wi-Fi 6)' },
-    { id: 'surveillance', label: 'CCTV & Recorders (Hikvision)' },
-    { id: 'telephony', label: 'Office Intercom (Syntel / NEC)' }
+    { id: 'surveillance', label: 'CCTV & Recorders (Hikvision)' }
   ];
 
   const filtered = HARDWARE_CATALOG.filter((item) => {
-    const matchesCategory = activeCategory === 'all' || item.categorySlug === activeCategory;
+    const matchesBrand =
+      activeBrand === 'all' ||
+      item.brand.toLowerCase() === activeBrand.toLowerCase();
+    const matchesCategory =
+      activeCategory === 'all' || item.categorySlug === activeCategory;
     const matchesSearch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.bestFor.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+      item.bestFor.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesBrand && matchesCategory && matchesSearch;
   });
 
   return (
@@ -56,6 +86,31 @@ export function HardwarePage({ navigate, openQuoteModal }: HardwarePageProps) {
           <p className="page-hero-desc">
             We supply, install, and configure genuine enterprise IT equipment with official manufacturer warranties, on-site commissioning, and dependable AMC technical support exclusively for offices in Pune & PCMC.
           </p>
+
+                    {/* Official Product Brands Bar (User Taxonomy) */}
+          <div className="product-brands-shelf glass-card mb-4">
+            <div className="brand-shelf-header">
+              <span className="brand-shelf-tag">OFFICIAL AUTHORIZED PRODUCTS</span>
+              <span className="brand-shelf-hint">Genuine Enterprise Equipment • Pune & PCMC Supply</span>
+            </div>
+            <div className="brand-pills-row">
+              {officialBrands.map((b) => (
+                <button
+                  key={b.id}
+                  className={`brand-filter-pill ${activeBrand === b.id ? 'active' : ''}`}
+                  onClick={() => {
+                    setActiveBrand(b.id);
+                    if (b.id !== 'all') {
+                      setActiveCategory('all');
+                    }
+                  }}
+                >
+                  <span className="brand-pill-name">{b.label}</span>
+                  <span className="brand-pill-desc">{b.tag}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Search & Category Filter Bar */}
           <div className="hardware-search-bar glass-card">

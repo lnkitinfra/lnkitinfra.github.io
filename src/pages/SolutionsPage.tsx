@@ -1,18 +1,20 @@
+import { useEffect } from 'react';
 import {
   FileSpreadsheet,
   ShieldCheck,
   Server,
-  Wifi,
-  Lock,
+Lock,
   Video,
   CheckCircle2,
   ChevronRight,
   ArrowRight,
-  Headphones,
-  Award,
+Award,
   Layers,
   Wrench,
-  FileCheck
+  FileCheck,
+  HardDrive,
+  Fingerprint,
+  Cpu
 } from 'lucide-react';
 
 interface SolutionsPageProps {
@@ -30,90 +32,133 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
     );
   };
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    const match = hash.match(/#([a-zA-Z0-9_-]+)/g);
+    if (match && match.length > 0) {
+      const targetId = match[match.length - 1].replace('#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, []);
+
+    // Exact 8 Solutions requested by user
   const turnkeySolutions = [
     {
-      id: 'turnkey-office',
-      badge: 'END-TO-END TURNKEY',
+      id: 'server-storage',
+      badge: 'ENTERPRISE COMPUTE',
       icon: Server,
-      title: 'Complete New Office IT Setup',
-      desc: 'Flawless day-one IT launch for new corporate branches, coworking hubs, and expanding offices. We handle layout blueprints, structured cabling, rack installations, firewall deployment, Wi-Fi 6 APs, biometric door access, and ISP coordination.',
+      title: 'Server & Storage Solutions',
+      desc: 'High-performance Dell PowerEdge and HPE ProLiant rack/tower servers configured with hardware RAID, hot-swap SAS/NVMe drives, and centralized SAN/NAS enterprise storage systems for business virtualization, ERP, and databases.',
       deliverables: [
-        'Certified Cat6 / Cat6A structured cabling and clear port labeling',
-        'Floor-to-floor 10G OM3/OM4 fiber optic backbone',
-        'Wall & floor server rack dressing with cable organizers',
-        'Day-1 internet leased line handover & workstation testing'
+        'Dell PowerEdge & HPE ProLiant server sizing & deployment',
+        'Hardware RAID 1/5/10 with hot-swap SAS/NVMe storage',
+        'Synology & QNAP centralized NAS/SAN storage setup',
+        'VMware ESXi & Microsoft Hyper-V virtualization architecture'
       ],
-      route: 'services/cabling'
+      route: 'services/server-installation'
     },
     {
-      id: 'enterprise-wifi',
-      badge: 'HIGH-DENSITY WIRELESS',
-      icon: Wifi,
-      title: 'Enterprise Wireless & Campus Wi-Fi 6',
-      desc: 'Ultra-reliable wireless networks engineered for dense seating areas, conference rooms, and multi-floor buildings. Say goodbye to dropped calls during daily Google Meet / Teams standups.',
-      deliverables: [
-        'RF site survey and Wi-Fi coverage mapping for zero dead zones',
-        'Isolated Guest Wi-Fi portal with SMS OTP authentication',
-        'Seamless fast-roaming (802.11r/k/v) across all meeting rooms',
-        'HPE Aruba Instant On & Sophos AP6 centralized cloud management'
-      ],
-      route: 'services/wifi'
-    },
-    {
-      id: 'cyber-security',
+      id: 'it-security',
       badge: 'ZERO-TRUST DEFENSE',
-      icon: Lock,
-      title: 'Perimeter Cyber Security & Next-Gen UTM',
-      desc: 'Bank-grade defense shielding your corporate network against ransomware, data leakage, and unapproved web browsing. Includes secure remote-work VPN gateways for hybrid teams.',
+      icon: ShieldCheck,
+      title: 'IT Security Solutions',
+      desc: 'Comprehensive cybersecurity architecture featuring Next-Gen UTM firewalls (Sophos XGS, Fortinet FortiGate, SonicWall TZ), encrypted remote-work VPN gateways, endpoint protection, and ransomware mitigation.',
       deliverables: [
-        'Sophos XGS & Fortinet FortiGate hardware appliance setup',
-        'SSL-VPN client configuration with Two-Factor Authentication',
-        'Bandwidth throttling for YouTube/Netflix & social media filtering',
-        'Automated dual-ISP WAN failover (zero-downtime internet)'
+        'Sophos XGS, Fortinet FortiGate & SonicWall firewall deployment',
+        'Automated dual-ISP WAN failover (<2 sec zero downtime)',
+        'Encrypted SSL-VPN with Multi-Factor Authentication (MFA)',
+        'Deep packet SSL inspection, application control & ransomware defense'
       ],
       route: 'services/firewall'
     },
     {
-      id: 'server-room',
-      badge: 'MISSION CRITICAL',
-      icon: ShieldCheck,
-      title: 'Server Room & Mini Datacenter Infrastructure',
-      desc: 'Robust server room engineering with redundant power backup, organized cable management, precision environmental monitoring, and enterprise storage racks.',
+      id: 'networking',
+      badge: 'ENTERPRISE NETWORKING',
+      icon: Cpu,
+      title: 'Networking Solutions',
+      desc: 'High-speed office network switching, core routing, and high-density commercial Wi-Fi 6 mesh infrastructure engineered for zero latency, seamless roaming, and bandwidth priority for daily video calls.',
       deliverables: [
-        '24U / 42U heavy-duty floor standing server racks with PDU',
-        'APC by Schneider Electric Online Smart-UPS with battery banks',
-        'Temperature & humidity sensor integration with SMS alerts',
-        'Synology & QNAP centralized NAS storage for automated backups'
+        'HPE Aruba Instant On & Cisco Catalyst managed PoE+ switches',
+        'VLAN network segmentation for guest Wi-Fi, CCTV, and servers',
+        'High-density Wi-Fi 6 access points with zero-drop fast roaming',
+        'Bandwidth QoS prioritization for Microsoft Teams & Zoom meetings'
       ],
-      route: 'services/datacenter'
+      route: 'services/networking'
     },
     {
-      id: 'surveillance-access',
-      badge: 'PHYSICAL SECURITY',
-      icon: Video,
-      title: 'Smart Surveillance & Biometric Access Control',
-      desc: 'Centralized 4K IP CCTV surveillance combined with AI face-recognition biometric time-attendance and electromagnetic door access control systems.',
+      id: 'structured-cabling',
+      badge: 'CERTIFIED CABLING',
+      icon: Layers,
+      title: 'Structured Cabling',
+      desc: 'Certified Cat6, Cat6A, and multi-core optical fiber network cabling designed for maximum throughput, clean under-desk wire dressing, and labeled patch panel termination with Fluke DSX pass certification.',
       deliverables: [
-        'Hikvision 4K IP dome & bullet cameras with 30-day NVR recording',
-        'Biometric fingerprint + face reader access control systems',
-        'Fire alarm integration with automatic fail-safe door unlocking',
-        'Mobile app monitoring for authorized security & facility teams'
+        'CommScope Systimax & Schneider Cat6/Cat6A LSZH pure copper cables',
+        'Floor-to-floor 10G OM3/OM4 optical fiber backbone pulling',
+        'Floor-standing server rack dressing with neat cable organizers',
+        'Printed Fluke DSX CableAnalyzer certification test reports'
+      ],
+      route: 'services/cabling'
+    },
+    {
+      id: 'server-backup',
+      badge: 'DISASTER RECOVERY',
+      icon: HardDrive,
+      title: 'Server & Backup Solutions',
+      desc: 'Automated local and cloud 3-2-1 backup solutions safeguarding critical corporate files, accounting databases (Tally), and server virtual machines with rapid disaster recovery runbooks.',
+      deliverables: [
+        'Automated daily snapshots & encrypted off-site cloud replication',
+        'Veeam Backup & Replication and Synology Active Backup setup',
+        'Bare-metal system restore & quick VM failover runbooks',
+        'APC by Schneider Electric Online Smart-UPS clean power integration'
+      ],
+      route: 'services/cloud-backup'
+    },
+    {
+      id: 'cctv-solutions',
+      badge: 'SMART SURVEILLANCE',
+      icon: Video,
+      title: 'CCTV Solutions',
+      desc: 'High-definition 4K Ultra-HD IP security camera installations providing round-the-clock perimeter surveillance, infrared night vision, and centralized NVR recording for Pune corporate offices.',
+      deliverables: [
+        'Hikvision 4K Ultra-HD IP dome, bullet, and PTZ cameras',
+        '24/7 continuous 30-day recording on WD Purple surveillance drives',
+        'Secure mobile app live view & playback for management teams',
+        'Neat Power-over-Ethernet (PoE) cabling with zero messy adapters'
+      ],
+      route: 'services/cctv'
+    },
+    {
+      id: 'biometric-attendance',
+      badge: 'SMART ATTENDANCE',
+      icon: Fingerprint,
+      title: 'Biometric Attendance Solutions',
+      desc: 'Touchless AI facial recognition and optical fingerprint biometric time-attendance terminals equipped with anti-spoofing protection, real-time sync, and automated payroll software export.',
+      deliverables: [
+        'AI facial recognition & biometric fingerprint time-attendance devices',
+        'Lightning-fast <0.3s recognition with photo anti-spoofing defense',
+        'Centralized cloud management across multiple Pune office locations',
+        'Automated shift roster management, overtime & payroll report exports'
       ],
       route: 'services/biometrics'
     },
     {
-      id: 'it-amc',
-      badge: 'OUTSOURCED IT TEAM',
-      icon: Headphones,
-      title: 'Annual Maintenance Contracts (IT AMC) & Support',
-      desc: 'Total peace of mind with our dedicated IT support team on speed dial. Prompt emergency on-site dispatch in Pune & PCMC, routine maintenance, and standby replacement hardware.',
+      id: 'door-access',
+      badge: 'ACCESS CONTROL',
+      icon: Lock,
+      title: 'Door Access Solutions',
+      desc: 'High-security electromagnetic (EM) door locks, RFID proximity cards, and biometric controllers securing server rooms, executive cabins, and main office reception entrances with fire alarm emergency release.',
       deliverables: [
-        'Unlimited remote support via AnyDesk / TeamViewer',
-        'Scheduled weekly/monthly on-site engineer preventive audits',
-        'Standby spare hardware during vendor warranty turnaround',
-        'Dedicated account manager with transparent monthly ticketing reports'
+        'Heavy-duty 600 lbs electromagnetic (EM) locks and drop bolts',
+        'RFID smart cards, biometric reader & PIN keypad access controllers',
+        'Emergency break-glass override switches and fire alarm integration',
+        'Time-stamped server room access logs for compliance audits'
       ],
-      route: 'amc'
+      route: 'services/biometrics'
     }
   ];
 
@@ -191,7 +236,7 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
             {turnkeySolutions.map((sol) => {
               const IconComp = sol.icon;
               return (
-                <div key={sol.id} className="solution-card glass-card">
+                <div key={sol.id} id={sol.id} className="solution-card glass-card">
                   <div className="card-top-row">
                     <div className="solution-icon-box">
                       <IconComp size={24} />

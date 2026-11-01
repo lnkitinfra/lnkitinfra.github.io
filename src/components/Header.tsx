@@ -251,31 +251,31 @@ export function Header({ currentRoute, navigate, openQuoteModal }: HeaderProps) 
       {/* 1. TOP INFORMATION BANNER */}
       <div className="top-banner">
         <div className="container top-banner-inner">
-          <div className="top-info-group">
-            <span className="top-info-item">
-              <MapPin size={13} className="top-icon" />
-              <span className="top-label-muted">HQ:</span>
-              <span className="top-label-strong">Magarpatta Cybercity, Pune — 411028</span>
+          <div className="top-info-group left">
+            <span className="top-coverage-badge">
+              <MapPin size={12} className="top-icon" />
+              <span>ON-SITE IT SERVICES • PUNE &amp; PCMC</span>
             </span>
-            <span className="top-info-item top-badge-exclusive">
-              <span className="top-label-strong">SERVICES IN PUNE ONLY</span>
+            <span className="top-separator">•</span>
+            <span className="top-sla-pill">
+              <span className="pulse-dot-green"></span>
+              <span>1-Hour Emergency On-Site SLA</span>
             </span>
-            <span className="top-info-item top-mail-item">
-              <Mail size={13} className="top-icon" />
-              <a href="mailto:lnkitinfra@gmail.com" className="top-link">
-                lnkitinfra@gmail.com
-              </a>
-            </span>
+            <span className="top-separator">•</span>
+            <a href="mailto:lnkitinfra@gmail.com" className="top-link top-mail-link" title="Email LNK IT Infra Support">
+              <Mail size={13} className="top-icon text-cyan" />
+              <span>lnkitinfra@gmail.com</span>
+            </a>
           </div>
 
           <div className="top-info-group right">
-            <span className="top-info-item">
-              <Clock size={13} className="top-icon" />
-              <span className="top-label-muted">Support Desk:</span>
-              <span>Mon - Sat 9AM - 8PM</span>
+            <span className="top-info-item top-hours-item">
+              <Clock size={13} className="top-icon text-slate-400" />
+              <span className="top-label-muted">Desk:</span>
+              <span>Mon - Sat 9:00 AM - 8:00 PM</span>
             </span>
-            <a href="tel:+917796852335" className="top-phone-link">
-              <Phone size={13} className="top-icon text-cyan" />
+            <a href="tel:+917796852335" className="top-phone-direct" title="Call LNK IT Infra Directly">
+              <Phone size={12} className="top-icon" />
               <span>+91 7796852335</span>
             </a>
           </div>

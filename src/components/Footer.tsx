@@ -56,7 +56,7 @@ export function Footer({ navigate }: FooterProps) {
             </div>
             <div className="fc-item">
               <MapPin size={14} className="text-cyan" />
-              <span>Service Coverage: Pune & PCMC Only (HQ: Magarpatta City — 411028)</span>
+              <span>Service Coverage: On-Site IT Engineering Across All Pune & PCMC Business Parks</span>
             </div>
           </div>
 
@@ -135,7 +135,7 @@ export function Footer({ navigate }: FooterProps) {
           <ul className="footer-links">
             <li><a href="#/about" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>About LNK IT Infra</a></li>
             <li><a href="#/our-clients" onClick={(e) => { e.preventDefault(); handleNavClick('our-clients'); }}>Our Clients & Case Studies</a></li>
-            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Head Office (Magarpatta)</a></li>
+            <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Pune Corporate Office</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Request BoQ / Site Audit</a></li>
             <li><a href="#/contact" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>Book Free On-Site Inspection</a></li>
           </ul>

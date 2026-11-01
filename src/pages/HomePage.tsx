@@ -616,7 +616,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
           <div style={{ maxWidth: '640px', margin: '0 auto' }}>
             <div className="loc-card glass-card" style={{ padding: '32px' }}>
               <div className="loc-badge">PUNE HEAD OFFICE</div>
-              <h3 className="loc-title" style={{ fontSize: '1.4rem' }}>Pune (Magarpatta City)</h3>
+              <h3 className="loc-title" style={{ fontSize: '1.4rem' }}>Pune Operations Hub</h3>
               <div className="loc-address" style={{ fontSize: '0.95rem' }}>
                 <MapPin size={20} className="loc-pin" />
                 <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>

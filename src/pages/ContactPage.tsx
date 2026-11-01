@@ -260,7 +260,7 @@ export function ContactPage() {
             <div className="locations-stack">
               <div className="loc-card glass-card">
                 <div className="loc-badge">PUNE HEAD OFFICE</div>
-                <h4 className="loc-title">Pune (Magarpatta City)</h4>
+                <h4 className="loc-title">Pune Operations Hub</h4>
                 <div className="loc-address">
                   <MapPin size={16} className="loc-pin" />
                   <span>Tower 4, Level 5, Cybercity IT Park, Magarpatta City, Hadapsar, Pune, Maharashtra — 411028</span>

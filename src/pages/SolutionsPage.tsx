@@ -1,4 +1,5 @@
 import {
+  FileSpreadsheet,
   ShieldCheck,
   Server,
   Wifi,
@@ -222,10 +223,12 @@ export function SolutionsPage({ navigate, openQuoteModal }: SolutionsPageProps) 
                       <ChevronRight size={16} />
                     </button>
                     <button
-                      className="btn-link-simple"
+                      className="btn-card-boq"
                       onClick={() => openQuoteModal(`Quotation for ${sol.title}`)}
+                      title="Request itemized Bill of Quantities"
                     >
-                      Request BoQ
+                      <FileSpreadsheet size={15} />
+                      <span>Request BoQ</span>
                     </button>
                   </div>
                 </div>

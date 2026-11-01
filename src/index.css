@@ -72,6 +72,10 @@ input, select, textarea, button {
   font-family: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Custom Clean Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

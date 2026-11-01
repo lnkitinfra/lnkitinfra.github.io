@@ -819,6 +819,85 @@
   background: var(--accent-blue);
   color: #ffffff;
   border-color: var(--accent-blue);
+  transform: translateY(-1px);
+}
+
+.btn-card-action:active {
+  transform: translateY(0);
+}
+
+/* Card Action: Request BoQ Button */
+.btn-card-boq {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  color: #ffffff !important;
+  border: 1px solid #1d4ed8;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn-card-boq:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+  border-color: #1e40af;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btn-card-boq:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Simple Link Action Button (e.g. Inquire Laptop Rentals, LAN BoQ) */
+.btn-link-simple {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--accent-blue);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-link-simple:hover {
+  color: #1e40af;
+  transform: translateX(3px);
+  text-decoration: underline;
+}
+
+.card-bottom-meta .btn-link-simple {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  color: #ffffff !important;
+  border: 1px solid #1d4ed8;
+  font-size: 0.825rem;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22);
+}
+
+.card-bottom-meta .btn-link-simple:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  text-decoration: none;
 }
 
 /* 6. HARDWARE MATRIX (Shaded Section: #f1f5f9) */
@@ -3511,6 +3590,22 @@
   .checklist-box,
   .advantage-box {
     padding: 20px 16px !important;
+  }
+  .card-bottom-meta {
+    gap: 8px;
+  }
+
+  @media (max-width: 440px) {
+    .card-bottom-meta {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    .card-bottom-meta .btn-card-action,
+    .card-bottom-meta .btn-card-boq,
+    .card-bottom-meta .btn-link-simple {
+      width: 100% !important;
+      justify-content: center !important;
+    }
   }
 
   /* Footer 1 column on mobile */

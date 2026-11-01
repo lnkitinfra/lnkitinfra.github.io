@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
+  FileSpreadsheet,
   ArrowRight,
   ChevronRight,
   CheckCircle2,
@@ -244,10 +245,12 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                       <ChevronRight size={16} />
                     </button>
                     <button
-                      className="btn-link-simple"
+                      className="btn-card-boq"
                       onClick={() => openQuoteModal(`Quotation inquiry for ${sol.title}`)}
+                      title="Request itemized Bill of Quantities"
                     >
-                      Request BoQ
+                      <FileSpreadsheet size={15} />
+                      <span>Request BoQ</span>
                     </button>
                   </div>
                 </div>

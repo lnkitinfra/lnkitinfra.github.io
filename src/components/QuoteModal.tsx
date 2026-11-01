@@ -108,8 +108,8 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
         ) : (
           <div className="modal-form-content">
             <div className="modal-header compact">
-              <div className="badge-glow">FREE QUOTE & SITE AUDIT • PUNE & PCMC ONLY</div>
-              <h3>Request Quotation & Site Visit</h3>
+              <div className="badge-glow">FREE BOQ & SITE AUDIT • PUNE & PCMC ONLY</div>
+              <h3>Request BoQ, Quotation & Site Visit</h3>
               <p>
                 Share your requirements below. Our engineer will provide a transparent, itemized estimate.
               </p>
@@ -201,7 +201,7 @@ export function QuoteModal({ isOpen, onClose, defaultRequirement }: QuoteModalPr
                   ) : (
                     <>
                       <Send size={16} />
-                      <span>Submit Request</span>
+                      <span>Submit BoQ / Quote Request</span>
                     </>
                   )}
                 </button>

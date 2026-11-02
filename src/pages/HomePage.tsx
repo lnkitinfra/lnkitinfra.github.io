@@ -38,9 +38,21 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
     },
     {
       src: '/images/office_it_setup.jpg',
-      label: 'Office Racks & Equipment',
+      label: 'Office Server Racks & Equipment',
       title: 'Office Server Racks & Hardware Installation',
       desc: 'Neatly dressed small office racks, patch panels, gigabit network switches, and reliable backup power.'
+    },
+    {
+      src: '/images/datacenter.jpg',
+      label: 'Enterprise Datacenter & Servers',
+      title: 'Enterprise Server Room & High-Density Racks',
+      desc: 'Precision server cabinets, high-speed optical fiber backbones, redundant UPS power, and 99.9% uptime.'
+    },
+    {
+      src: '/images/noc.jpg',
+      label: '24/7 IT Helpdesk & NOC Desk',
+      title: 'Proactive Network Monitoring & Support Desk',
+      desc: 'Round-the-clock IT health checks, automated dual-ISP failover, and rapid on-site technician dispatch in Pune.'
     }
   ];
 
@@ -60,8 +72,21 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
 
   return (
     <div className="home-page-container">
-      {/* 1. HERO SECTION */}
-      <section className="hero-section">
+      {/* 1. HERO SECTION WITH DYNAMIC BACKGROUND PHOTOS */}
+      <section className="hero-section hero-with-bg-photo">
+        {/* Full-Bleed Background Photos with Smooth Fade Transition */}
+        <div className="hero-bg-photo-wrapper" aria-hidden="true">
+          {heroImages.map((img, i) => (
+            <div
+              key={i}
+              className={`hero-bg-photo-slide ${heroImageIdx === i ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${img.src})` }}
+            />
+          ))}
+          <div className="hero-bg-gradient-overlay"></div>
+          <div className="hero-bg-mesh-grid"></div>
+        </div>
+
         <div className="container hero-content-grid">
           <div className="hero-copy">
             <div className="hero-trust-badge">

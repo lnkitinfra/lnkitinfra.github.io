@@ -145,7 +145,7 @@ export function Footer({ navigate }: FooterProps) {
       <div className="footer-bottom-bar">
         <div className="container footer-bottom-inner">
           <div className="copyright-text">
-            © 2026 LNK IT Infra Pvt. Ltd. All Rights Reserved. Enterprise IT Products, Solutions & Services in Pune & PCMC.
+            © 2026 LNK IT Infra. All Rights Reserved. Enterprise IT Products, Solutions & Services in Pune & PCMC.
           </div>
           <div className="footer-cert-tags">
             <span>Official Hardware Partners</span>

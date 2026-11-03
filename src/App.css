@@ -1045,10 +1045,249 @@ img, video, canvas, svg {
   gap: 24px;
 }
 
+/* Modern IT Hardware & Product Cards */
 .hw-card {
-  padding: 26px;
+  padding: 0 !important;
   display: flex;
   flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+}
+
+.hw-card:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.16);
+}
+
+.hw-card-image-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.hw-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.hw-card:hover .hw-product-img {
+  transform: scale(1.05);
+}
+
+.hw-brand-pill-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.84);
+  backdrop-filter: blur(8px);
+  color: #38bdf8;
+  font-family: var(--font-display);
+  font-size: 0.725rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.stock-badge-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: rgba(236, 253, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid #6ee7b7;
+  color: #047857;
+  border-radius: 999px;
+  font-weight: 750;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.hw-card-body {
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hw-card-body .hw-category-label {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-blue);
+  margin-bottom: 6px;
+}
+
+.hw-card-body .hw-model-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.hw-card-body .hw-short-desc {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.hw-card-body .hw-warranty-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.775rem;
+  font-weight: 650;
+  color: #065f46;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  width: fit-content;
+}
+
+.hw-card-body .card-bottom-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.hw-card-body .btn-card-boq {
+  width: 100%;
+  justify-content: center;
+  padding: 9px 14px;
+  font-size: 0.85rem;
+}
+
+.btn-whatsapp-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d !important;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn-whatsapp-sm:hover {
+  background: #22c55e;
+  border-color: #16a34a;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.28);
+}
+
+/* Home Page IT Hardware Showcase Cards */
+.hw-preview-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 18px -4px rgba(15, 23, 42, 0.05);
+}
+
+.hw-preview-card:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.16);
+}
+
+.hw-preview-thumb {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.hw-preview-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.hw-preview-card:hover .hw-preview-thumb img {
+  transform: scale(1.05);
+}
+
+.hw-preview-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  color: #38bdf8;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.hw-preview-body {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hw-preview-body h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 750;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.hw-preview-body p {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
 }
 
 .hw-card-header {
@@ -6575,5 +6814,32 @@ body,
   .hero-with-bg-photo .hero-metric-item .metric-lbl {
     font-size: 0.75rem !important;
     text-align: right !important;
+  }
+}
+
+/* Mobile Responsiveness for Hardware Showcase Cards */
+@media (max-width: 768px) {
+  .hardware-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hardware-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .hw-card-image-box {
+    height: 180px !important;
+  }
+  .hw-card-body {
+    padding: 16px 14px 18px !important;
+  }
+  .hw-preview-thumb {
+    height: 160px !important;
+  }
+  .hw-preview-body {
+    padding: 16px 14px !important;
   }
 }

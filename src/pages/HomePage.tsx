@@ -10,10 +10,6 @@ import {
   Shield,
   Award,
   Clock,
-  Laptop,
-  Server,
-  Monitor,
-  HardDrive,
   Phone,
   Mail
 } from 'lucide-react';
@@ -302,86 +298,239 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
       <section className="section-hardware-preview py-8 bg-subtle">
         <div className="container">
           <div className="section-header text-center">
-            <div className="badge-glow">GENUINE HARDWARE & RENTAL SERVICES</div>
+            <div className="badge-glow">GENUINE IT HARDWARE SUPPLY • PUNE ONLY</div>
             <h2 className="section-title">
-              IT Hardware Supply, Servers & Laptops on Rent
+              IT Hardware Supply, Servers, SSD, RAM &amp; Laptops
             </h2>
             <p className="section-desc">
-              From corporate laptop rentals with instant replacement to enterprise rack servers, commercial IPS monitors, silent keyboard-mouse combos, and certified Cat6 LAN cabling.
+              We supply 100% genuine enterprise servers, fast NVMe SSDs, ECC RAM, processors, commercial desktop CPUs, IPS monitors, and corporate laptops with official manufacturer warranty and turnkey Pune on-site setup.
             </p>
           </div>
 
           <div className="grid-3-col mt-6">
-            <div className="advantage-box glass-card">
-              <Laptop size={32} className="text-cyan mb-2" />
-              <h4>Laptops on Rent (Corporate)</h4>
-              <p>Dell Latitude, Lenovo ThinkPad, and Apple MacBook Pro on flexible monthly/annual rentals in Pune. Includes free hardware maintenance and same-day standby replacement.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('Corporate Laptop Rental Inquiry')}
-              >
-                Inquire Laptop Rentals →
-              </button>
+            {/* 1. Enterprise Servers */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/server.jpg"
+                  alt="Enterprise Rack and Tower Servers Dell PowerEdge and HPE ProLiant"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">DELL &amp; HPE SERVERS</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Enterprise Servers &amp; Storage</h4>
+                <p>
+                  Dell PowerEdge R750/R650 and HPE ProLiant Gen11 rack &amp; tower servers. Sized with hardware RAID controllers, hot-swap SAS/NVMe drives, and redundant PSUs.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Enterprise Server Sizing & Quote (Dell / HPE)')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request Server Sizing</span>
+                </button>
+              </div>
             </div>
 
-            <div className="advantage-box glass-card">
-              <Server size={32} className="text-emerald mb-2" />
-              <h4>Enterprise Servers & Storage</h4>
-              <p>Dell PowerEdge R750/R650 and HPE ProLiant Gen11 rack & tower servers. Configured with hardware RAID, hot-swap SAS/NVMe drives, redundant PSUs, and iDRAC/iLO.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('Enterprise Server Sizing & Quote')}
-              >
-                Request Server Sizing →
-              </button>
+            {/* 2. Server Installation */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/server_installation.jpg"
+                  alt="Turnkey Server Installation and Rack Dressing"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">ON-SITE SETUP</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Server Installation &amp; Setup</h4>
+                <p>
+                  Turnkey 19-inch rack mounting, PDU power routing, hardware RAID 1/5/10 build, VMware ESXi / Hyper-V OS deployment, and clean cable dressing in Pune.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Server Rack Installation & Hypervisor Setup')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Inquire Server Setup</span>
+                </button>
+              </div>
             </div>
 
-            <div className="advantage-box glass-card">
-              <Monitor size={32} className="text-purple mb-2" />
-              <h4>Monitors, Mouse & Desktops</h4>
-              <p>Dell 24" & 27" IPS commercial monitors with pivot stands, OptiPlex desktop PCs, Logitech MK295 silent wireless combos, and precision optical mouse sets.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('Commercial Desktops & Monitors Inquiry')}
-              >
-                Request Peripheral Quote →
-              </button>
+            {/* 3. Enterprise SSDs */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/ssd.jpg"
+                  alt="Solid State Drives NVMe M.2 and Enterprise SATA SSDs"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">NVMe &amp; SATA SSD</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Enterprise &amp; Desktop SSDs</h4>
+                <p>
+                  Samsung PM9A3 / 990 PRO &amp; Kingston Enterprise NVMe M.2 &amp; 2.5-inch SATA SSDs (500GB to 3.84TB) with power-loss protection and high write endurance.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('SSD Storage Inquiry (Samsung / Kingston / Crucial)')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request SSD Pricing</span>
+                </button>
+              </div>
             </div>
 
-            <div className="advantage-box glass-card">
-              <HardDrive size={32} className="text-cyan mb-2" />
-              <h4>LAN & Structured Cabling</h4>
-              <p>CommScope Systimax and Schneider Cat6/Cat6A LSZH pure copper drums (305m), 24/48-port loaded patch panels, snagless molded patch cords, and dual I/O boxes.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('LAN Cabling Materials BoQ Inquiry')}
-              >
-                Get LAN Cabling BoQ →
-              </button>
+            {/* 4. RAM & Memory */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/ram.jpg"
+                  alt="Server ECC RAM and Desktop DDR4 DDR5 Memory"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">DDR4 &amp; DDR5 ECC</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>RAM &amp; Server Memory</h4>
+                <p>
+                  Kingston &amp; Crucial/Micron 16GB, 32GB, 64GB DDR4 &amp; DDR5 4800/5600MHz ECC Registered RDIMMs for servers and high-speed UDIMMs for corporate workstations.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('RAM Memory Upgrade Inquiry (Server & Desktop)')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Inquire RAM Upgrades</span>
+                </button>
+              </div>
             </div>
 
-            <div className="advantage-box glass-card">
-              <Shield size={32} className="text-emerald mb-2" />
-              <h4>Firewalls & Network Switches</h4>
-              <p>Professional configuration and installation of Sophos XGS, Fortinet FortiGate, HPE Aruba Instant On PoE+ switches, and Cisco Catalyst managed switches.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('Firewall & Switch Quotation')}
-              >
-                Request Network Quote →
-              </button>
+            {/* 5. Processors & CPUs */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/processor.jpg"
+                  alt="Intel Xeon Scalable and AMD EPYC Processors"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">INTEL &amp; AMD CPUs</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Processors &amp; CPUs</h4>
+                <p>
+                  Intel Xeon Silver/Gold Scalable, Intel Core i7/i9 14th Gen, and AMD EPYC 9004 series processors engineered for high-throughput virtualization and databases.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Processors & CPU Sizing (Intel Xeon / AMD EPYC)')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request Processor Quote</span>
+                </button>
+              </div>
             </div>
 
-            <div className="advantage-box glass-card">
-              <Award size={32} className="text-purple mb-2" />
-              <h4>CCTV Cameras & Biometrics</h4>
-              <p>Hikvision 4K ColorVu IP security cameras, Western Digital Purple NVR storage, touchless facial recognition biometric locks, and surveillance AMC.</p>
-              <button
-                className="btn-link-simple mt-3"
-                onClick={() => openQuoteModal('CCTV Surveillance & Biometrics Inquiry')}
-              >
-                Inquire CCTV Setup →
-              </button>
+            {/* 6. Desktop CPUs & Mini PCs */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/desktop_cpu.jpg"
+                  alt="Desktop CPU and Mini PCs Dell OptiPlex"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">WORKSTATIONS &amp; PCs</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Desktop CPUs &amp; Mini PCs</h4>
+                <p>
+                  Dell OptiPlex Micro/Small Form Factor PCs and HP EliteDesk workstations with Intel Core i5/i7, 16GB RAM, 512GB NVMe SSD, and Windows 11 Pro pre-activated.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Desktop CPU & Workstation PCs Inquiry')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request Desktop BoQ</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 7. Corporate Laptops & Rentals */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/laptop.jpg"
+                  alt="Corporate Laptops Dell Latitude Lenovo ThinkPad MacBook"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">SALES &amp; RENTALS</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Corporate Laptops (Rent &amp; Buy)</h4>
+                <p>
+                  Dell Latitude, Lenovo ThinkPad, and Apple MacBook Pro. Sourced for outright purchase or flexible corporate rentals with same-day standby replacement in Pune.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Corporate Laptop Purchase & Rental Inquiry')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Inquire Laptop Rentals</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 8. Commercial IPS Monitors */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/monitor.jpg"
+                  alt="Dell and HP Commercial IPS Monitors"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">COMMERCIAL IPS</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Commercial IPS Monitors</h4>
+                <p>
+                  Dell 24" &amp; 27" Full HD and 4K IPS monitors with ergonomic height-adjust pivot stands, HDMI/DisplayPort/USB-C connectivity, and anti-glare flicker-free panels.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Commercial IPS Monitors BoQ Inquiry')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request Monitor BoQ</span>
+                </button>
+              </div>
+            </div>
+
+            {/* 9. Next-Gen Firewalls & Network Switches */}
+            <div className="hw-preview-card">
+              <div className="hw-preview-thumb">
+                <img
+                  src="/images/products/firewall.jpg"
+                  alt="Sophos XGS and Fortinet FortiGate Firewalls and Aruba Switches"
+                  loading="lazy"
+                />
+                <span className="hw-preview-tag">SECURITY &amp; NETWORK</span>
+              </div>
+              <div className="hw-preview-body">
+                <h4>Firewalls &amp; Network Switches</h4>
+                <p>
+                  Official supply and setup for Sophos XGS, Fortinet FortiGate UTM firewalls, and HPE Aruba Instant On 24/48-port Gigabit PoE+ switches for enterprise LANs.
+                </p>
+                <button
+                  className="btn-card-boq mt-auto"
+                  onClick={() => openQuoteModal('Firewall & Network Switch Quote')}
+                >
+                  <FileSpreadsheet size={14} />
+                  <span>Request Network BoQ</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -393,7 +542,7 @@ export function HomePage({ navigate, openQuoteModal }: HomePageProps) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             >
-              <span>Explore All Hardware Models & Rentals</span>
+              <span>Explore Complete IT Hardware Catalog &amp; BoQ</span>
               <ArrowRight size={16} />
             </button>
           </div>
